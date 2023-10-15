@@ -1,0 +1,16 @@
+body {
+    background-color: white;
+    color:#5C7345;
+}
+
+.navbar{
+    background-color:#5C7345
+}
+
+.nav-link {
+    color:#5C7345;
+}
+
+.navbar-toggler-icon {
+    background-color: #5C7345;
+}

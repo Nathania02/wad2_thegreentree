@@ -1,0 +1,36 @@
+.navbar{
+    background-color:#5C7345
+}
+
+.nav-link {
+    color:#5C7345;
+}
+
+.navbar-toggler-icon {
+    background-color: #5C7345;
+}
+
+.loginPage {
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 20px;
+    /* can be changed */
+}
+
+body {
+    height: 100vh;
+    /* 100% viewport height */
+    display: flex;
+    align-items: center;
+    margin: 0;
+    background-color: white;
+    color: #5C7345;
+}
+
+.button {
+    text-align: center;
+}
+
+.input {
+    background-color: #D8EAC7;
+    border-radius: 10px;
+}

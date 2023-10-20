@@ -1,29 +1,18 @@
-.navbar{
-    background-color:#5C7345
+.navbar {
+    background-color: #5C7345
 }
 
 .nav-link {
-    color:#5C7345;
+    color: #5C7345;
 }
 
 .navbar-toggler-icon {
     background-color: #5C7345;
 }
 
-.loginPage {
-    font-family: 'Times New Roman', Times, serif; 
-    font-size: 20px;
-    /* can be changed */
-}
-
 body {
-    height: 100vh;
-    /* 100% viewport height */
-    display: flex;
-    align-items: center;
-    margin: 0;
-    background-color: white;
     color: #5C7345;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .button {
@@ -34,3 +23,24 @@ body {
     background-color: #D8EAC7;
     border-radius: 10px;
 }
+
+.fixed-left {
+    position: fixed;
+    left: 0;
+    z-index: 1030;
+}
+
+.sideBar {
+    margin-top: 100px;
+    height: 600px; 
+    min-width: fit-content;
+    padding-top: 20px;
+}
+
+.contentSection {
+    margin-top: 100px;
+    font-size: 25px;
+    padding-left: 100px;
+    padding-top: 30px;
+}
+

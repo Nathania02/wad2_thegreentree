@@ -20,7 +20,7 @@ function createNavbarGreen() {
                     </a></div>
                     </li>
                     <li class="nav-item px-3"><div title="Profile">
-                    <a class="nav-link" href="profile.html">
+                    <a class="nav-link" href="login.html">
                     <img src="rsrc/navbar/profile.png" height="40" width="40">
                     </a></div>
                     </li>

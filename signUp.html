@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Login</title>
+    <title>Sign Up</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,6 +18,10 @@
 
     <script src="js/profile.js"></script>
 
+    <script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js"></script>
+
+
 </head>
 
 <body>
@@ -25,9 +29,8 @@
         createNavbarGreen();
     </script>
 
-    <div class="container-fluid" style="margin-top: 200px">
-        <h2 class="text-center mb-4">Login</h2>
-        <form action="profile.html">
+    <div class="container-fluid" style="margin-top: 200px;">
+        <form onsubmit="return checkIfPasswordValid()" action="profile.html">
             <div class="row justify-content-center">
                 <div class="col-8">
                     <div class="mb-3">
@@ -36,16 +39,23 @@
                             required>
                     </div>
                     <div class="mb-3">
+                        <label for="email" class="form-label loginPage">Email address</label>
+                        <input type="email" class="form-control input" id="email" placeholder="Enter your email"
+                            required>
+                    </div>
+                    <div class="mb-3">
                         <label for="password" class="form-label loginPage">Password</label>
                         <input type="password" class="form-control input" id="password"
                             placeholder="Enter your password" required>
                     </div>
-                    <div>
-                        <a href="#">Forgot Password?</a>
-                        <a href="signUp.html">Sign Up</a>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label loginPage">Confirm Password</label>
+                        <input type="password" class="form-control input" id="confirmPassword"
+                            placeholder="Confirm your password" required>
                     </div>
+                    <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
                     <div class="button">
-                        <button type="submit" class="btn btn-success btn-block loginPage">Login</button>
+                        <button type="submit" class="btn btn-success btn-block loginPage">Sign Up</button>
                     </div>
                 </div>
             </div>

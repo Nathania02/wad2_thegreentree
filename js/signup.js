@@ -1,32 +1,22 @@
-function checkIfPasswordValid() {
-    var password = document.getElementById('password');
-    var confirmPassword = document.getElementById('confirmPassword');
+export function checkIfPasswordValid(password, confirmPassword) {
+    var errors = []
     if (password != confirmPassword) {
-        alert('Passwords do not match');
-        return false;
+        alert('Password does not match!');
     }
     else {
         if (password.length < 8) {
-            return false;
+            errors.push('Password length less than 8');
         }
         if (!/[a-z]/.test(password)) {
-            return false;
+            errors.push('Password does not contain any lower case alphabets');
         }
         if (!/[A-Z]/.test(password)) {
-            return false;
+            errors.push('Password does not contain any upper case alphabets');
         }
         if (!/\d/.test(password)) {
-            return false;
+            errors.push('Password does not contain any numbers');
         }
     }
-    return true;
 
-}
-
-function checkIfUsernameUnique() {
-
-}
-
-function checkIfEmailValid() {
-    var email = document.getElementById('email');
+    return errors
 }

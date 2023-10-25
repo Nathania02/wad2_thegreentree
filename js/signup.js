@@ -1,7 +1,7 @@
 export function checkIfPasswordValid(password, confirmPassword) {
-    var errors = []
+    let errors = []
     if (password != confirmPassword) {
-        alert('Password does not match!');
+        errors.push('Password does not match!');
     }
     else {
         if (password.length < 8) {

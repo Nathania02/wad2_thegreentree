@@ -53,16 +53,58 @@ const fetchData = () => {
         console.log(doc.id, " => ", doc.data());
       });
       console.log(items_array);
-      const product_app = Vue.createApp({
-        data(){
-            return{
-                items: items_array,
-                item: "",
-            }
+      console.log("BITCH");
+    //   const product_app = Vue.createApp({
+    //     data(){
+    //         return{
+    //             items: items_array,
+    //             item: "",
+    //         }
+    //   },
+    // mounted(){
+    //   console.log(this.items[0]);
+    // }}).mount("#product_listing");
+
+    const app = Vue.createApp({
+      data() {
+        return {
+          items: items_array
+        };
       },
-    mounted(){
-      console.log(this.items[0]);
-    }}).mount("#product_listing");
+      components: {
+        'item-card': {
+          props: ['item'],
+          data() {
+            return {
+              showButtons: false
+            };
+          },
+          template: `
+            <div class="col">
+              <div class="card border-0 mb-5 ms-4 rounded-0 position-relative" style="width: 15rem;">
+              <div class="img-container position-relative">
+                <img @mouseover="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
+                <div v-if="showButtons" class="overlay"></div>
+                <div v-if="showButtons" class="btn-container position-absolute w-100 h-100 d-flex justify-content-around ">
+                  <button @click="addToCart" class="btn atc-btn ">Add to Cart</button>
+                  <button @click="showMoreInformation" class="btn mi-btn ">More Information</button>
+                  </div>
+                </div>
+                <div class="card-body position-relative">
+                  <h5 class="card-title start-0">{{ item.name }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ item.shortdesc }}<span class="position-absolute end-0 price"><b>{{item.price}}S$</b></span></h6>
+                </div>
+              </div>
+            </div>
+          `,
+          methods: {
+            
+          }
+        }
+      }
+    });
+
+    app.mount("#product_listing");
     })
     .catch((error) => {
       console.error("Error getting documents: ", error);

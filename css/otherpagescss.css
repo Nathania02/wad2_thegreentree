@@ -51,4 +51,12 @@ body {
     font-weight: bold;
     color: #5C7345;
 }
+
+.atc-btn{
+    background-color: #5C7345;
+    color: white;
+    border-radius: 0px;
+    border: none;
+    font-weight: bold;
+}
 /* END OF MARKETPLACE CSS */

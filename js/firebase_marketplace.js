@@ -3,7 +3,7 @@
 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
   // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-  import { getFirestore, collection, addDoc, getDocs } 
+  import { getFirestore, collection, addDoc, getDocs, where,query } 
     from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,62 +26,64 @@
   const db = getFirestore(app);
   console.log(db);
   
-//   const fetchData = async ()=>{
-//     try{
-//       let items_array = [];
-//     const querySnapshot = await getDocs(collection(db, "items"));
-//     querySnapshot.forEach((doc)=>{
-//       items_array.push(doc.data());
-//         console.log(doc.id, " => ", doc.data());
-//     })
-//     console.log(items_array);
-
-//     displayItems(items_array);
-//   }catch(error){
-//     console.log(error);
-//   }
-// }
 
 const fetchData = () => {
   const items_array = [];
+  const reviews_array = [];
+  getDocs(collection(db, "reviews"))
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      let docData = doc.data();
+      docData['reviewid'] = doc.id;
+      reviews_array.push(docData);    });
+  }).catch((error) => {
+    console.error("Error getting documents: ", error);
+  });
   getDocs(collection(db, "items"))
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         let docData = doc.data();
         docData['iid'] = doc.id;
         items_array.push(docData);
-        console.log(doc.id, " => ", doc.data());
       });
-      console.log(items_array);
-      console.log("BITCH");
-    //   const product_app = Vue.createApp({
-    //     data(){
-    //         return{
-    //             items: items_array,
-    //             item: "",
-    //         }
-    //   },
-    // mounted(){
-    //   console.log(this.items[0]);
-    // }}).mount("#product_listing");
 
     const app = Vue.createApp({
       data() {
         return {
-          items: items_array
+          items: items_array,
+          reviews: reviews_array
         };
+      },
+      methods: {
+        hasReviews(iid) {
+          console.log(this.reviews);
+          console.log(this.reviews.some(review => review.itemid === iid));
+          return this.reviews.some(review => review.itemid === iid);
+        },
+        average_rating(iid){
+          let reviews = this.reviews.filter(review => review.itemid === iid);
+          let total = 0;
+          for (let review of reviews){
+            total += review.rating;
+          }
+          return total/reviews.length;
+        },
+        number_of_reviews(iid){
+          let reviews = this.reviews.filter(review => review.itemid === iid);
+          return reviews.length;
+        },
       },
       components: {
         'item-card': {
           props: ['item'],
           data() {
             return {
-              showButtons: false
+              showButtons: false,
             };
           },
           template: `
             <div class="col">
-              <div class="card border-0 mb-5 ms-4 rounded-0 position-relative" style="width: 15rem;">
+              <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
               <div class="img-container position-relative">
                 <img @mouseover="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
                 <div v-if="showButtons" class="overlay"></div>
@@ -90,15 +92,34 @@ const fetchData = () => {
                   <button @click="showMoreInformation" class="btn mi-btn ">More Information</button>
                   </div>
                 </div>
-                <div class="card-body position-relative">
-                  <h5 class="card-title start-0">{{ item.name }}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{ item.shortdesc }}<span class="position-absolute end-0 price"><b>{{item.price}}S$</b></span></h6>
+                <div class="mt-3 ms-2 position-relative h-100 d-flex flex-column">
+                  <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$ {{item.price}}</b></span></div>
+                  <div class="card-subtitle text-muted short-desc">{{ item.shortdesc }}</div>
+                  <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating: {{average_rating}}, from {{number_of_reviews}}</p>
+                  <p v-else class="card-text review-summary position-absolute bottom-0">No reviews yet</p>
                 </div>
               </div>
             </div>
           `,
           methods: {
-            
+           
+          },
+
+          computed:{
+            hasReviewsForItem(){
+              return this.$root.hasReviews(this.item.iid);
+            },
+            average_rating(){
+              return this.$root.average_rating(this.item.iid);
+            },
+            number_of_reviews(){
+              let num = this.$root.number_of_reviews(this.item.iid);
+              if(num == 1){
+                return num + " review";
+              }else{
+                return num + " reviews";
+              }
+            }
           }
         }
       }

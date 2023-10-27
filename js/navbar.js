@@ -15,7 +15,7 @@ function createNavbarGreen() {
                         </a></div>
                     </li>
                     <li class="nav-item px-3"><div title="Community">
-                    <a class="nav-link" href="community.html">
+                    <a class="nav-link" href="community_mainpage.html">
                     <img src="rsrc/navbar/community.png" height="40" width="40">
                     </a></div>
                     </li>

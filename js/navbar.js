@@ -1,5 +1,6 @@
 function createNavbarGreen() {
     document.write(`
+    <div class="container-fluid">
         <nav class="navbar navbar-expand-lg fixed-top">
             <a class="navbar-brand ps-4" href="index.html">
                 <img src="rsrc/the_green_tree_white.png" alt="Company Logo" height="60" width="60">
@@ -32,6 +33,7 @@ function createNavbarGreen() {
                 </ul>
             </div>
         </nav>
+    </div>
     `);
 
     let list_items = document.getElementsByTagName('li');
@@ -106,6 +108,12 @@ function inbox_to_white(element){
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/inbox.png");
 }
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('d-md-block');
+    sidebar.classList.toggle('d-none');
+  }
 
 function createNavbarWhite() {
     document.write(`

@@ -3,7 +3,7 @@ function createNavbarGreen() {
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg fixed-top">
             <a class="navbar-brand ps-4" href="index.html">
-                <img src="rsrc/the_green_tree_white.png" alt="Company Logo" height="60" width="60">
+                <img src="rsrc/the_green_tree_white.png" alt="Company Logo" height="40" width="40">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -12,22 +12,22 @@ function createNavbarGreen() {
                 <ul class="navbar-nav">
                     <li class="nav-item px-3"><div title="Marketplace">
                         <a class="nav-link" href="marketplace.html">
-                        <img src="rsrc/navbar/marketplace.png" height="40" width="40">
+                        <img src="rsrc/navbar/marketplace.png" height="30" width="30">
                         </a></div>
                     </li>
                     <li class="nav-item px-3"><div title="Community">
                     <a class="nav-link" href="community_mainpage.html">
-                    <img src="rsrc/navbar/community.png" height="40" width="40">
+                    <img src="rsrc/navbar/community.png" height="30" width="30">
                     </a></div>
                     </li>
                     <li class="nav-item px-3"><div title="Profile">
                     <a class="nav-link" href="login.html">
-                    <img src="rsrc/navbar/profile.png" height="40" width="40">
+                    <img src="rsrc/navbar/profile.png" height="30" width="30">
                     </a></div>
                     </li>
                     <li class="nav-item px-3 me-1"><div title="Inbox">
                     <a class="nav-link" href="inbox.html">
-                    <img src="rsrc/navbar/inbox.png" height="40" width="40">
+                    <img src="rsrc/navbar/inbox.png" height="30" width="30">
                     </a></div>
                     </li>
                 </ul>

@@ -85,15 +85,15 @@ const fetchData = () => {
             <div class="col">
               <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
               <div class="img-container position-relative">
-                <img @mouseover="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
+                <img @mouseenter="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
                 <div v-if="showButtons" class="overlay"></div>
-                <div v-if="showButtons" class="btn-container position-absolute w-100 h-100 d-flex justify-content-around ">
-                  <button @click="addToCart" class="btn atc-btn ">Add to Cart</button>
-                  <button @click="showMoreInformation" class="btn mi-btn ">More Information</button>
+                <div  @mouseenter="showButtons = true" @mouseleave="showButtons = false" v-if="showButtons" class="btn-container position-absolute w-100 h-100 d-flex justify-content-around ">
+                  <button @click="addToCart" class="atc-btn ">Add to Cart</button>
+                  <button @click="showMoreInformation()" class="mi-btn ">More Information</button>
                   </div>
                 </div>
                 <div class="mt-3 ms-2 position-relative h-100 d-flex flex-column">
-                  <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$ {{item.price}}</b></span></div>
+                  <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$`+`{{item.price}}</b></span></div>
                   <div class="card-subtitle text-muted short-desc">{{ item.shortdesc }}</div>
                   <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating: {{average_rating}}, from {{number_of_reviews}}</p>
                   <p v-else class="card-text review-summary position-absolute bottom-0">No reviews yet</p>
@@ -102,6 +102,13 @@ const fetchData = () => {
             </div>
           `,
           methods: {
+            addToCart() {
+              this.$root.$emit("add-to-cart", this.item);
+            },
+            showMoreInformation(){
+              let newUrl = "item.html?iid=" + this.item.iid;
+              window.location.href = newUrl;
+            }
            
           },
 
@@ -133,24 +140,3 @@ const fetchData = () => {
 };
 
 fetchData();
-
-
-  // Items Data
-  // var items_array = [];
-  // querySnapshot.forEach((doc) => {
-  //     items_array.push(doc.data());
-  // });
-
-  // console.log(items_array);
-  // export {items_array};
-  
-  // function initializeVue(){
-  //   const product_app = Vue.createApp({
-  //     data(){
-  //         return{
-  //             items: items_array
-  //         }
-  //   }}).mount("#product_listing");
-  // }
-
-  //const analytics = getAnalytics(app);

@@ -1,0 +1,37 @@
+body {
+    background-color: rgb(255, 255, 255);
+    color:#5C7345;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.item-box{
+    background-color:#ffffff;
+}
+
+.item-name{
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.short-desc{
+    font-size: 1.2rem;
+    font-style:italic;
+}
+
+.long-desc{
+    font-size: 0.9rem;
+}
+
+.atc-btn{
+    background-color: #5C7345;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #5C7345;
+    font-weight: bold;
+    z-index:3;
+    padding: 0.5rem;
+}
+
+.car-img{
+    height:27rem;
+}

@@ -48,13 +48,44 @@
                         <hr class="my-4">
                         <div class="long-desc">
                             {{item.longdesc}}
+                        </div><br>
+                        <div class="quantity-control">
+                            <button @click="decrementQuantity" class="quantity-btn">-</button>
+                            <span class="quantity">{{ quantity }}</span>
+                            <button @click="incrementQuantity" class="quantity-btn">+</button>
                         </div>
                         <button type="button" class="btn atc-btn  mt-4 w-100">Add to Cart - S${{item.price}}</button>
 
                     </div>
                 </div>
-            <hr class="m-4">
-
+        </div>
+        <hr class="m-4">
+        <div class="w-100 h-100">
+            <p class="pt-5 pb-5 mb-4 header-reviews">reviews</p>
+            <div v-if="get_number_of_reviews() != 0" v-for="review in reviews">
+                <div class="row justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="pb-3">
+                        <span class="reviewer-name">{{review.reviewer}}</span><br>
+                        <hr class="my-2 w-75">
+                        <div class="reviewer-rating">Rating: {{review.rating}}</div><br>
+                        <div class="date">{{convert_to_date(review.date)}}</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-7">
+                    <div class="left-field">
+                        <div class="review-title">{{review.title}}</div>
+                        <div class="review-content">{{review.desc}}</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            <div v-else>
+                <div class="container=fluid mx-5">
+                No reviews yet.
+                </div>
+            </div>
         </div>
     </span>
 

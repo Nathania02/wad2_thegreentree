@@ -66,7 +66,7 @@ const fetchData = () => {
           for (let review of reviews){
             total += review.rating;
           }
-          return total/reviews.length;
+          return (Math.round((total/reviews.length) * 10) / 10);
         },
         number_of_reviews(iid){
           let reviews = this.reviews.filter(review => review.itemid === iid);
@@ -95,7 +95,7 @@ const fetchData = () => {
                 <div class="mt-3 ms-2 position-relative h-100 d-flex flex-column">
                   <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$`+`{{item.price}}</b></span></div>
                   <div class="card-subtitle text-muted short-desc">{{ item.shortdesc }}</div>
-                  <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating: {{average_rating}}, from {{number_of_reviews}}</p>
+                  <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating is {{average_rating}}, based on {{number_of_reviews}}.</p>
                   <p v-else class="card-text review-summary position-absolute bottom-0">No reviews yet</p>
                 </div>
               </div>

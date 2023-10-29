@@ -31,7 +31,7 @@ function createfilterbar_community() {
 }
 
 // can continue to add respective filterbar functions below with the naming convention createfilterbar_community with first letter Uppercase> for standardization
-function createFilterBarProfile() {
+function createfilterbar_profile() {
     document.write(`
     <button class="openbtn" onclick="open_filter()">Filters</button>
 

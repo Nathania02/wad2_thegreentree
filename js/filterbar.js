@@ -30,8 +30,8 @@ function createfilterbar_community() {
     `)
 }
 
-// can continue to add respective filterbar functions below with the naming convention createFilterBar<nameofpage with first letter Uppercase> for standardization
-function createfilterbar_profile() {
+// can continue to add respective filterbar functions below with the naming convention createfilterbar_community with first letter Uppercase> for standardization
+function createFilterBarProfile() {
     document.write(`
     <button class="openbtn" onclick="open_filter()">Filters</button>
 

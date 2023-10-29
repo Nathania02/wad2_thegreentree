@@ -1,58 +1,66 @@
 <!DOCTYPE html>
+
 <head>
     <Title>Homepage</Title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/item.css">
     <script src="js/navbar.js"></script>
+    <!-- firebase for profile -->
+    <script type="module" src="./js/firebase_profile.js"></script>
     <link rel="stylesheet" href="css/navbar.css">
 
     <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
     <script>
-    createNavbarGreen();
+        createNavbarGreen();
     </script>
     <br><br><br><br>
     <span id="item_information">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-5">
                 <div class="bg-white p-4">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div v-for="(photo, index) in item.photos" :key="index" :class="{ 'carousel-item': true, 'active': index === activeIndex }">
-                            <img class="car-img d-block w-100" :src="photo" >
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div v-for="(photo, index) in item.photos" :key="index"
+                                :class="{ 'carousel-item': true, 'active': index === activeIndex }">
+                                <img class="car-img d-block w-100" :src="photo">
+                            </div>
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
                 </div>
             </div>
-            </div>
-                <div class="col-12 col-md-6 col-lg-5">
-                    <div class="bg-white p-4">
-                        <span class="item-name">{{item.name}}</span><br>
-                        <span class="short-desc">{{item.shortdesc}}</span><br>
-                        <div class="review-summary mt-2">
-                            <span v-if="get_number_of_reviews() == 0">No reviews yet.</span>
-                            <span v-else>Average rating is {{get_rating()}}, based on {{get_number_of_reviews()}}.</span><br>
-                        </div>
-                        <hr class="my-4">
-                        <div class="long-desc">
-                            {{item.longdesc}}
-                        </div>
-                        <button type="button" class="btn atc-btn  mt-4 w-100">Add to Cart - S${{item.price}}</button>
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="bg-white p-4">
+                    <span class="item-name">{{item.name}}</span><br>
+                    <span class="short-desc">{{item.shortdesc}}</span><br>
+                    <div class="review-summary mt-2">
+                        <span v-if="get_number_of_reviews() == 0">No reviews yet.</span>
+                        <span v-else>Average rating is {{get_rating()}}, based on
+                            {{get_number_of_reviews()}}.</span><br>
+                    </div>
+                    <hr class="my-4">
+                    <div class="long-desc">
+                        {{item.longdesc}}
+                    </div>
+                    <button type="button" class="btn atc-btn  mt-4 w-100">Add to Cart - S${{item.price}}</button>
 
-                    </div>
                 </div>
+            </div>
             <hr class="m-4">
 
         </div>
@@ -62,4 +70,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/firebase_item.js" defer></script>
 </body>
+
 </html>

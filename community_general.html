@@ -2,46 +2,51 @@
 <html>
 
 <head>
-    <title>Community Main Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Main Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
-    crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/otherpagescss.css">
-    <link rel="stylesheet" href="css/filterbar.css">
-    <link rel="stylesheet" href="css/community_general.css">
-    
-    <script src="js/navbar.js"></script>
-    <script src="js/filterbar.js"></script>
-    <script type="module" src="js/community/firebase_general.js"></script>
+  <link rel="stylesheet" href="css/otherpagescss.css">
+  <link rel="stylesheet" href="css/filterbar.css">
+  <link rel="stylesheet" href="css/community_general.css">
+
+  <script src="js/navbar.js"></script>
+  <script src="js/filterbar.js"></script>
+  <script type="module" src="js/community/firebase_general.js"></script>
+  <!-- firebase for profile -->
+  <script type="module" src="./js/firebase_profile.js"></script>
+
 </head>
 
 <body>
 
   <script>
-    createNavbarGreen();  
+    createNavbarGreen();
     createfilterbar_community();
-    
-  </script>
-      <button id="createPost"><img id="plus" src="images/plus.png"><a href="community_createpost.html">  Create Post</a></button>
 
-    <div class='container-fluid' id='main'>
-      
-      </div>
+  </script>
+  <button id="createPost"><img id="plus" src="images/plus.png"><a href="community_createpost.html"> Create
+      Post</a></button>
+
+  <div class='container-fluid' id='main'>
+
+  </div>
   <script>
-    function linkToPost(){
+    function linkToPost() {
 
 
     }
-</script>
+  </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
 </body>
+
 </html>

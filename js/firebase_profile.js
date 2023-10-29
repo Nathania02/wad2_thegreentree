@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, setDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,15 +24,40 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-// check whether user signed in
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log('User status changed: ', user);
-    }
-    else {
-        console.log('User is signed out');
-    }
-})
+function checkUserLoginStatus() {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is logged in
+                resolve({ loggedIn: true, user });
+            } else {
+                // User is not logged in
+                resolve({ loggedIn: false, user: null });
+            }
+        }, (error) => {
+            // An error occurred while checking the login status
+            reject(error);
+        });
+    });
+}
+
+const profileLink = document.getElementById('profile_link');
+
+checkUserLoginStatus()
+    .then((result) => {
+        if (result.loggedIn) {
+            // User is logged in
+            console.log('User is logged in:', result.user);
+            profileLink.href = 'profile.html';
+        } else {
+            // User is not logged in
+            console.log('User is not logged in.');
+            profileLink.href = 'login.html';
+        }
+    })
+    .catch((error) => {
+        console.error('Error checking user login status:', error);
+    });
 
 // rearranges keys so that it displays in the same order everytime
 function rearrangeObjectKeys(originalObject, keyOrder) {
@@ -137,6 +162,7 @@ if (window.location.pathname.includes('signUp.html')) {
         signUpForm.reset();
     })
 }
+
 else if (window.location.pathname.includes('login.html')) {
     // login
     const loginForm = document.getElementById('loginForm');

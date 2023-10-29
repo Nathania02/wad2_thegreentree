@@ -21,7 +21,7 @@ function createNavbarGreen() {
                     </a></div>
                     </li>
                     <li class="nav-item px-3"><div title="Profile">
-                    <a class="nav-link" href="login.html">
+                    <a class="nav-link" id="profile_link" href="login.html">
                     <img src="rsrc/navbar/profile.png" height="30" width="30">
                     </a></div>
                     </li>

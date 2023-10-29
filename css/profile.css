@@ -1,18 +1,7 @@
-.navbar {
-    background-color: #5C7345
-}
-
-.nav-link {
-    color: #5C7345;
-}
-
-.navbar-toggler-icon {
-    background-color: #5C7345;
-}
-
 body {
     color: #5C7345;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
 }
 
 .button {
@@ -30,17 +19,24 @@ body {
     z-index: 1030;
 }
 
-.sideBar {
-    margin-top: 100px;
-    height: 600px; 
-    min-width: fit-content;
-    padding-top: 20px;
-}
-
 .contentSection {
     margin-top: 100px;
     font-size: 25px;
     padding-left: 100px;
     padding-top: 30px;
+}
+
+.logOutbtn {
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #5c7345;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.logOutbtn:hover {
+    background-color: #444;
 }
 

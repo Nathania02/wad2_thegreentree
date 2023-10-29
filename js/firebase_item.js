@@ -28,75 +28,103 @@ const iid = urlParams.get('iid');
 
 // Fetch the item data from the database
 const fetchData = (iid) => {
-    const db = getFirestore(app);
-    const itemRef = doc(collection(db, "items"), iid);
-    let reviews_array = [];
+  const db = getFirestore(app);
+  const itemRef = doc(collection(db, "items"), iid);
+  let reviews_array = [];
 
-    getDocs(collection(db, "reviews"))
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                let docData = doc.data();
-                if (docData['itemid'] == iid){
-                  docData['reviewid'] = doc.id;
-                  reviews_array.push(docData);
-                }
-                });
-            }).catch((error) => {
-                console.error("Error getting documents: ", error);
-            });
-  
-    getDoc(itemRef)
-      .then((doc) => {
-        if (doc.exists()) {
-        const itemData = doc.data();
-        
-          // Process itemData as needed
-          console.log(reviews_array);
-          const app = Vue.createApp({
-            data() {
-              return {
-                item: itemData, // Use the fetched itemData in the data property
-                activeIndex: 0,
-                reviews: reviews_array
-              };
-            },
-            methods: {
-                get_rating(){
-                    if(reviews_array.length > 0){
-                        let average_rating = 0;
-                        for(let rev of reviews_array)
-                        {
-                            average_rating += rev.rating;
-                        }
-                        average_rating /= reviews_array.length;
-                        console.log(average_rating);
-                        return average_rating;
-                    }
-                    return null;
-                },
-                get_number_of_reviews(){
-                    if(reviews_array.length == 1){
-                        return reviews_array.length + " review";
-                    }
-                    else if(reviews_array.length == 0){
-                        return 0;
-                    }else{
-                        return reviews_array.length + " reviews";
-                    }
-                }
-
-              },
-          });
-    
-          app.mount("#item_information");
-          
-        } else {
-          console.log("No such document exists!");
+  const fetchReviewsPromise = getDocs(collection(db, "reviews"))
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let docData = doc.data();
+        if (docData['itemid'] == iid) {
+          docData['reviewid'] = doc.id;
+          reviews_array.push(docData);
         }
-      })
-      .catch((error) => {
-        console.error("Error getting document:", error);
       });
-  };
+    })
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+    });
+
+  Promise.all([fetchReviewsPromise])
+    .then(() => {
+      return Promise.all(
+        reviews_array.map((review) => {
+          const userRef = doc(collection(db, "users"), review['userid']);
+          return getDoc(userRef)
+            .then((doc) => {
+              if (doc.exists()) {
+                let userData = doc.data();
+                review['reviewer'] = userData['username'];
+              }
+            })
+            .catch((error) => {
+              console.error("Error getting document:", error);
+            });
+        })
+      );
+    })
+    .then(() => {
+      return getDoc(itemRef)
+        .then((doc) => {
+          if (doc.exists()) {
+            const itemData = doc.data();
+            const app = Vue.createApp({
+              data() {
+                return {
+                  item: itemData,
+                  activeIndex: 0,
+                  reviews: reviews_array,
+                  quantity: 1,
+                };
+              },
+              methods: {
+                get_rating() {
+                  if (reviews_array.length > 0) {
+                    let average_rating = reviews_array.reduce(
+                      (sum, rev) => sum + rev.rating,
+                      0
+                    );
+                    average_rating /= reviews_array.length;
+                    let rounded_rating = Math.round(average_rating * 10) / 10;
+                    return rounded_rating;
+                  }
+                  return null;
+                },
+                get_number_of_reviews() {
+                  if (reviews_array.length === 1) {
+                    return reviews_array.length + " review";
+                  } else if (reviews_array.length === 0) {
+                    return 0;
+                  } else {
+                    return reviews_array.length + " reviews";
+                  }
+                },
+                incrementQuantity() {
+                  this.quantity++;
+                },
+                decrementQuantity() {
+                  if (this.quantity > 1) {
+                    this.quantity--;
+                  }
+                },
+                convert_to_date(timestamp) {
+                  let date = timestamp.toDate();
+                  return date.toLocaleDateString("en-SG");
+                },
+              },
+            });
+
+            app.mount("#item_information");
+          } else {
+            console.log("No such document exists!");
+          }
+        })
+        .catch((error) => {
+          console.error("Error getting document:", error);
+        });
+    });
+};
+
 
 fetchData(iid);

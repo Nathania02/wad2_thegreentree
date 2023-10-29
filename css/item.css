@@ -35,3 +35,51 @@ body {
 .car-img{
     height:27rem;
 }
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #5C7345;
+    width:max-content;
+}
+
+.quantity-btn {
+    background-color: #5C7345;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    /* margin: 0 10px; */
+    transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #455a34; /* Change color on hover */
+}
+
+
+.quantity {
+    font-size: 1.2em;
+    color: #5C7345; /* Text color */
+    margin: 0 10px; /* Spacing between quantity and buttons */
+    
+}
+
+.header-reviews{
+    font-family: hk-grotesk, sans-serif;
+    font-size:3em;
+    text-align:center;
+}
+
+.reviewer-name, .review-title{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.left-field{
+    height:fit-content;
+    padding-bottom:14%;
+
+}

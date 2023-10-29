@@ -16,12 +16,20 @@
     <!-- navbar -->
     <script src="js/navbar.js"></script>
 
+    <!-- navbar css -->
+    <link rel="stylesheet" href="css/navbar.css">
+
     <!-- firebase -->
-    <script type="module" src="js/firebase_profile.js"></script>
+    <script type="module" src="./js/firebase_profile.js"></script>
 
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
+    <!-- filter bar -->
+    <script src="./js/filterbar.js"></script>
+
+    <!-- filter bar css -->
+    <link rel="stylesheet" href="css/filterbar.css">
 </head>
 
 <body>
@@ -29,21 +37,26 @@
         createNavbarGreen();
     </script>
 
+    <div id="main">
+        <script>
+            createfilterbar_profile();
+        </script>
+    </div>
     <div class="container-fluid">
         <div class="row">
-            <!-- to be JS -->
-            <div class="col-2 bg-light position-fixed sideBar">
-                <h3 onclick="toggle()">My Account</h3>
-                <h3 onclick="toggle()">My Purchases</h3>
-                <h3 onclick="toggle()">My Posts</h3>
-                <h3 onclick="toggle()">My Products</h3>
+            <div id="displayUser" class="col-3 contentSection">
+                <p class="pb-4">Username</p>
+                <p class="pb-4">Name</p>
+                <p class="pb-4">Email</p>
+                <p class="pb-4">Phone No.</p>
+                <p class="pb-4">Address</p>
+                <p class="pb-4">Gender</p>
+                <p class="pb-4">D.O.B</p>
             </div>
-
-            <div id="displayUserKey" class="col-3 offset-2 contentSection"></div>
             <div id="displayUserData" class="col-6 contentSection"></div>
-            <div class="button">
+            <div class="button text-end">
                 <button type="submit" name="logoutButton" id="logoutButton"
-                    class="btn btn-success btn-block loginPage">Log Out</button>
+                    class="logOutbtn loginPage">Log Out</button>
             </div>
         </div>
     </div>

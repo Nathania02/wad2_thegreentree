@@ -1,0 +1,51 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+    margin-top: 100px;
+    /* position: relative; */
+    }
+
+#post{
+    padding: 20px;
+    text-align: left;
+    color: #5c7345;
+    background-color: white;
+    position: relative;
+}
+
+#postcontainer{
+    border-style: solid;
+    border-color: black;
+}
+
+#comment_container{
+    position: relative;
+}
+
+#delete{
+    width: 40px;
+    height: 40px;
+    right: 85px;
+    bottom: -10px;
+    position: absolute;
+}
+
+#like{
+    width: 40px;
+    height: 40px;
+    right: 40px;
+    bottom: -10px;
+    position: absolute;
+}
+
+#dislike{
+    width: 40px;
+    height: 40px;
+    right: -5px;
+    bottom: -10px;
+    position: absolute;
+}

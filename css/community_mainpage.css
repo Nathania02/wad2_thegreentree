@@ -1,0 +1,194 @@
+h1{
+    color: black;
+    text-align: center;
+    margin-top: 130px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+p{
+    color: black;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#category-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+
+
+#general, #fashion, #food, #threeRs, #productreview, #others{
+    margin-top: 30px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: white;
+    background-color: #5C7345;
+
+}
+
+.flower-container{
+    position: relative;
+    bottom: 0px;
+}
+.section{
+    /* position: absolute; */
+    /* margin-bottom: 20px; */
+    margin-left: 5px;
+    height: 322px;
+    overflow: hidden;
+    border-bottom: 10px solid brown;
+}
+
+.flower{
+    position: relative;
+    top: 50px;
+    left: 50px;
+    float: left;
+    z-index: 1;
+    margin-left:35px;
+
+    animation: grow-flowers 5s infinite linear;
+}
+
+.flower.flower-pink{
+    height: 80px;
+    width: 80px;
+    background-color: rgba(194, 49, 171, 0.8);
+    border-radius: 50%;
+    border: 2px solid rgba(196, 49, 171, 0.8);
+    box-shadow: 0 0 0 10px rgba(255, 137, 235, 0.8), 0 0 0 10px rgba(196, 49, 171, 0.8) inset;
+    z-index: 1;
+}
+
+.flower.flower-red{
+    height: 80px;
+    width: 80px;
+    background-color: rgba(193, 34, 5, 0.6);
+    border-radius: 50%;
+    border: 10px solid rgba(193, 34, 5, 0.6);
+    box-shadow: 0 0 0 5px rgba(193, 34, 5, 0.6), 0 0 0 5px rgba(193, 34, 5, 0.6) inset;
+    z-index: 1;
+}
+
+.flower.flower-yellow{
+    height: 80px;
+    width: 80px;
+    background-color: rgba(229, 211, 11, 0.8);
+    border-radius: 50%;
+    border: 5px solid rgba(229, 211, 11, 0.8);
+    box-shadow: 0 0 0 15px rgba(229, 211, 11, 0.4), 0 0 0 15px rgba(229, 211, 11, 0.4) inset;
+    z-index: 1;
+}
+
+.flower span{
+    background: rgba(137, 163, 19, 0.8);
+    width: 10px;
+    height: 250px;
+    display: block;
+    position: relative;
+    left: 36px;
+    top: 90px;
+}
+
+.flower span::before{
+    content: '';
+    width: 50px;
+    height: 50px;
+    display: block;
+    background: rgba(137, 163, 19, 0.6);
+    border-radius: 0 30px 0 30px;
+    position: absolute;
+    left: -47px;
+    top: 70px;
+    box-shadow: 0 0 0 10px rgba(137, 163, 19, 0.6) inset;
+    transform: rotateY(140deg);
+    -webkit-transform-origin: right;
+    animation: flip-left 5s infinite linear; 
+}
+
+.flower span::after{
+    content: '';
+    width: 50px;
+    height: 50px;
+    display: block;
+    background: #89a31399;
+    box-shadow: 0 0 0 10px rgba(137, 163, 19, 0.6) inset;
+    border-radius: 0 30px 0 30px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    transform: rotateY(-140deg);
+    -webkit-transform-origin: left;
+    animation: flip-left 5s infinite linear; 
+
+}
+
+@keyframes flip-left{
+    0%{
+        transform: rotateY(0deg);
+    }
+    50%{        
+        transform: rotateY(180deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+
+    }
+}
+
+@keyframes grow-flowers{
+    0%{
+        top: 200px
+    }
+    50%{        
+        top: 50px;
+    }
+    100%{
+        top: 200px;
+
+    }
+}
+
+.section div:nth-child(1){
+    top: 200px;
+    animation-delay: 1s;
+}
+
+.section div:nth-child(3){
+    top: 200px;
+    animation-delay: 2s;
+}
+
+.section div:nth-child(5){
+    top: 200px;
+    animation-delay: 3s;
+}
+
+
+.section div:nth-child(7){
+    top: 200px;
+    animation-delay: 4s;
+}
+
+
+.section div:nth-child(9){
+    top: 200px;
+    animation-delay: 2s;
+}
+
+.section div:nth-child(11){
+    top: 200px;
+    animation-delay: 4s;
+}

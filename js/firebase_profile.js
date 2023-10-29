@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, query, where } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, setDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,31 +26,13 @@ const auth = getAuth();
 
 // check whether user signed in
 onAuthStateChanged(auth, (user) => {
-    console.log('User status changed: ', user);
+    if (user) {
+        console.log('User status changed: ', user);
+    }
+    else {
+        console.log('User is signed out');
+    }
 })
-
-// outputs user details
-async function getUserData(userId) {
-    try {
-        const displayUserKey = document.getElementById('displayUserKey');
-        const displayUserData = document.getElementById('displayUserData');
-        const q = query(collection(db, "users"), where("userId", "==", userId));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            let data = JSON.parse(JSON.stringify(doc.data()));
-            let keyOrder = ['username', 'name', 'email', 'mobile', 'address', 'gender', 'dateofbirth'];
-            let newUserObject = rearrangeObjectKeys(data, keyOrder);
-            console.log(newUserObject);
-            for (var field in newUserObject) {
-                displayUserKey.innerHTML += `<p class="pb-4">${field}</p>`;
-                displayUserData.innerHTML += `<p class="pb-4">${newUserObject[field]}</p>`;
-            }
-        })
-    }
-    catch (err) {
-        console.log(err.message);
-    }
-};
 
 // rearranges keys so that it displays in the same order everytime
 function rearrangeObjectKeys(originalObject, keyOrder) {
@@ -64,6 +46,27 @@ function rearrangeObjectKeys(originalObject, keyOrder) {
     return reorderedObject;
 }
 
+// outputs user details
+async function getUserData(userId) {
+    try {
+        const displayUserData = document.getElementById('displayUserData');
+        const q = query(collection(db, "users"), where("userId", "==", userId));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            let data = JSON.parse(JSON.stringify(doc.data()));
+            let keyOrder = ['username', 'name', 'email', 'phoneNo', 'address', 'gender', 'dateofbirth'];
+            let newUserObject = rearrangeObjectKeys(data, keyOrder);
+            console.log(newUserObject);
+            for (var field in newUserObject) {
+                displayUserData.innerHTML += `<p class="pb-4">${newUserObject[field]}</p>`;
+            }
+        })
+    }
+    catch (err) {
+        console.log(err.message);
+    }
+};
+
 // collection ref for users 
 const userCollection = collection(db, 'users');
 
@@ -73,27 +76,26 @@ const postCollection = collection(db, 'post');
 // // collection ref for orders
 const ordersCollection = collection(db, 'orders');
 
-const signUpAndAddToFirestore = (email, password) => {
-    // Create user with email and password
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
+const createUserInFirestore = async (uid, username, email) => {
+    const userDocRef = doc(db, 'users', uid);
+    const userData = {
+        userId: uid,
+        username: username,
+        name: '',
+        email: email,
+        phoneNo: '',
+        address: '',
+        gender: '',
+        dateofbirth: '',
+    };
 
-            // Add user data to Firestore
-            addDoc(userCollection, {
-                userId: user.uid,
-                email: user.email,
-            })
-                .then(() => {
-                    window.location.href = 'profile.html';
-                })
-                .catch((error) => {
-                    console.error('Error adding user to Firestore:', error);
-                });
-        })
-        .catch((error) => {
-            console.error('Error creating user:', error);
-        });
+    try {
+        await setDoc(userDocRef, userData);
+        console.log('User document created successfully.');
+    } catch (error) {
+        console.error('Error creating user document:', error);
+    }
+    window.location.href = 'profile.html';
 };
 
 if (window.location.pathname.includes('signUp.html')) {
@@ -102,25 +104,37 @@ if (window.location.pathname.includes('signUp.html')) {
     const displayErrors = document.getElementById('displayErrors');
     signUpForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        const username = signUpForm.username.value;
         const email = signUpForm.email.value;
         const password = signUpForm.password.value;
         const confirmPassword = signUpForm.confirmPassword.value;
+        displayErrors.innerHTML = '';
 
         // check if password valid
         const errors = checkIfPasswordValid(password, confirmPassword);
 
         if (errors.length == 0) {
-            alert('Signup successful! Enjoy The Green Tree!');
-            // Call the function to sign up and add user to Firestore
-            signUpAndAddToFirestore(email, password);
+            // Create user with email and password
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const uid = userCredential.user.uid;
+
+                    // Create user in firestore
+                    createUserInFirestore(uid, username, email);
+                })
+                .catch((error) => {
+                    if (error.code == 'auth/email-already-in-use') {
+                        displayErrors.innerHTML += `<p>Email already has an account</p>`
+                        signUpForm.reset();
+                    }
+                });
         }
         else {
             for (var err of errors) {
-                // console.log(err)
-                displayErrors.innerHTML += `<li>${err}</li>`;
-                signUpForm.reset();
+                displayErrors.innerHTML += `<p>${err}</p>`;
             }
         }
+        signUpForm.reset();
     })
 }
 else if (window.location.pathname.includes('login.html')) {
@@ -138,13 +152,7 @@ else if (window.location.pathname.includes('login.html')) {
             .catch((err) => {
                 console.log(err);
                 let errorMessage = 'Error logging in. Please check your credentials and try again.';
-
-                if (err.code == 'auth/user-not-found') {
-                    errorMessage = 'User not found. Please sign up to create an account.';
-                } else if (err.code == 'auth/wrong-password') {
-                    errorMessage = 'Incorrect password. Please try again'
-                } // CHANGE THIS CODE 
-                authDisplay.innerHTML += `${errorMessage}<br>`;
+                authDisplay.innerHTML += `${errorMessage}`;
             })
     })
 }

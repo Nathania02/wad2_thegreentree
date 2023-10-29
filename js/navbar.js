@@ -37,73 +37,73 @@ function createNavbarGreen() {
     `);
 
     let list_items = document.getElementsByTagName('li');
-    list_items[0].addEventListener('mouseover',function(){
+    list_items[0].addEventListener('mouseover', function () {
         mk_to_green(list_items[0]);
     });
-    list_items[0].addEventListener('mouseout',function(){
+    list_items[0].addEventListener('mouseout', function () {
         mk_to_white(list_items[0]);
-    }); 
-    list_items[1].addEventListener('mouseover',function(){
+    });
+    list_items[1].addEventListener('mouseover', function () {
         comm_to_green(list_items[1]);
     });
-    list_items[1].addEventListener('mouseout',function(){
+    list_items[1].addEventListener('mouseout', function () {
         comm_to_white(list_items[1]);
-    }); 
-    list_items[2].addEventListener('mouseover',function(){
+    });
+    list_items[2].addEventListener('mouseover', function () {
         prof_to_green(list_items[2]);
     });
-    list_items[2].addEventListener('mouseout',function(){
+    list_items[2].addEventListener('mouseout', function () {
         prof_to_white(list_items[2]);
-    }); 
-    list_items[3].addEventListener('mouseover',function(){
+    });
+    list_items[3].addEventListener('mouseover', function () {
         inbox_to_green(list_items[3]);
     });
-    list_items[3].addEventListener('mouseout',function(){
+    list_items[3].addEventListener('mouseout', function () {
         inbox_to_white(list_items[3]);
-    }); 
+    });
 }
 
-function mk_to_green(element){
+function mk_to_green(element) {
     element.style.backgroundColor = "white";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/marketplace_green.png");
 }
 
-function mk_to_white(element){
+function mk_to_white(element) {
     element.style.backgroundColor = "transparent";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/marketplace.png");
 }
 
-function comm_to_green(element){
+function comm_to_green(element) {
     element.style.backgroundColor = "white";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/community_green.png");
 }
 
-function comm_to_white(element){
+function comm_to_white(element) {
     element.style.backgroundColor = "transparent";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/community.png");
 }
-function prof_to_green(element){
+function prof_to_green(element) {
     element.style.backgroundColor = "white";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/profile_green.png");
 }
 
-function prof_to_white(element){
+function prof_to_white(element) {
     element.style.backgroundColor = "transparent";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/profile.png");
 }
-function inbox_to_green(element){
+function inbox_to_green(element) {
     element.style.backgroundColor = "white";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/inbox_green.png");
 }
 
-function inbox_to_white(element){
+function inbox_to_white(element) {
     element.style.backgroundColor = "transparent";
     var image = element.getElementsByTagName('img')[0];
     image.setAttribute("src", "rsrc/navbar/inbox.png");
@@ -113,7 +113,7 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('d-md-block');
     sidebar.classList.toggle('d-none');
-  }
+}
 
 function createNavbarWhite() {
     document.write(`

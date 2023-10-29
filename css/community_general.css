@@ -1,0 +1,50 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+#post{
+  padding: 20px;
+  width: 100%;
+  margin-top: 50px;
+  /* margin: auto; */
+  text-align: left;
+  color: #5c7345;
+  background-color: white;
+}
+
+#post a{
+  color: #5c7345;
+}
+
+/*
+TODO: About topic next to image, add image in
+*/
+
+#createPost{
+  position: absolute;
+  right: 30px;
+  top: 100px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #5c7345;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  margin-top: 53px;
+  /* position: relative; */
+}
+
+#plus{
+  width: 20px;
+  height: 20px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}

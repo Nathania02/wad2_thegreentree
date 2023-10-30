@@ -1,4 +1,4 @@
-#filterbar{
+#filterbar {
     height: 80%;
     width: 0;
     position: fixed;
@@ -20,11 +20,11 @@
     display: block;
     transition: 0.3s;
 }
-  
+
 #filterbar a:hover {
     color: #f1f1f1;
 }
-  
+
 .openbtn {
     position: relative;
     font-size: 20px;
@@ -38,18 +38,19 @@
     border-radius: 0.375rem;
 }
 
-  
+
 .openbtn:hover {
     background-color: #444;
 }
 
-#back{
+#back {
     width: 20%;
     height: auto;
     position: absolute;
     top: 0;
     right: 15px;
     margin-left: 50px;
+    margin-top: 10px;
 }
 
 #main {
@@ -58,9 +59,14 @@
     margin-top: 53px;
     /* position: relative; */
 }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-.filterbar {padding-top: 15px;}
-.filterbar a {font-size: 18px;}
+    .filterbar {
+        padding-top: 15px;
+    }
+
+    .filterbar a {
+        font-size: 18px;
+    }
 }

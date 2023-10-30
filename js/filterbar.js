@@ -2,18 +2,12 @@
 function open_filter() {
     document.getElementById("filterbar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
-    document.getElementById('displayUser').style.marginLeft = "250px";
-    document.getElementById('displayUser').style.fontSize = "20px";
-    document.getElementById('displayUserData').style.fontSize = "20px";
 }
 
 // close filter bar, ensure to name moving container "main"
 function close_filter() {
     document.getElementById("filterbar").style.width = "0px";
     document.getElementById("main").style.marginLeft = "0px";
-    document.getElementById('displayUser').style.marginLeft = "0px";
-    document.getElementById('displayUser').style.fontSize = "30px";
-    document.getElementById('displayUserData').style.fontSize = "30px";
 }
 
 function createfilterbar_community() {

@@ -30,7 +30,8 @@ function open_filter1() {
     document.getElementById("main").style.marginLeft = "200px";
     document.getElementById("post").classList.remove("col-md-12");
     document.getElementById("post").classList.add("col-md-8");
-
+    document.getElementById("post2").classList.remove("col-md-12");
+    document.getElementById("post2").classList.add("col-md-8");
 }
 
 // close filter bar, ensure to name moving container "main"
@@ -39,6 +40,8 @@ function close_filter1() {
     document.getElementById("main").style.marginLeft = ""; 
     document.getElementById("post").classList.add("col-md-12");
     document.getElementById("post").classList.remove("col-md-8");
+    document.getElementById("post2").classList.add("col-md-12");
+    document.getElementById("post2").classList.remove("col-md-8");
 }
 
 // can continue to add respective filterbar functions below with the naming convention createfilterbar_community with first letter Uppercase> for standardization

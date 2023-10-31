@@ -9,9 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <!-- external stylesheet -->
-    <link rel="stylesheet" href="css/profile.css">
-
     <!-- navbar -->
     <script src="js/navbar.js"></script>
 
@@ -29,6 +26,10 @@
 
     <!-- filter bar css -->
     <link rel="stylesheet" href="css/filterbar.css">
+
+    <!-- external stylesheet -->
+    <link rel="stylesheet" href="css/profile2.css">
+
 </head>
 
 <body>
@@ -37,8 +38,88 @@
         createfilterbar_profile();
     </script>
 
-    <div id="main">
+    <div id="main" class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div id="post" class="col-md-12 col-transition">
+                <div class="card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="circle"><img src="images/seller1.png"></div>
+                            <h5 class="text alignment">soaps_for_days</h5>
+                        </div>
+                        <div class="text alignment">Order in transit</div>
+                    </div>
+                    <hr class="custom_hr">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="square"><img class="pic" src="images/soap.png"></div>
+                            <div class="d-block">
+                                <p class="text other_alignment details bold">Sustainably produced soaps</p>
+                                <p class="text other_alignment details">homemade by me using sustainably sourced
+                                    products</p>
+                                <p class="text other_alignment details">qty: 3</p>
+                            </div>
+                        </div>
+                        <div class="text price_alignment">$10</div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-start other_alignment justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn button">Buy Again</button>
+                            <button type="button" class="btn button">Shop rating</button>
+                        </div>
+                        <p class="text alignment">Order total: $30</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center btwn_posts" >
+            <div id="post2" class="col-md-12 col-transition">
+                <div class="card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="circle"><img src="images/seller2.png"></div>
+                            <h5 class="text alignment">bracelet_buddies</h5>
+                        </div>
+                        <div class="text alignment">Order complete</div>
+                    </div>
+                    <hr class="custom_hr">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="square"><img class="pic" src="images/bracelet1.png"></div>
+                            <div class="d-block">
+                                <p class="text other_alignment details bold">Handmade friendship bracelets</p>
+                                <p class="text other_alignment details">buy one for you and your friend this halloween!</p>
+                                <p class="text other_alignment details">qty: 2</p>
+                            </div>
+                        </div>
+                        <div class="text price_alignment">$8</div>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="square"><img class="pic" src="images/bracelet2.png"></div>
+                            <div class="d-block">
+                                <p class="text other_alignment details bold">Name friendship bracelets</p>
+                                <p class="text other_alignment details">customise your friendship bracelets by writing your name!</p>
+                                <p class="text other_alignment details">qty: 2</p>
+                            </div>
+                        </div>
+                        <div class="text price_alignment">$15</div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-start other_alignment justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn button">Buy Again</button>
+                            <button type="button" class="btn button">Shop rating</button>
+                        </div>
+                        <p class="text alignment">Order total: $46</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 </body>
 

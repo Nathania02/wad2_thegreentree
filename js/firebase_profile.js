@@ -171,6 +171,8 @@ else if (window.location.pathname.includes('login.html')) {
         e.preventDefault();
         const email = loginForm.email.value;
         const password = loginForm.password.value;
+        authDisplay.innerHTML = '';
+        
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
                 window.location.href = 'profile.html';

@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(245, 250, 240);
     color:#5C7345;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -30,6 +30,16 @@ body {
     font-weight: bold;
     z-index:3;
     padding: 0.5rem;
+}
+
+.submit-review-btn{
+    background-color: #5C7345;
+    color: white;
+    border: 1px solid #5C7345;
+    font-weight: bold;
+    z-index:3;
+    padding: 0.5rem;
+    margin-top:2px;
 }
 
 .car-img{
@@ -68,9 +78,11 @@ body {
 }
 
 .header-reviews{
-    font-family: hk-grotesk, sans-serif;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size:3em;
     text-align:center;
+    background-color:#5C7345;
+    color:white;
 }
 
 .reviewer-name, .review-title{
@@ -82,4 +94,8 @@ body {
     height:fit-content;
     padding-bottom:14%;
 
+}
+
+.add-review-header{
+    text-align: center;
 }

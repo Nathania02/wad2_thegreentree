@@ -2,6 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebas
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
 import { getFirestore, collection, addDoc, getDocs, where,query, getDoc, doc } 
   from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,6 +23,26 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// User Authentication
+const auth = getAuth();
+
+function checkUserLoginStatus() {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is logged in
+                resolve({ loggedIn: true, user });
+            } else {
+                // User is not logged in
+                resolve({ loggedIn: false, user: null });
+            }
+        }, (error) => {
+            // An error occurred while checking the login status
+            reject(error);
+        });
+    });
+}
 
 // Get the item.iid from the URL query parameter
 const urlParams = new URLSearchParams(window.location.search);
@@ -125,6 +147,71 @@ const fetchData = (iid) => {
         });
     });
 };
+
+checkUserLoginStatus()
+    .then((result) => {
+        if (result.loggedIn) {
+            // User is logged in
+            const review_app = Vue.createApp({
+              data() {
+                return {
+                  review_title: "",
+                  review_rating: 0,
+                  review_desc: "",
+                  is_logged_in: true,
+                };
+              },
+              methods: {
+                submit_review(event) {
+                  event.preventDefault();
+                  // const db = getFirestore(app);
+                  let reviewRef = collection(db, "reviews");
+                  // const userRef = collection(db, "users");
+                  // const itemRef = collection(db, "items");
+                  let user = result.user;
+                  let userid = user.uid;
+
+                  let itemid = iid;
+
+                  let reviewData = {
+                    userid: userid,
+                    itemid: itemid,
+                    title: this.review_title,
+                    rating: this.review_rating,
+                    desc: this.review_desc,
+                    date: new Date(),
+                  };
+
+                  addDoc(reviewRef, reviewData)
+                    .then((docRef) => {
+                      console.log("Document written with ID: ", docRef.id);
+                      window.location.reload();
+                    })
+                    .catch((error) => {
+                      console.error("Error adding document: ", error);
+                    });
+                },
+                
+              },
+            });
+
+            review_app.mount("#review_form");
+            console.log('User is logged in:', result.user.uid);
+        } else {
+          const review_app = Vue.createApp({
+            data(){
+              return {
+                is_logged_in: false,
+              };
+            }
+          })
+          review_app.mount("#review_form");
+          console.log('User is not logged in.');
+        }
+    })
+    .catch((error) => {
+        console.error('Error checking user login status:', error);
+    });
 
 
 fetchData(iid);

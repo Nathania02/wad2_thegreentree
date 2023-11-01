@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, setDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -92,15 +92,6 @@ async function getUserData(userId) {
     }
 };
 
-// collection ref for users 
-const userCollection = collection(db, 'users');
-
-// // collection ref for posts
-const postCollection = collection(db, 'post');
-
-// // collection ref for orders
-const ordersCollection = collection(db, 'orders');
-
 const createUserInFirestore = async (uid, username, email) => {
     const userDocRef = doc(db, 'users', uid);
     const userData = {
@@ -120,7 +111,7 @@ const createUserInFirestore = async (uid, username, email) => {
     } catch (error) {
         console.error('Error creating user document:', error);
     }
-    window.location.href = 'profile.html';
+    window.location.href = 'addDetails.html';
 };
 
 if (window.location.pathname.includes('signUp.html')) {
@@ -163,6 +154,36 @@ if (window.location.pathname.includes('signUp.html')) {
     })
 }
 
+else if (window.location.pathname.includes('addDetails.html')) {
+    const addDetails = document.getElementById('addDetails');
+    addDetails.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = addDetails.name.value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const phoneNo = addDetails.phoneNo.value;
+        const DoB = addDetails.dob.value;
+        const address = addDetails.address.value;
+
+        onAuthStateChanged(auth, (user) => {
+            console.log('User status changed: ', user);
+            const userId = user.uid;
+            setDoc(doc(db, 'users', userId), {
+                name: name,
+                gender: gender,
+                phoneNo: phoneNo,
+                dateofbirth: DoB,
+                address: address
+            }, {merge: true})
+            .then(() => {
+                console.log('Entire data has been updated successfully');
+                window.location.href = 'profile.html';
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        })
+    })
+}
 else if (window.location.pathname.includes('login.html')) {
     // login
     const loginForm = document.getElementById('loginForm');

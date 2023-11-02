@@ -12,6 +12,48 @@
     <script type="module" src="./js/firebase_profile.js"></script>
     <script src="js/navbar.js"></script>
     <script type="module" src="js/firebase_marketplace.js"></script>
+    <style>
+       html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-fluid {
+  flex: 1;
+}
+
+footer {
+  background-color: #030101;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 2px solid #000;
+}
+.fade-out {
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.slide-up {
+    transition: transform 1s;
+    transform: translateY(0);
+}
+
+.fade-out-active {
+    opacity: 0;
+}
+
+.slide-up-active {
+    transform: translateY(-100px); /* Adjust this value to your desired slide-up distance */
+}
+
+
+
+    </style>
 </head>
 
 <body>
@@ -21,33 +63,88 @@
     </script>
     <!-- This is just to simulate a page! -->
     <br><br><br><br><br>
-    <div class="container w-75">
-        <h1 class="ps-5">The Green Tree</h1>
-        <p class="ps-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget tempus sem. Fusce efficitur tellus ut elit
-            tristique tristique. Nulla facilisi. Pellentesque eu arcu auctor sapien vestibulum sollicitudin et at neque.
-            In augue metus, condimentum eget nulla eget, interdum egestas odio. Vivamus enim dui, vehicula id mattis in,
-            pharetra a orci. Cras massa erat, ultricies at tortor et, vestibulum dignissim arcu. Pellentesque laoreet,
-            sapien in sagittis ultrices, dui diam aliquet turpis, nec finibus risus felis vel elit.
-        </p>
-        <br><br><br><br><br>
-        <h1 class="ps-5">Community</h1>
-        <p class="ps-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget tempus sem. Fusce efficitur tellus ut elit
-            tristique tristique. Nulla facilisi. Pellentesque eu arcu auctor sapien vestibulum sollicitudin et at neque.
-            In augue metus, condimentum eget nulla eget, interdum egestas odio. Vivamus enim dui, vehicula id mattis in,
-            pharetra a orci. Cras massa erat, ultricies at tortor et, vestibulum dignissim arcu. Pellentesque laoreet,
-            sapien in sagittis ultrices, dui diam aliquet turpis, nec finibus risus felis vel elit.
-        </p>
-        <br><br><br><br><br>
-        <h1 class="ps-5">Marketplace</h1>
-        <p class="ps-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget tempus sem. Fusce efficitur tellus ut elit
-            tristique tristique. Nulla facilisi. Pellentesque eu arcu auctor sapien vestibulum sollicitudin et at neque.
-            In augue metus, condimentum eget nulla eget, interdum egestas odio. Vivamus enim dui, vehicula id mattis in,
-            pharetra a orci. Cras massa erat, ultricies at tortor et, vestibulum dignissim arcu. Pellentesque laoreet,
-            sapien in sagittis ultrices, dui diam aliquet turpis, nec finibus risus felis vel elit.
-        </p>
-        <br>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-3 ">
+                <img src="./images/tree (1).png">
+            </div>
+            <div class="col-3">
+
+            </div>
+            <div class="col-6 ">
+                <br><br><br><br><br><br>
+                <h1 style="font-style:italic;color:black;">The Green Tree</h1>
+                <p >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget tempus sem. Fusce efficitur tellus ut elit
+                    tristique tristique. Nulla facilisi. Pellentesque eu arcu auctor sapien vestibulum sollicitudin et at neque.
+                    In augue metus, condimentum eget nulla eget, interdum egestas odio. Vivamus enim dui, vehicula id mattis in,
+                    pharetra a orci. Cras massa erat, ultricies at tortor et, vestibulum dignissim arcu. Pellentesque laoreet,
+                    sapien in sagittis ultrices, dui diam aliquet turpis, nec finibus risus felis vel elit.
+                </p>
+            </div>
+        </div>
     </div>
+    <div class="container-fluid  ">
+        <div class="row">
+            <div class="col-6">
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <h1 class="ps-5">Community</h1>
+                <p class="ps-5">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget tempus sem. Fusce efficitur tellus ut elit
+                    tristique tristique. Nulla facilisi. Pellentesque eu arcu auctor sapien vestibulum sollicitudin et at neque.
+                    In augue metus, condimentum eget nulla eget, interdum egestas odio. Vivamus enim dui, vehicula id mattis in,
+                    pharetra a orci. Cras massa erat, ultricies at tortor et, vestibulum dignissim arcu. Pellentesque laoreet,
+                    sapien in sagittis ultrices, dui diam aliquet turpis, nec finibus risus felis vel elit.
+                </p>
+            </div>
+           
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-3">
+
+            </div>
+            <div class="col-6">
+                <h1 class="ps-5">Marketplace</h1>
+                <p class="ps-5">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget tempus sem. Fusce efficitur tellus ut elit
+                    tristique tristique. Nulla facilisi. Pellentesque eu arcu auctor sapien vestibulum sollicitudin et at neque.
+                    In augue metus, condimentum eget nulla eget, interdum egestas odio. Vivamus enim dui, vehicula id mattis in,
+                    pharetra a orci. Cras massa erat, ultricies at tortor et, vestibulum dignissim arcu. Pellentesque laoreet,
+                    sapien in sagittis ultrices, dui diam aliquet turpis, nec finibus risus felis vel elit.
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        copyright 2023
+    </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let treeImage = document.querySelector(".container-fluid img");
+        let marketplaceSection = document.querySelector(".container-fluid + .container-fluid h1");
+    
+        window.addEventListener("scroll", function () {
+            let scrollPosition = window.scrollY;
+            let marketplacePosition = marketplaceSection.getBoundingClientRect().top;
+    
+            if (scrollPosition > treeImage.offsetTop && marketplacePosition > 0) {
+                let fadeFactor = marketplacePosition / window.innerHeight;
+                treeImage.style.opacity = fadeFactor;
+    
+                let slideValue = (1 - fadeFactor) * 100;
+                marketplaceSection.style.transform = `translateY(${slideValue}px)`;
+            } else {
+                treeImage.style.opacity = 1;
+                marketplaceSection.style.transform = "translateY(0)";
+            }
+        });
+    });
+</script>
 </body>

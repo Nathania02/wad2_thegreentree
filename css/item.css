@@ -30,6 +30,18 @@ body {
     font-weight: bold;
     z-index:3;
     padding: 0.5rem;
+    display:none;
+}
+
+.error-btn{
+    background-color: #5d5d5d;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #5C7345;
+    font-weight: bold;
+    z-index:3;
+    padding: 0.5rem;
+    
 }
 
 .submit-review-btn{
@@ -98,4 +110,25 @@ body {
 
 .add-review-header{
     text-align: center;
+}
+
+.edit-btn{
+    background-color: #5C7345;
+    color: white;
+    border: none;
+    /* padding: 5px 10px; */
+    cursor: pointer;
+    border-radius: 5px;
+    width:45%;
+}
+
+.delete-btn{
+    background-color: #5C7345;
+    color: white;
+    border: none;
+    /* padding: 5px 10px; */
+    cursor: pointer;
+    border-radius: 5px;
+    width:45%;
+
 }

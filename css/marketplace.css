@@ -23,6 +23,7 @@ body {
     font-weight: bold;
     z-index:3;
     padding: 0.5rem;
+    display:none;
 }
 
 .mi-btn{
@@ -34,6 +35,7 @@ body {
     font-weight: bold;
     z-index:3;
     padding: 0.5rem;
+    display:block;
 
 }
 
@@ -89,3 +91,4 @@ body {
     text-align:center;
     /* font-weight: lighter; */
 }
+

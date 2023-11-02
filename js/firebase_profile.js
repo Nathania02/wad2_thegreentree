@@ -41,7 +41,14 @@ function checkUserLoginStatus() {
     });
 }
 
+export { query, db, checkUserLoginStatus };
+
 const profileLink = document.getElementById('profile_link');
+const shopping_cart = document.getElementById('shopping_cart');
+const listing_button = document.getElementById('list_item');
+const atc_btn = document.getElementById('atc_btn_mkt');
+
+
 
 checkUserLoginStatus()
     .then((result) => {
@@ -49,9 +56,14 @@ checkUserLoginStatus()
             // User is logged in
             console.log('User is logged in:', result.user);
             profileLink.href = 'profile.html';
+            shopping_cart.style.display = 'block';
+            listing_button.style.display = 'block';
+        
+
         } else {
             // User is not logged in
             console.log('User is not logged in.');
+            atc_btn.style.display = 'none';
             profileLink.href = 'login.html';
         }
     })
@@ -212,6 +224,7 @@ else if (window.location.pathname.includes('profile.html')) {
         signOut(auth)
             .then(() => {
                 // console.log('user signed out')
+
                 window.location.href = 'index.html';
             })
             .catch((err) => {

@@ -1,0 +1,30 @@
+body {
+    background-color: white;
+    color:#5C7345;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group-item {
+    width: 33%; /* Adjust the width as needed */
+}
+
+.list-btn{
+    background-color: #5C7345;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top:10px;
+    border-radius: 5px;
+}
+
+#requirements{
+    font-size:0.7rem;
+    font-style:italic;
+}

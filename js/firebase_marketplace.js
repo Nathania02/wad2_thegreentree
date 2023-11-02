@@ -5,6 +5,7 @@
   // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
   import { getFirestore, collection, addDoc, getDocs, where,query } 
     from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -51,7 +52,8 @@ const fetchData = () => {
       data() {
         return {
           items: items_array,
-          reviews: reviews_array
+          reviews: reviews_array,
+          cart: JSON.parse(localStorage.getItem('cart')) || {},
         };
       },
       methods: {
@@ -72,6 +74,18 @@ const fetchData = () => {
           let reviews = this.reviews.filter(review => review.itemid === iid);
           return reviews.length;
         },
+        add_to_cart(item) {
+          const existingCart = JSON.parse(localStorage.getItem('cart')) || {};
+          existingCart[item.iid] = (existingCart[item.iid] || 0) + 1;
+          localStorage.setItem('cart', JSON.stringify(existingCart));
+          // Trigger event to update cart modal content
+          this.$root.$emit("update-cart-modal", existingCart);
+          console.log(existingCart);
+        },
+        clear_cart(){
+          localStorage.removeItem('cart');
+          this.cart = {}
+        }
       },
       components: {
         'item-card': {
@@ -88,7 +102,6 @@ const fetchData = () => {
                 <img @mouseenter="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
                 <div v-if="showButtons" class="overlay"></div>
                 <div  @mouseenter="showButtons = true" @mouseleave="showButtons = false" v-if="showButtons" class="btn-container position-absolute w-100 h-100 d-flex justify-content-around ">
-                  <button @click="addToCart" class="atc-btn ">Add to Cart</button>
                   <button @click="showMoreInformation()" class="mi-btn ">More Information</button>
                   </div>
                 </div>
@@ -102,12 +115,12 @@ const fetchData = () => {
             </div>
           `,
           methods: {
-            addToCart() {
-              this.$root.$emit("add-to-cart", this.item);
-            },
             showMoreInformation(){
               let newUrl = "item.html?iid=" + this.item.iid;
               window.location.href = newUrl;
+            },
+            add_to_cart(){
+              this.$root.add_to_cart(this.item);
             }
            
           },

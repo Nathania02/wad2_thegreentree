@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <Title>Profile</Title>
+    <Title>Edit details</Title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
     <script>
         createNavbarGreen();
     </script>
-    <div id="app">
+    <div id="app1">
         <button class="openbtn" @click="open_filter1()">Filters</button>
 
         <!-- filterbar -->
@@ -45,15 +45,16 @@
                     src="images/back.png"></a>
             <a href="profile.html" @mouseover="on_mouseover('account')" @mouseout="on_mouseout('account')"
                 :style="{'background-color': backgroundColorAcc}">My Account</a>
-            <a href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')" @mouseout="on_mouseout('purchases')"
-                :style="{'background-color': backgroundColorPur}">My Purchases</a>
+            <a href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
+                @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
             <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
                 :style="{'background-color': backgroundColorPos}">My Posts</a>
         </div>
 
         <div id="main" class="container-fluid">
             <div class="row">
-                <div id="displayUser" class="col-3 contentSection" :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
+                <div id="displayUser" class="col-3 contentSection"
+                    :style="{ 'margin-left': marginLeft }">
                     <p class="pb-4">Username</p>
                     <p class="pb-4">Name</p>
                     <p class="pb-4">Email</p>
@@ -62,15 +63,51 @@
                     <p class="pb-4">Gender</p>
                     <p class="pb-4">D.O.B</p>
                 </div>
-                <div id="displayUserData" class="col-6 contentSection" :style="{ 'font-size': fontSize }"></div>
-                <div class="button text-end">
-                    <button type="button" name="editButton" id="editButton" class="logOutbtn loginPage me-3">Edit</button>                    
-                    <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log Out</button>
+
+                <div id="displayUserData" class="col-6 contentSection" :style="{ 'font-size': fontSize }">
+                    <p class="pb-4">
+                        <input type="text" name="username" class="form-control input" id="username"
+                            placeholder="Enter your username" required>
+                    </p>
+                    <p class="pb-4">
+                        <input type="text" name="name" class="form-control input" id="name"
+                            placeholder="Enter your name" required>
+                    </p>
+                    <p class="pb-4">
+
+                    </p>
+                    <p class="pb-4">
+                        <input type="tel" name="phoneNo" class="form-control input" id="phoneNo"
+                            placeholder="Enter your phone number" pattern="[0-9]{8}" required>
+                    </p>
+                    <p class="pb-4">
+                        <input name="address" class="form-control input" id="address"
+                            placeholder="Enter your address" required></input>
+                    </p>
+                    <p class="pb-4">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="M" required>
+                        <label class="form-check-label radio mx-3" for="male">Male</label>
+
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="F" required>
+                        <label class="form-check-label radio mx-3" for="female">Female</label>
+                    
+                        <input class="form-check-input" type="radio" name="gender" id="pnts" value="O" required>
+                        <label class="form-check-label radio mx-3" for="pnts">Prefer Not To Say</label>
+                    </p>
+                    <p class="pb-4">
+                        <input type="text" name="dob" class="form-control input" id="dob"
+                            placeholder="Enter your date of birth" pattern="\d{2}/\d{2}/\d{4}" required>
+                    </p>
                 </div>
-                
+
+                <div class="button text-end">
+                    <button type="button" name="saveChanges" id="saveChanges"
+                        class="logOutbtn loginPage me-3">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
+
     <script>
         const app = Vue.createApp({
             data() {
@@ -85,13 +122,13 @@
             },
             methods: {
                 open_filter1() {
-                    this.fontSize = '20px'; 
-                    this.marginLeft = '250px'; 
+                    this.fontSize = '20px';
+                    this.marginLeft = '250px';
                     this.width = '250px'
                 },
                 close_filter1() {
-                    this.fontSize = '25px'; 
-                    this.marginLeft = ''; 
+                    this.fontSize = '25px';
+                    this.marginLeft = '';
                     this.width = '0px'
                 },
                 on_mouseover(link) {
@@ -118,10 +155,15 @@
                 }
 
             }
-        }).mount("#app")
+        }).mount("#app1")
 
     </script>
+
+
     <script href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
         crossorigin="anonymous"></script>
+
 </body>
+
+</html>

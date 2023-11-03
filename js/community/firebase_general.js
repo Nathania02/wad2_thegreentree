@@ -34,6 +34,7 @@ const posts = await getDocs(collection(db, 'posts'));
 
 var communitiesList = communities.docs.map(doc => doc.data());
 var postList = posts.docs.map(doc => doc.data());
+console.log(postList);
 
 var currentUrl = window.location.href;
 
@@ -46,7 +47,7 @@ var rows = "";
     var name = j.name;
     if(name.toLowerCase()==community_category){
         var id = j.id;
-        console.log(id);
+        var title = name;
         for(var i of postList){
           if(i.communityid==id){
             rows +=
@@ -56,16 +57,10 @@ var rows = "";
             +"<p id='about'>About: <br/>"+i.desc+"<p></a></button></div>";
           }
         }
-  
     }
-
   }
 
-if(document.getElementById("main")){
-  document.getElementById("main").innerHTML = rows;
-}  
+document.getElementById("main").innerHTML = rows;
+document.getElementById("category").innerText = "Topics under " + title;
 
 
-
-
-const analytics = getAnalytics(app);

@@ -185,14 +185,14 @@ else if (window.location.pathname.includes('addDetails.html')) {
                 phoneNo: phoneNo,
                 dateofbirth: DoB,
                 address: address
-            }, {merge: true})
-            .then(() => {
-                console.log('Entire data has been updated successfully');
-                window.location.href = 'profile.html';
-            })
-            .catch(error => {
-                console.log(error);
-            })
+            }, { merge: true })
+                .then(() => {
+                    console.log('Entire data has been updated successfully');
+                    window.location.href = 'profile.html';
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         })
     })
 }
@@ -205,7 +205,7 @@ else if (window.location.pathname.includes('login.html')) {
         const email = loginForm.email.value;
         const password = loginForm.password.value;
         authDisplay.innerHTML = '';
-        
+
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
                 window.location.href = 'profile.html';
@@ -232,9 +232,47 @@ else if (window.location.pathname.includes('profile.html')) {
             })
     })
 
+    const editButton = document.getElementById('editButton');
+    editButton.addEventListener('click', () => {
+        window.location.href = 'editDetails.html';
+    })
+
     onAuthStateChanged(auth, (user) => {
         console.log('User status changed: ', user);
         const userId = user.uid;
         getUserData(userId);
+    })
+}
+
+else if (window.location.pathname.includes('editDetails.html')) {
+    const saveChanges = document.getElementById('saveChanges');
+    saveChanges.addEventListener('click', () => {
+        const username = saveChanges.username.value;
+        const name = saveChanges.name.value;
+        const gender = saveChanges.querySelector('input[name="gender"]:checked').value;
+        const phoneNo = saveChanges.phoneNo.value;
+        const DoB = saveChanges.dob.value;
+        const address = saveChanges.address.value;
+
+        onAuthStateChanged(auth, (user) => {
+            console.log('User status changed: ', user);
+            const userId = user.uid;
+            setDoc(doc(db, 'users', userId), {
+                username: username,
+                name: name,
+                gender: gender,
+                phoneNo: phoneNo,
+                dateofbirth: DoB,
+                address: address
+            }, { merge: true })
+                .then(() => {
+                    console.log('Entire data has been updated successfully');
+                    window.location.href = 'profile.html';
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        })
+
     })
 }

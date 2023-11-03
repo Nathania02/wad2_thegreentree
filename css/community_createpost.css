@@ -1,0 +1,55 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#postcontainer {
+    border: 2px solid black;
+    padding: 20px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#button_create_post {
+    position: relative;
+    margin-top: 20px;
+    /* text-align: center; */
+}
+
+#create_post {
+    position: absolute;
+    font-size: 20px;
+    /* margin: auto; */
+    margin-top: 20px;
+    bottom: -40px;
+    cursor: pointer;
+    background-color: #5c7345;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 0.375em;
+}
+
+#create_post:hover {
+    background-color: #444;
+}
+
+#header {
+    margin-top: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+    margin-top: 20px;
+    /* margin: auto; */
+    /* position: relative; */
+}
+
+#input_file, #topic_title, #topic_about {
+    font-family: 'Times New Roman', Times, serif;
+}
+

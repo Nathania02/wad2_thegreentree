@@ -1,18 +1,19 @@
-body{
+body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
-#post{
+#post {
   padding: 20px;
-  width: 100%;
-  margin-top: 50px;
-  /* margin: auto; */
+  width: 80%;
+  margin-top: 10px;
   text-align: left;
   color: #5c7345;
   background-color: white;
+  border: 1px solid grey;
+  border-radius: 0.375em;
 }
 
-#post a{
+#post a {
   color: #5c7345;
 }
 
@@ -20,7 +21,7 @@ body{
 TODO: About topic next to image, add image in
 */
 
-#createPost{
+#createPost {
   position: absolute;
   right: 30px;
   top: 100px;
@@ -30,21 +31,44 @@ TODO: About topic next to image, add image in
   color: white;
   padding: 10px 10px;
   border: none;
+  border-radius: 0.375rem;
+}
+
+#createPost:hover {
+  background-color: #444;
+}
+
+#createPost a:hover {
+  color: white;
 }
 
 #main {
   transition: margin-left .5s;
   padding: 16px;
-  margin-top: 53px;
-  /* position: relative; */
+  margin-top: 20px;
+  text-align: center;
 }
 
-#plus{
+#plus {
   width: 20px;
   height: 20px;
 }
 
-a{
+a {
   text-decoration: none;
   color: white;
+}
+
+#category {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#find_out_more { 
+  text-align: center;
+  color: grey;
+}
+
+#about {
+  font-family: 'Times New Roman', Times, serif;
 }

@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+// import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, setDoc, deleteDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+// import { set, ref } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
+// import { ref as sRef } from 'firebase/storage'; 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,8 +24,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-console.log(db);
-const querySnapshot = await getDocs(collection(db, 'users'));
 const communities = await getDocs(collection(db, 'communities'));
 const posts = await getDocs(collection(db, 'posts'));
 const comments = await getDocs(collection(db, 'comments'));
@@ -46,19 +46,73 @@ for(var i of commentsList){
     }
   }
 }
+console.log("name" + name);
+console.log("Title" + posttitle);
+if(document.getElementById("category")){
+  document.getElementById("category").innerText = "Category: "+ name;
+}
 
+if(document.getElementById("title")){
+  console.log(posttitle);
+  document.getElementById("title").innerText = "Title: "+ posttitle;
+}
+
+var comments_value = document.getElementById("comments");
+var postCommentsBtn = document.getElementById("post_comments");
+
+//retrieving of comments
 var rows = "";
-for(var i of commentsList){
-  console.log(i.desc);
-    rows +=
-    "<div class='container-fluid rounded' id='comment_container'>"
-    +"<p id='post'>"+i.desc+"</p>"
-    +"<img id='delete' src='images/bin.png' onclick='delete()'>"
-    +"<img id='like' src='images/thumb-up.png' onclick='like()'>"
-    +"<img id='dislike' src='images/thumb-down.png' onclick='dislike()''>"
-    +"</div>";
+if(commentsList.length != 0){
+  for(var i of commentsList){
+    console.log(i.desc);
+      rows +=
+      "<div class='container-fluid' id='postcontainer'>"
+      +"<div class='container-fluid' id='comment_container'>"
+      +"<p id='post'>"+i.desc+"</p>"
+      +"<button id='delete'><img id='delete_img' src='images/bin.png'></button>"
+      +"<button id='like' @click='likeComment'><img id='like_img' src='images/thumb-up.png'></button>"
+      +"<button id='dislike' @click='dislikeComment'><img id='dislike_img' src='images/thumb-down.png'></button>"
+      +"</div></div><br/>";
+    }
   }
-  
-document.getElementById("category").innerText = "Category: "+name;
-document.getElementById("title").innerText = "Title: "+posttitle;
-document.getElementById("postcontainer").innerHTML = rows;
+  else{
+    rows += "<p>No Commments for now...Be the first to comment!</p>"
+  } 
+
+if(document.getElementById("comments_container")){
+  document.getElementById("comments_container").innerHTML = rows;
+}
+
+//post comments
+async function post_comments(){
+  const commentRef = doc(collection(db, "comments"));
+  const commentDataRef = {
+      desc: comments_value.value,
+      likecount: 0,
+      dislikecount: 0
+  }
+  try{
+      await setDoc(commentRef, commentDataRef);
+      console.log("Comment document created successfully");
+      window.location.reload();
+  } catch(error) {
+      console.log("Error creating comment documnet:", error);
+  }
+}
+
+postCommentsBtn.addEventListener("click", post_comments);
+
+
+//delete comments
+async function delete_comments() {
+  console.log("hello");
+  try{
+    await deleteDoc(doc(db, "comments", 1));
+    console.log("Comment document deleted successfully");
+  } catch(error) {
+    console.log("Error deleting comment documnet:", error);
+  }
+}
+
+var deleteCommentbtn = document.getElementById("delete");
+deleteCommentbtn.addEventListener("click", delete_comments);

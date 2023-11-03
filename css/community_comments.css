@@ -2,11 +2,18 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+#category, #title {
+    text-align: center;
+}
+#category {
+    margin-top: -60px;
+}
+
 #main {
     transition: margin-left .5s;
     padding: 16px;
     margin-top: 100px;
-    /* position: relative; */
+    position: relative;
     }
 
 #post{
@@ -15,37 +22,89 @@ body{
     color: #5c7345;
     background-color: white;
     position: relative;
+    font-size: 15px;
 }
 
 #postcontainer{
     border-style: solid;
     border-color: black;
+    border: 1px solid grey;
+    border-radius: 0.375em;
+
 }
 
 #comment_container{
     position: relative;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-#delete{
-    width: 40px;
-    height: 40px;
+
+#delete {
+    width: 60px;
+    height: 60px;
     right: 85px;
     bottom: -10px;
     position: absolute;
+    /* background-color: white; */
+    border: none;
 }
 
-#like{
-    width: 40px;
-    height: 40px;
-    right: 40px;
-    bottom: -10px;
-    position: absolute;
+#delete_img, #like_img, #dislike_img {
+    width: 30px;
+    height: 30px;
+    /* right: 85px;
+    bottom: -30px; */
+    /* position: absolute; */
 }
 
-#dislike{
-    width: 40px;
-    height: 40px;
-    right: -5px;
+#like {
+    width: 60px;
+    height: 60px;
+    right: 20px;
     bottom: -10px;
     position: absolute;
+    /* background-color: white; */
+    border: none;
+}
+
+#dislike {
+    width: 60px;
+    height: 60px;
+    right: -45px;
+    bottom: -10px;
+    position: absolute;
+    /* background-color: white; */
+    border: none;
+}
+
+#main-container{
+    position: relative;
+}
+
+#addcomments{
+    position: sticky;
+    width: 100%;
+    bottom: 0px;
+    text-align: center;
+    background-color: #5c7345;
+    padding: 10px;
+    border-radius: 0.375em;
+}
+
+#comments{
+    width: 80%;
+    border-radius: 25px;
+    border: 2px solid #5c7345;
+    padding: 20px; 
+}
+
+#send{
+    width: 30px;
+    height: 30px;
+}
+
+button{
+    border-radius: 30%;
+    border: 1px solid;
+    margin-right: 40px;
 }

@@ -17,46 +17,32 @@ body {
     background-color: #5C7345;
 }
 
-/* MARKETPLACE CSS */
-.image-overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.buttons-overlay {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.card:hover .image-overlay {
-    opacity: 1;
-}
-
-.card:hover .buttons-overlay {
-    opacity: 1;
-}
-
-.price{
-    font-size: 20px;
+#order_num{
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #5C7345;
 }
 
-.atc-btn{
+#total{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.border-box{
+    border: 1px solid #5C7345;
+    padding: 10px;
+    margin-top: 10px;
+    width:70%;
+}
+
+.return-btn{
     background-color: #5C7345;
     color: white;
-    border-radius: 0px;
     border: none;
+    padding: 5px 10px;
+    cursor: pointer;
     font-weight: bold;
+    margin-top:10px;
+    border-radius: 5px;
+    align-self:center;
+    
 }
-/* END OF MARKETPLACE CSS */

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, setDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -41,7 +41,14 @@ function checkUserLoginStatus() {
     });
 }
 
+export { query, db, checkUserLoginStatus };
+
 const profileLink = document.getElementById('profile_link');
+const shopping_cart = document.getElementById('shopping_cart');
+const listing_button = document.getElementById('list_item');
+const atc_btn = document.getElementById('atc_btn_mkt');
+
+
 
 checkUserLoginStatus()
     .then((result) => {
@@ -49,9 +56,14 @@ checkUserLoginStatus()
             // User is logged in
             console.log('User is logged in:', result.user);
             profileLink.href = 'profile.html';
+            shopping_cart.style.display = 'block';
+            listing_button.style.display = 'block';
+        
+
         } else {
             // User is not logged in
             console.log('User is not logged in.');
+            atc_btn.style.display = 'none';
             profileLink.href = 'login.html';
         }
     })
@@ -92,15 +104,6 @@ async function getUserData(userId) {
     }
 };
 
-// collection ref for users 
-const userCollection = collection(db, 'users');
-
-// // collection ref for posts
-const postCollection = collection(db, 'post');
-
-// // collection ref for orders
-const ordersCollection = collection(db, 'orders');
-
 const createUserInFirestore = async (uid, username, email) => {
     const userDocRef = doc(db, 'users', uid);
     const userData = {
@@ -120,7 +123,7 @@ const createUserInFirestore = async (uid, username, email) => {
     } catch (error) {
         console.error('Error creating user document:', error);
     }
-    window.location.href = 'profile.html';
+    window.location.href = 'addDetails.html';
 };
 
 if (window.location.pathname.includes('signUp.html')) {
@@ -163,6 +166,36 @@ if (window.location.pathname.includes('signUp.html')) {
     })
 }
 
+else if (window.location.pathname.includes('addDetails.html')) {
+    const addDetails = document.getElementById('addDetails');
+    addDetails.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = addDetails.name.value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const phoneNo = addDetails.phoneNo.value;
+        const DoB = addDetails.dob.value;
+        const address = addDetails.address.value;
+
+        onAuthStateChanged(auth, (user) => {
+            console.log('User status changed: ', user);
+            const userId = user.uid;
+            setDoc(doc(db, 'users', userId), {
+                name: name,
+                gender: gender,
+                phoneNo: phoneNo,
+                dateofbirth: DoB,
+                address: address
+            }, {merge: true})
+            .then(() => {
+                console.log('Entire data has been updated successfully');
+                window.location.href = 'profile.html';
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        })
+    })
+}
 else if (window.location.pathname.includes('login.html')) {
     // login
     const loginForm = document.getElementById('loginForm');
@@ -171,6 +204,8 @@ else if (window.location.pathname.includes('login.html')) {
         e.preventDefault();
         const email = loginForm.email.value;
         const password = loginForm.password.value;
+        authDisplay.innerHTML = '';
+        
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
                 window.location.href = 'profile.html';
@@ -189,6 +224,7 @@ else if (window.location.pathname.includes('profile.html')) {
         signOut(auth)
             .then(() => {
                 // console.log('user signed out')
+
                 window.location.href = 'index.html';
             })
             .catch((err) => {

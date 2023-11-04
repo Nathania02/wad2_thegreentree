@@ -25,9 +25,9 @@
 
   <div class="container-fluid" id="product_listing">
     <div class="row">
-      <nav id="sidebar" class="col-lg-3 col-md-4 col-12 bg-light sidebar">
+      <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
         <div class="position-sticky">
-          <ul class="nav flex-column">
+          <!-- <ul class="nav flex-column">
             <li class="nav-item">
               <a class="nav-link active" href="#">
                 Dashboard
@@ -43,13 +43,26 @@
                 Products
               </a>
             </li>
-            <!-- Add more sidebar items as needed -->
-          </ul>
+          </ul> -->
+          <div class="mt-4 filters-header d-flex justify-content-center">
+            <h5>Filters</h5>
+          </div>
+          <hr class="filter-div">
+          <div class="mt-4 ms-2 cat-select">
+            <label for="category" class="cat-select-header form-label">Category</label>
+            <select class="form-select w-75" aria-label="Default select example" v-model="category" @change="filter_items_by_cat()">
+              <option value="all">All</option>
+              <option value="food">Food</option>
+              <option value="fashion">Fashion</option>
+              <option value="miscellaneous">Miscellaneous</option>
+            </select>
+          </div>
         </div>
       </nav>
 
       <div class="col-lg-9 col-md-8 col-12">
         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 g-4">
+          <input type="text" class="form-control search-fld" placeholder="Search for a product" aria-label="Search" v-model="search" @keyup="search_items()">
           <item-card v-for="item in items" :key="item.id" :item="item"></item-card>
         </div>
       </div>

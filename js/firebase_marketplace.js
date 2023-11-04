@@ -54,9 +54,28 @@ const fetchData = () => {
           items: items_array,
           reviews: reviews_array,
           cart: JSON.parse(localStorage.getItem('cart')) || {},
+          search: "",
+          category: "all",
         };
       },
       methods: {
+        filter_items_by_cat() {
+          this.items = items_array;
+          if (this.category == "all") {
+            this.items = items_array;
+          }else{
+            const cat_query = this.category.toLowerCase();
+            this.items = this.items.filter(item => item.category.toLowerCase().includes(cat_query));
+          }
+        },
+        search_items() {
+          if (this.search.trim() === "") {
+            this.items = items_array;
+          }else{
+            const search_query = this.search.toLowerCase();
+            this.items = this.items.filter(item => item.name.toLowerCase().includes(search_query));
+          }
+        },
         hasReviews(iid) {
           console.log(this.reviews);
           console.log(this.reviews.some(review => review.itemid === iid));

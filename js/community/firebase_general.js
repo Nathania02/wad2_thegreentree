@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, where, query } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,18 +25,44 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-console.log(db);
-// const querySnapshot = await getDocs(collection(db, 'users'));
+const auth = getAuth();
+
+
+function checkUserLoginStatus() {
+  return new Promise((resolve, reject) => {
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+              // User is logged in
+              resolve({ loggedIn: true, user });
+          } else {
+              // User is not logged in
+              resolve({ loggedIn: false, user: null });
+          }
+      }, (error) => {
+          // An error occurred while checking the login status
+          reject(error);
+      });
+  });
+}
+
+checkUserLoginStatus()
+  .then((result) => {
+      var rows = "";
+      // console.log(result.loggedIn);
+      if(result.loggedIn){
+          rows += "<button id='createPost'><img id='plus' src='images/plus.png'><a href='community_createpost.html'> Create"
+          +"Post</a></button>";
+          document.getElementById("heading").innerHTML += rows;
+      }
+  })
+
 const communities = await getDocs(collection(db, 'communities'));
 const posts_collection = await getDocs(collection(db, 'posts'));
-
-
-  // querySnapshot.forEach((doc) => {
-  //     console.log(doc.id, " => ", doc.data());
-  // });
+const users = await getDocs(collection(db, 'users'));
 
 var communitiesList = communities.docs.map(doc => doc.data());
 var postList = posts_collection.docs.map(doc => doc.data());
+var usersList = users.docs.map(doc => doc.data());
 
 var comments_array = [];
 var post_array = [];
@@ -42,6 +70,7 @@ var comments = query(collection(db, "comments"));
 var posts = query(collection(db, "posts"));
 const querySnapshot_comments = await getDocs(comments);
 const querySnapshot_post = await getDocs(posts)
+
 querySnapshot_comments.forEach((doc) => {
   var docData = doc.data();
   docData["postid"] = doc.id;
@@ -54,19 +83,6 @@ querySnapshot_post.forEach((doc) => {
   post_array.push(docData);
 })
 
-
-
-// for(comments in comments_array){
-//   var post_id = comments_array[comments].postid;
-//   console.log(post_id);
-//   for(post in post_array){
-
-//   }
-//   }
-
-
-
-
 var currentUrl = window.location.href;
 
 var url = currentUrl.split("_");
@@ -74,16 +90,6 @@ var url = url[2].split(".");
 var community_category = url[0];
 
 var rows = "";
-// for(var j of communitiesList){
-//   var name = j.name;
-//   if(name.toLowerCase()==community_category){
-//     for(var post of post_array){
-//       if(post_array[post].)
-//     }
-//   }
-// }
-
-
   for(var j of communitiesList){
     var name = j.name;
     if(name.toLowerCase()==community_category){
@@ -99,14 +105,18 @@ var rows = "";
             for(var post of post_array){
               if(topic_title == post.title){
                 var post_id = post.postid;
+                for(var user of usersList){
+                  if(user.userId == post.userid){
+                    rows +=
+                    "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
+                    +"<h3>"+topic_title+"</h3>"
+                    +"<h5>Total Followers: "+followercount+"</h5>"
+                    +"<p id='about'>About: <br/>"+description+"<p></a>"
+                    +"<p id='username'>Created By: "+user.username+"</p></button></div>";        
+                  }
+                }
               }
             }
-
-            rows +=
-            "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-            +"<h3>"+topic_title+"</h3>"
-            +"<h5>Total Followers: "+followercount+"</h5>"
-            +"<p id='about'>About: <br/>"+description+"<p></a></button></div>";
           }
         }
   }

@@ -60,15 +60,15 @@ body{
 }
 
 .cart-checkout-btn{
-    background-color: #5C7345;
+    background-color: #162902;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     font-size:2rem;
     font-weight: bold;
-    margin-top:10px;
-    width:110%;
+    margin-top:30px;
+    width:90%;
     margin-bottom:10px;
 }
 
@@ -78,4 +78,23 @@ body{
     margin-bottom: 5px;
     text-align: center;
     margin-top:10px;
+}
+
+#map{
+    height: 350px;
+    width: 350px;
+}
+
+.spec-w{
+    width:92%;
+}
+
+.requirements{
+    font-size:0.7rem;
+    font-style:italic;
+}
+
+#selected_l_label{
+    font-size:1.5rem;
+    font-weight:bold;
 }

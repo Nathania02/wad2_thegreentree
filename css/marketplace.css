@@ -92,3 +92,29 @@ body {
     /* font-weight: lighter; */
 }
 
+.search-fld{
+    margin-left:35px;
+    width: 92%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #5C7345;
+    font-weight: bold;
+}
+
+.sidebar-design{
+    background-color: #5C7345;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.cat-select-header{
+    font-size:1em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.filter-div{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color:white;
+}

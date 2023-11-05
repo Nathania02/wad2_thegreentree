@@ -82,9 +82,9 @@ body{
 }
 
 #addcomments{
-    position: sticky;
-    width: 100%;
-    bottom: 0px;
+    position: fixed;
+    /* width: 100%; */
+    bottom: 3px;
     text-align: center;
     background-color: #5c7345;
     padding: 10px;
@@ -107,4 +107,10 @@ button{
     border-radius: 30%;
     border: 1px solid;
     margin-right: 40px;
+}
+
+#no-comments {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 90px;
 }

@@ -33,37 +33,39 @@
         <div class="container-fluid" id="header">
             <h1>Create Post</h1>
         </div>
+        <form>
         <div id="main">
-        <div class="container rounded" id="postcontainer">
-            <div class="input-group">
-                <div class="custom-file">
-                    <h3>Upload Picture</h3>
-                    <input type="file" class="custom-file-input" id="input_file">
+            <div class="container rounded" id="postcontainer">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <h3>Upload Picture</h3>
+                        <input type="file" class="custom-file-input" id="input_file">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container rounded" id="postcontainer">
-            <div class="form-group">
-                <label for="topic_title">
-                    <h3>Topic Title:</h3>
-                </label>
-                <input type="text" class="form-control" id="topic_title" required>
+            <div class="container rounded" id="postcontainer">
+                <div class="form-group">
+                    <label for="topic_title">
+                        <h3>Topic Title:</h3>
+                    </label>
+                    <input type="text" class="form-control" id="topic_title" required>
+                </div>
+            </div>
+            <div class="container rounded" id="postcontainer">
+                <div class="form-group">
+                    <label for="topic_about">
+                        <h3>Topic About:</h3>
+                    </label>
+                    <textarea class="form-control" id="topic_about" placeholder="Enter a short description about the topic"
+                        rows="3" required></textarea>
+                </div>
+            </div>
+            <div class="container" id="button_create_post">
+                <button type="submit" id="create_post" data-toggle="modal" data-target="#myModal">Create Post</button>
             </div>
         </div>
-        <div class="container rounded" id="postcontainer">
-            <div class="form-group">
-                <label for="topic_about">
-                    <h3>Topic About:</h3>
-                </label>
-                <textarea class="form-control" id="topic_about" placeholder="Enter a short description about the topic"
-                    rows="3" required></textarea>
-            </div>
-        </div>
-        <div class="container" id="button_create_post">
-            <button type="submit" id="create_post">Create Post</button>
-        </div>
-    
-    </div>
+    </form>
+
 
 
 

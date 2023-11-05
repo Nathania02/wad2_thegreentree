@@ -81,9 +81,12 @@ function retrieveComments(){
         for(var comment of comments_array){
           if(comment.postid == post_id){
             comments_list.push(comment.postid);
+            console.log(comments_list);
             }
           }
         if(comments_list.length != 0) {
+          for(var comment of comments_array){
+            if(comment.postid == post_id){  
             console.log(comment.desc);
               rows +=
               "<div class='container-fluid' id='postcontainer'>"
@@ -93,12 +96,13 @@ function retrieveComments(){
               +"<button id='like' @click='likeComment'><img id='like_img' src='images/thumb-up.png'></button>"
               +"<button id='dislike' @click='dislikeComment'><img id='dislike_img' src='images/thumb-down.png'></button>"
               +"</div></div><br/>";
-            } else{
-              rows += "<p id='no-comments'>No Commments for now...Be the first to comment!</p>";
-          } 
-
+            } 
+          }
+        } else{
+          rows += "<p id='no-comments'>No Commments for now...Be the first to comment!</p>"; 
+        }
         if(document.getElementById("comments_container")){
-          document.getElementById("comments_container").innerHTML = rows;
+          document.getElementById("comments_container").innerHTML = rows;  
         }
       } catch (error) {
         console.log("Error retrieving comments", error);

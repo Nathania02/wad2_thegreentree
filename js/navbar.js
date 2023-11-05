@@ -1,41 +1,4 @@
 function createNavbarGreen() {
-    // document.write(`
-    // <div class="container-fluid">
-    //     <nav class="navbar navbar-expand-lg fixed-top">
-    //         <a class="navbar-brand ps-4" href="index.html">
-    //             <img src="rsrc/the_green_tree_white.png" alt="Company Logo" height="40" width="40">
-    //         </a>
-    //         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    //             <span class="navbar-toggler-icon"></span>
-    //         </button>
-    //         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    //             <ul class="navbar-nav">
-    //                 <li class="nav-item px-3">
-    //                 <div title="Marketplace">
-    //                 <a class="nav-link" href="marketplace.html">
-    //                 <img src="rsrc/navbar/marketplace.png" height="30" width="30">
-    //                 </a></div>
-    //                 </li>
-    //                 <li class="nav-item px-3"><div title="Community">
-    //                 <a class="nav-link" href="community_mainpage.html">
-    //                 <img src="rsrc/navbar/community.png" height="30" width="30">
-    //                 </a></div>
-    //                 </li>
-    //                 <li class="nav-item px-3"><div title="Profile">
-    //                 <a class="nav-link" id="profile_link" href="login.html">
-    //                 <img src="rsrc/navbar/profile.png" height="30" width="30">
-    //                 </a></div>
-    //                 </li>
-    //                 <li class="nav-item px-3 me-1"><div title="Inbox">
-    //                 <a class="nav-link" href="inbox.html">
-    //                 <img src="rsrc/navbar/inbox.png" height="30" width="30">
-    //                 </a></div>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //     </nav>
-    // </div>
-    // `);
 
     document.write(`
     <div class="container-fluid">
@@ -46,7 +9,7 @@ function createNavbarGreen() {
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="collapse navbar-collapse ul-bg justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item px-3 dropdown">
                         <div title="Marketplace" class="nav-link" id="marketplaceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -69,7 +32,7 @@ function createNavbarGreen() {
                      <img src="rsrc/navbar/profile.png" height="30" width="30">
                      </a></div>
                      </li>
-                     <li class="nav-item px-3 me-1"><div title="Inbox">
+                     <li class="nav-item px-3"><div title="Inbox">
                      <a class="nav-link" href="inbox.html">
                      <img src="rsrc/navbar/inbox.png" height="30" width="30">
                      </a></div>

@@ -56,24 +56,48 @@ const fetchData = () => {
           cart: JSON.parse(localStorage.getItem('cart')) || {},
           search: "",
           category: "all",
+          price: "all",
         };
       },
       methods: {
-        filter_items_by_cat() {
+        filter_items(){
           this.items = items_array;
-          if (this.category == "all") {
-            this.items = items_array;
+          if(this.category == "all"){
+            if(this.price == "all"){
+              this.items = items_array;
+            }else if(this.price == "twenty"){
+              this.items = this.items.filter(item => item.price >= 0 && item.price <= 20).sort((a, b) => (a.price > b.price) ? 1 : -1);
+            }else if(this.price == "fifty"){
+              this.items = this.items.filter(item => item.price > 20 && item.price <= 50).sort((a, b) => (a.price > b.price) ? 1 : -1);
+            }else{
+              this.items = this.items.filter(item => item.price >= 51).sort((a, b) => (a.price > b.price) ? 1 : -1);
+            }
           }else{
             const cat_query = this.category.toLowerCase();
             this.items = this.items.filter(item => item.category.toLowerCase().includes(cat_query));
+            if(this.price == "all"){
+              this.items = this.items;
+            }else if(this.price == "twenty"){
+              this.items = this.items.filter(item => item.price >= 0 && item.price <= 20).sort((a, b) => (a.price > b.price) ? 1 : -1);
+            }else if(this.price == "fifty"){
+              this.items = this.items.filter(item => item.price > 20 && item.price <= 50).sort((a, b) => (a.price > b.price) ? 1 : -1);
+            }else{
+              this.items = this.items.filter(item => item.price >= 51).sort((a, b) => (a.price > b.price) ? 1 : -1);
+            }
           }
         },
         search_items() {
-          if (this.search.trim() === "") {
-            this.items = items_array;
-          }else{
+          if(this.category != "all" || this.price != "all"){
+            this.filter_items();
             const search_query = this.search.toLowerCase();
             this.items = this.items.filter(item => item.name.toLowerCase().includes(search_query));
+          }else{
+            if (this.search.trim() === "") {
+              this.items = items_array;
+            }else{
+              const search_query = this.search.toLowerCase();
+              this.items = this.items.filter(item => item.name.toLowerCase().includes(search_query));
+            }
           }
         },
         hasReviews(iid) {

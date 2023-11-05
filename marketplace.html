@@ -44,17 +44,26 @@
               </a>
             </li>
           </ul> -->
-          <div class="mt-4 filters-header d-flex justify-content-center">
+          <div class="mt-4 mb-5 filters-header d-flex justify-content-center">
             <h5>Filters</h5>
           </div>
           <hr class="filter-div">
           <div class="mt-4 ms-2 cat-select">
             <label for="category" class="cat-select-header form-label">Category</label>
-            <select class="form-select w-75" aria-label="Default select example" v-model="category" @change="filter_items_by_cat()">
+            <select class="form-select w-75" aria-label="Default select example" v-model="category" @change="filter_items()">
               <option value="all">All</option>
               <option value="food">Food</option>
               <option value="fashion">Fashion</option>
               <option value="miscellaneous">Miscellaneous</option>
+            </select>
+          </div>
+          <div class="mt-4 ms-2 mb-4 cat-select">
+            <label for="price" class="cat-select-header form-label">Price Range</label>
+            <select class="form-select w-75" aria-label="Default select example" v-model="price" @change="filter_items()">
+              <option value="all">All</option>
+              <option value="twenty">0 - 20</option>
+              <option value="fifty">21 - 50</option>
+              <option value="hundred">51 - 100</option>
             </select>
           </div>
         </div>

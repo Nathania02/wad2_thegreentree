@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.grass {
+    width: 30%;
+    position: absolute;
+    bottom: -2px;
+    left: 70%;
+}
+
+.tree {
+    position: absolute;
+    bottom: 40px;
+    width: 6px;
+    height: 100px;
+    background-color: #5f8011;
+    transform-origin: bottom;
+}
+
+.tree--1 {
+    right: 15%;
+    animation: treeGrows 10s linear infinite;
+}
+
+.tree__leaf {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #5f8011;
+    border: 0;
+    border-top-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+}
+
+.tree__leaf--top-left {
+    top: -19px;
+    left: -17px;
+    width: 20px;
+    height: 20px;
+}
+
+.tree__leaf--top-right {
+    top: -19px;
+    right: -17px;
+    width: 20px;
+    height: 20px;
+    transform: rotate(90deg);
+}
+
+.tree__leaf--left {
+    top: 20px;
+    left: -30px;
+}
+
+.tree__leaf--right {
+    top: 40px;
+    right: -30px;
+    transform: rotate(90deg);
+}
+
+@keyframes treeGrows {
+    0% {
+        transform: scale(2);
+    }
+
+    15% {
+        transform: scale(2.5);
+    }
+
+    25% {
+        transform: scale(2.5);
+    }
+
+    40% {
+        transform: scale(3);
+    }
+
+    50% {
+        transform: scale(3);
+    }
+
+    65% {
+        transform: scale(3.5);
+    }
+
+    75% {
+        transform: scale(3.5);
+    }
+
+    90% {
+        transform: scale(4);
+    }
+
+    100% {
+        transform: scale(2);
+    }
+}
+
+.flower {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: pink;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}

@@ -41,6 +41,43 @@ function checkUserLoginStatus() {
     });
 }
 
+async function getAndOutputUserData(userId) {
+    try {
+        const displayUserData = document.getElementById('displayUserData');
+        const q = query(collection(db, "users"), where("userId", "==", userId));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            let data = JSON.parse(JSON.stringify(doc.data()));
+            let keyOrder = ['username', 'name', 'email', 'phoneNo', 'address', 'gender', 'dateofbirth'];
+            let newUserObject = rearrangeObjectKeys(data, keyOrder);
+            // console.log(newUserObject);
+            for (var field in newUserObject) {
+                var fieldData;
+                if (field === 'gender') {
+                    // Handle gender separately
+                    const genderRadio = displayUserData.querySelector(`input[name="gender"][value="${newUserObject[field]}"]`);
+                    if (genderRadio) {
+                        genderRadio.checked = true;
+                    }
+                } else if (field === 'email') {
+                    fieldData = displayUserData.querySelector(`#email`);
+                    if (fieldData) {
+                        fieldData.textContent = newUserObject[field];
+                    }
+                } else {
+                    fieldData = displayUserData.querySelector(`input[name="${field}"], textarea[name="${field}"]`);
+                    if (fieldData) {
+                        fieldData.value = newUserObject[field];
+                    }
+                }
+            }
+        })
+    }
+    catch (err) {
+        console.log(err.message);
+    }
+}
+
 export { query, db, checkUserLoginStatus };
 
 const profileLink = document.getElementById('profile_link');
@@ -58,7 +95,7 @@ checkUserLoginStatus()
             profileLink.href = 'profile.html';
             shopping_cart.style.display = 'block';
             listing_button.style.display = 'block';
-        
+
 
         } else {
             // User is not logged in
@@ -93,9 +130,12 @@ async function getUserData(userId) {
             let data = JSON.parse(JSON.stringify(doc.data()));
             let keyOrder = ['username', 'name', 'email', 'phoneNo', 'address', 'gender', 'dateofbirth'];
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
-            console.log(newUserObject);
+            // console.log(newUserObject);
             for (var field in newUserObject) {
-                displayUserData.innerHTML += `<p class="pb-4">${newUserObject[field]}</p>`;
+                var fieldData = displayUserData.querySelector(`#${field}`);
+                if (fieldData) {
+                    fieldData.textContent = newUserObject[field];
+                }
             }
         })
     }
@@ -245,13 +285,20 @@ else if (window.location.pathname.includes('profile.html')) {
 }
 
 else if (window.location.pathname.includes('editDetails.html')) {
+    onAuthStateChanged(auth, (user) => {
+        console.log('User status changed: ', user);
+        const userId = user.uid;
+        getAndOutputUserData(userId);
+    })
+
     const saveChanges = document.getElementById('saveChanges');
-    saveChanges.addEventListener('click', () => {
-        const username = saveChanges.username.value;
+    saveChanges.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = saveChanges.username.value
         const name = saveChanges.name.value;
         const gender = saveChanges.querySelector('input[name="gender"]:checked').value;
         const phoneNo = saveChanges.phoneNo.value;
-        const DoB = saveChanges.dob.value;
+        const DoB = saveChanges.dateofbirth.value;
         const address = saveChanges.address.value;
 
         onAuthStateChanged(auth, (user) => {
@@ -273,6 +320,5 @@ else if (window.location.pathname.includes('editDetails.html')) {
                     console.log(error);
                 })
         })
-
     })
 }

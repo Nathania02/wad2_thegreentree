@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 // import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getFirestore, collection, addDoc, getDocs, setDoc, deleteDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, setDoc, deleteDoc, updateDoc, query, where, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -55,14 +55,31 @@ var commentsList = comments.docs.map(doc => doc.data());
 var usersList = users.docs.map(doc => doc.data());
 
 var comments_array = []
+var posts_array = []
+var users_array = []
+
 var commentslist = query(collection(db, "comments"));
-const querySnapshot = await getDocs(commentslist);
-querySnapshot.forEach((doc) => {
+var postlist = query(collection(db, "posts"));
+var userslist = query(collection(db, "users"));
+
+const querySnapshot_comments = await getDocs(commentslist);
+const querySnapshot_post = await getDocs(postlist);
+const querySnapshot_users = await getDocs(userslist);
+
+
+querySnapshot_comments.forEach((doc) => {
   var docData = doc.data();
-  console.log(docData);
   docData["commentsid"] = doc.id;
   comments_array.push(docData);
 })
+
+
+querySnapshot_post.forEach((doc) => {
+  var docData_post = doc.data();
+  posts_array.push(docData_post);
+})
+
+
 
 var queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -83,13 +100,32 @@ for(var i of commentsList){
   }
 }
 
-if(document.getElementById("category")){
+function getDescForModal(){
+    for(var post of posts_array){
+    if(post.title == post_title) {
+      var desc = post.desc;
+
+      if(document.getElementById("topic_desc")) {
+        document.getElementById("topic_desc").innerText = desc;
+      }
+      
+    }
+  }
+}
+
+
+
+if(document.getElementById("category")) {
   document.getElementById("category").innerText = "Category: "+ name;
 }
 
-if(document.getElementById("title")){
+if(document.getElementById("title")) {
   document.getElementById("title").innerText = "Title: "+ post_title;
 }
+
+getDescForModal();
+retrieveComments();
+
 
 //retrieving of comments
 function retrieveComments(){
@@ -106,14 +142,20 @@ function retrieveComments(){
             if(comment.postid == post_id){  
               for(var user of usersList){
                 if(user.userId == comment.userid){
+                  console.log(comment.likecount);
+                  // var number_of_likes = comment.likecount;
                   rows +=
                   "<div class='container-fluid' id='postcontainer'>"
                   +"<div class='container-fluid' id='comment_container'>"
                   +"<p id='post'>"+comment.desc+"</p>"
                   +"<p id='username'>Commented By: "+user.username+"</p>"
-                  +"<button id='delete'><img id='delete_img' src='images/bin.png'></button>"
-                  +"<button id='like' @click='likeComment'><img id='like_img' src='images/thumb-up.png'></button>"
-                  +"<button id='dislike' @click='dislikeComment'><img id='dislike_img' src='images/thumb-down.png'></button>"
+                  +"<p id='likes' class='"+comment.commentsid+"'>Likes: {{ likecount }}</p>"
+
+                  // +"<p v-else id='likes' class='"+comment.commentsid+">Likes: "+comment.likecount+"</p>"
+                  +"<p id='dislikes'>Dislikes: "+comment.dislikecount+"</p>"
+                  +"<button id='delete' @click='delete_comment'><img id='delete_img' src='images/bin.png'></button>"
+                  +"<button id='like' @click='add_like'><img id='like_img' src='images/thumb-up.png'></button>"
+                  +"<button id='dislike' @click='add_dislike'><img id='dislike_img' src='images/thumb-down.png'></button>"
                   +"</div></div><br/>";
                 }
               }
@@ -130,7 +172,6 @@ function retrieveComments(){
       }
     }
 
-retrieveComments()
 
 checkUserLoginStatus() 
   .then((result) => {
@@ -140,16 +181,24 @@ checkUserLoginStatus()
           return{
             description: "",
             postid: post_id,
-            user_id: result.user.uid
+            user_id: result.user.uid,
+            likes: 0,
+            disliked: 0,
+            comment_id: ""
           }
         },
         methods: {
-          async post_comments(){
+          async post_comments() {
             this.description = document.getElementById("comments").value;
             var queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             this.post_id = urlParams.get("postid");
-  
+
+            querySnapshot_comments.forEach((doc) => {
+              var docData = doc.data();
+              docData["commentid"] = doc.id;
+              comments_array.push(docData);
+            })            
   
             let commentRef = doc(collection(db, "comments"));
             let commentDataRef = {
@@ -157,7 +206,7 @@ checkUserLoginStatus()
               likecount: 0,
               dislikecount: 0,
               postid: post_id,
-              userid: this.user_id
+              userid: this.user_id,
             }
             await setDoc(commentRef, commentDataRef)
             .then(() => {
@@ -167,6 +216,82 @@ checkUserLoginStatus()
             .catch((error) => {
               console.log("Error creating comment documnet:", error);
             })
+          },
+          
+          async add_like() {
+            const comment_desc = document.getElementById("post").innerText;
+            for(var comment of comments_array){
+              console.log(comments_array);
+              if(comment.desc == comment_desc){
+                var id_comment = comment.commentsid;
+                const data = {
+                  likecount: this.likes+1
+                }
+                let updatecommentRef = doc(db, "comments", id_comment);
+                await updateDoc(updatecommentRef, data)
+                .then(() => {
+                  console.log("documnet updated");
+                  // const documentRef = doc(db, "comments", id_comment);
+                  // const updates = onSnapshot(doc(db, "comments", id_comment), (doc) => {
+                  //   if(doc.exists) {
+                  //     var updated_data = doc.data();
+                  //     console.log(updated_data);
+                  //     var likecount = updated_data.likecount;
+                  //     for(comment of comments_array){
+                  //       if(comment.commentsid == id_comment){
+                  //         comments_array[comment] == updated_data;
+                          // document.getElementsByClassName(id_comment)[0].innerText = "Likes: " + this.likes++;
+
+                          // retrieveComments();
+                      //   }
+                      // }
+                      // console.log(comments_array);
+                      // console.log(likecount);
+                    // }
+                  // })
+                  
+                  document.getElementsByClassName(id_comment)[0].innerText = "Likes: " + this.likes++;
+                  // window.location.reload();
+                }) 
+                .catch((error) => {
+                  console.log(error);
+                })
+    
+              }
+            }
+          },
+
+          add_dislike() {
+            this.dislike++;
+            
+          },
+
+          async delete_comment() {
+            const comment_desc = document.getElementById("post").innerText;
+            for(var comment of comments_array){
+              if(comment.desc == comment_desc){
+                var id_comment = comment.commentsid;
+                var id_user = comment.userid;
+
+                // for(var user of users_array){
+                //   console.log(user.userId);
+                //   console.log(id_user);
+                  if(this.user_id == id_user) {
+                    await deleteDoc(doc(db, "comments", id_comment))
+                    .then(() => {
+                      console.log("Document succesfully deleted");
+                      window.location.reload();
+                    })
+                    .catch((error) => {
+                      console.log("Unable to delete document", error);
+                    })
+                  } else {
+                    alert("You are unable to delete this comment as you are not the creator.");
+                    break;
+                  }
+                }
+              // }
+            } 
           }
         }
       }).mount("#main");

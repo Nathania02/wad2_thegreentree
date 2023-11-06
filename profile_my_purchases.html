@@ -15,8 +15,8 @@
     <!-- navbar css -->
     <link rel="stylesheet" href="css/navbar.css">
 
-    <!-- firebase -->
-    <script type="module" src="./js/firebase_profile.js"></script>
+    <!-- js -->
+    <script type="module" src="./js/profile_purchases.js"></script>
 
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -39,7 +39,25 @@
     </script>
 
     <div id="main" class="container mt-5">
-        <div class="row d-flex justify-content-center">
+        <div id="purchases_listing">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <p class="pt-5 pb-5 mb-4 header-marketplace"><span id="header-mkt">MY PURCHASES</span></p>
+                    </div>
+                </div>
+                <div class="row" v-for="order in orders" :key="order.orderid">
+                    <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-center">
+                        <div class="top-box">
+                            {{order.orderid}}
+                        </div>
+    
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- <div class="row d-flex justify-content-center">
             <div id="post" class="col-md-12 col-transition">
                 <div class="card">
                     <div class="d-flex align-items-center justify-content-between">
@@ -117,7 +135,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

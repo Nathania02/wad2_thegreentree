@@ -79,3 +79,94 @@ body {
 .btwn_posts {
     margin-top: 20px;
 }
+
+/* FOR THE YOUR PURCHASES PAGE */
+
+.top-box{
+    border: 1px solid #5C7345;
+    padding:13px;
+    background-color: #5C7345;
+    color:white;
+   
+}
+
+.ord-num{
+    font-weight:bold;
+    font-size:1.5em;
+}
+
+.date{
+    font-style:italic;
+    font-size:0.8em;
+
+}
+
+.order-det-box{
+    border: 1px solid #5C7345;
+    padding-top:15px;
+
+}
+
+.seller-info{
+    border-width: 0 1px 0px 1px; /* top right bottom left */
+    border-style: solid;
+    border-color: #5C7345;
+    padding:7px;
+}
+
+.seller-name{
+    font-style:italic;
+}
+
+
+.img-container{
+    margin:10px;
+}
+
+.img-container img{
+    width:150px;
+    height:150px;
+}
+
+.item-name{
+    margin-left:15px;
+    font-size: 1.2em;;
+}
+
+.item-qty{
+    margin-left:15px;
+    font-size: 0.8em;
+    font-style:italic;
+}
+
+.item-price{
+    margin-left:15px;
+    font-size: 0.8em;
+    font-weight:bold;
+    bottom:0;
+}
+
+.bottom-box{
+    border-width: 0 1px 1px 1px; /* top right bottom left */
+    border-style: solid;
+    border-color: #5C7345;
+    padding:7px;
+    font-size:1.2em;
+    right:0;
+    font-weight:bold;
+    
+}
+
+.pickup-text{
+    margin-left:5px;
+    font-style:italic;
+    /* font-size:0.8em; */
+    text-align:center;
+}
+
+.delivery-text{
+    margin-left:5px;
+    font-style:italic;
+    /* font-size:0.8em; */
+    text-align:center;
+}

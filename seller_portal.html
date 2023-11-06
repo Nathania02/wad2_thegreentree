@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/navbar.css">
 
     <!-- firebase -->
-    <script type="module" src="./js/firebase_profile.js"></script>
+    <script type="module" src="./js/seller_portal.js"></script>
 
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -52,53 +52,79 @@
                 @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
             <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
                 :style="{'background-color': backgroundColorPos}">My Posts</a>
-            <a href="seller_portal.html" @mouseover="on_mouseover('seller_portal')" @mouseout="on_mouseout('seller_portal')"
-                :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
-        </div>
-
-        <div id="main" class="container-fluid">
-            <div class="row">
-                <div id="displayUserData" class="col contentSection"
-                    :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
-                    <p class="pb-4">
-                        <span style="margin-right: 200px;">Username</span>
-                        <span id="username"></span>
-                    </p>
-                    <p class="pb-4">
-                        <span style="margin-right: 241.63px;">Name</span>
-                        <span id="name"></span>
-                    </p>
-                    <p class="pb-4">
-                        <span style="margin-right: 241.63px;">Email</span>
-                        <span id="email"></span>
-                    </p>
-                    <p class="pb-4">
-                        <span style="margin-right: 150.66px;">Phone Number</span>
-                        <span id="phoneNo"></span>
-                    </p>
-                    <p class="pb-4">
-                        <span style="margin-right: 219.4px;">Address</span>
-                        <span id="address"></span>
-                    </p>
-                    <p class="pb-4">
-                        <span style="margin-right: 227.77px;">Gender</span>
-                        <span id="gender"></span>
-                    </p>
-                    <p class="pb-4">
-                        <span style="margin-right: 169.42px;">Date of Birth</span>
-                        <span id="dateofbirth"></span>
-                    </p>
-                </div>
-                <div class="button text-end">
-                    <button type="button" name="editButton" id="editButton"
-                        class="logOutbtn loginPage me-3">Edit</button>
-                    <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log
-                        Out</button>
-                </div>
-
-            </div>
         </div>
     </div>
+        <br><br><br><br>
+        <span id="users_product_listing">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="header-your-products">
+                        <h1>Your Products</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-10">
+                    <div class="row">
+                        <table class="table">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity Left</th>
+                                <th>Options</th>
+                            </tr>
+                            <tr v-for="item in items">
+                                <td class="w-50"><a :href="'item.html?iid=' + item.iid">{{item.name}}</a></td>
+                                <td class="w-25">{{item.quantity}}</td>
+                                <td class="w-25">
+                                    <button :key="item.iid" @click="edit_item(item.iid)" type="button" class="btn-edit me-2">Edit</button>
+                                    <button :key="item.iid" @click="delete_item(item.iid)" type="button" class="btn-del">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="header-your-ord-t-ff">
+                        <h1>Orders to fulfil</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-10">
+                    <!-- <div class="row">
+                        <table class="table">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity Left</th>
+                                <th>Options</th>
+                            </tr>
+                            <tr v-for="item in items">
+                                <td class="w-50"><a :href="'item.html?iid=' + item.iid">{{item.name}}</a></td>
+                                <td class="w-25">{{item.quantity}}</td>
+                                <td class="w-25">
+                                    <button :key="item.iid" @click="edit_item(item.iid)" type="button" class="btn-edit me-2">Edit</button>
+                                    <button :key="item.iid" @click="delete_item(item.iid)" type="button" class="btn-del">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div> -->
+                    <div v-for="order in orderdetails_tbff" class="order-summary-container">
+                        <div class="order-id">
+                            <h3>{{order.orderid}}</h3>
+                        </div>
+                        <div class="order-summary">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
 
 
     <script>
@@ -111,7 +137,6 @@
                     backgroundColorAcc: 'transparent',
                     backgroundColorPur: 'transparent',
                     backgroundColorPos: 'transparent',
-                    backgroundColorSelPor: 'transparent',
                     filterButtonPosition: ''
                 }
             },
@@ -138,9 +163,6 @@
                     else if (link === 'posts') {
                         this.backgroundColorPos = '#D8EAC7';
                     }
-                    else if (link === 'seller_portal') {
-                        this.backgroundColorSelPor = '#D8EAC7';
-                    }
                 },
                 on_mouseout(link) {
                     if (link === 'account') {
@@ -151,9 +173,6 @@
                     }
                     else if (link === 'posts') {
                         this.backgroundColorPos = 'transparent';
-                    }
-                    else if (link === 'seller_portal') {
-                        this.backgroundColorSelPor = 'transparent';
                     }
                 }
 

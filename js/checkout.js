@@ -1,5 +1,4 @@
 import { collection, getDocs, query, where, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-
 import { db, checkUserLoginStatus } from './firebase_profile.js';
 
 const pickup_locations =  [
@@ -183,7 +182,7 @@ checkUserLoginStatus()
                         if(this.d_or_pu == "delivery"){
                             order_data = {
                                 userid: userid,
-                                status: "pending",
+                                status: "pending delivery",
                                 total: this.calculate_total_price(),
                                 date: new Date(),
                                 d_or_p: this.d_or_pu,
@@ -191,13 +190,30 @@ checkUserLoginStatus()
                                 postal: this.postal,
                             }
                         }else{
+                            const today = new Date();
+                            const current_day_of_week = today.getDay(); // 0 (Sunday) to 6 (Saturday)
+
+                            // Calculate days until next Sunday
+                            let days_until_next_sunday = 0;
+                            if (current_day_of_week === 6) {
+                                // If today is Saturday, next Sunday is tomorrow
+                                days_until_next_sunday = 1;
+                            } else {
+                                // Calculate days until the next Sunday
+                                days_until_next_sunday = 7 - current_day_of_week;
+                            }
+
+                            // Calculate the date of the next Sunday
+                            const next_sunday = new Date(today);
+                            next_sunday.setDate(today.getDate() + days_until_next_sunday);
                             order_data = {
                                 userid: userid,
-                                status: "pending",
+                                status: "pending pickup",
                                 total: this.calculate_total_price(),
                                 date: new Date(),
                                 d_or_p: this.d_or_pu,
                                 pickup_location: this.selected_location,
+                                pickup_date: next_sunday,
                             }
                         }
 
@@ -210,6 +226,16 @@ checkUserLoginStatus()
                                     itemid: order_item['iid'],
                                     quantity: order_item['quantity'],
                                     price: order_item['price'],
+                                    d_or_p: order_data['d_or_p'],
+                                }
+                                if(order_data['d_or_p'] == "delivery"){
+                                    order_details_data['status'] = "pending delivery";
+                                    order_details_data['address'] = order_data['address'];
+                                    order_details_data['postal'] = order_data['postal'];
+                                }else{
+                                    order_details_data['status'] = "pending pickup";
+                                    order_details_data['pickup_location'] = order_data['pickup_location'];
+                                    order_details_data['pickup_date'] = order_data['pickup_date'];
                                 }
                                 addDoc(order_details_ref, order_details_data)
                                     .then((doc_ref) => {
@@ -264,31 +290,6 @@ checkUserLoginStatus()
                         })
 
                     },
-                    // geocodePostalCode(postal_code){
-                    //     return new Promise((resolve, reject) => {
-                    //         const geocoder = new google.maps.Geocoder();
-                    //         geocoder.geocode({ address: postal_code }, (results, status) => {
-                    //             if (status === 'OK') {
-                    //                 resolve(results[0].geometry.location);
-                    //             } else {
-                    //                 reject(status);
-                    //             }
-                    //         });
-                    //     });
-                    // },
-                    // calculateDistance(p1, p2){
-                    //     const R = 6371e3; // metres
-                    //     const φ1 = p1.lat * Math.PI / 180; // φ, λ in radians
-                    //     const φ2 = p2.lat * Math.PI / 180;
-                    //     const Δφ = (p2.lat - p1.lat) * Math.PI / 180;
-                    //     const Δλ = (p2.lng - p1.lng) * Math.PI / 180;
-                    //     const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                    //             Math.cos(φ1) * Math.cos(φ2) *
-                    //             Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-                    //     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                    //     const d = R * c; // in metres
-                    //     return d;
-                    // },
                     search_pickup_location(){
                         const geocoder = new google.maps.Geocoder();
                         geocoder.geocode({ address: this.postal }, (results, status) => {

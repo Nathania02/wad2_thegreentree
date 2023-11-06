@@ -100,7 +100,6 @@ checkUserLoginStatus()
         } else {
             // User is not logged in
             console.log('User is not logged in.');
-            atc_btn.style.display = 'none';
             profileLink.href = 'login.html';
         }
     })

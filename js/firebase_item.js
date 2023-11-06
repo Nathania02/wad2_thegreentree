@@ -1,50 +1,38 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc } 
-  from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+// // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+// import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc } 
+//   from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+// import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB930wEyfKpI2gBvgAUprBKWqhcbmcKJzk",
-  authDomain: "wad2thegreentree.firebaseapp.com",
-  databaseURL: "https://wad2thegreentree-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "wad2thegreentree",
-  storageBucket: "wad2thegreentree.appspot.com",
-  messagingSenderId: "731944801799",
-  appId: "1:731944801799:web:ac8492d32f75b71ba3fca2",
-  measurementId: "G-M4GNGPS1MD"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB930wEyfKpI2gBvgAUprBKWqhcbmcKJzk",
+//   authDomain: "wad2thegreentree.firebaseapp.com",
+//   databaseURL: "https://wad2thegreentree-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "wad2thegreentree",
+//   storageBucket: "wad2thegreentree.appspot.com",
+//   messagingSenderId: "731944801799",
+//   appId: "1:731944801799:web:ac8492d32f75b71ba3fca2",
+//   measurementId: "G-M4GNGPS1MD"
+// };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
 
-// User Authentication
+// // User Authentication
+// const auth = getAuth();
+
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { db, checkUserLoginStatus } from './firebase_profile.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+
 const auth = getAuth();
 
-
-
-function checkUserLoginStatus() {
-    return new Promise((resolve, reject) => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is logged in
-                resolve({ loggedIn: true, user });
-            } else {
-                // User is not logged in
-                resolve({ loggedIn: false, user: null });
-            }
-        }, (error) => {
-            // An error occurred while checking the login status
-            reject(error);
-        });
-    });
-}
 
 // Get the item.iid from the URL query parameter
 const urlParams = new URLSearchParams(window.location.search);
@@ -52,7 +40,6 @@ const iid = urlParams.get('iid');
 
 // Fetch the item data from the database
 const fetchData = (iid) => {
-  const db = getFirestore(app);
   const item_ref = doc(collection(db, "items"), iid);
   let reviews_array = [];
 
@@ -105,7 +92,9 @@ const fetchData = (iid) => {
                 };
               },
               mounted() {
-                this.same_user = this.item.userid == auth.currentUser.uid;
+                if(auth.currentUser){
+                  this.same_user = this.item.userid == auth.currentUser.uid;
+                }
               },
               methods: {
                 get_rating() {
@@ -155,7 +144,6 @@ const fetchData = (iid) => {
                     existing_cart[iid] = [item_name, item_price, item_quantity, item_first_image];
 
                     localStorage.setItem('cart', JSON.stringify(existing_cart));
-                    console.log(existing_cart);
                 },
                 edit_item(){
 
@@ -163,7 +151,6 @@ const fetchData = (iid) => {
                 delete_item(){
                   const is_confirmed = confirm("Are you sure you want to delete this item?");
                   if (is_confirmed) {
-                  console.log(iid);
                   deleteDoc(item_ref)
                     .then(() => {
                       console.log("Document successfully deleted!");

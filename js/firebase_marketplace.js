@@ -24,9 +24,7 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  console.log(db);
-  
+  const db = getFirestore(app);  
 
 const fetchData = () => {
   const items_array = [];
@@ -101,8 +99,6 @@ const fetchData = () => {
           }
         },
         hasReviews(iid) {
-          console.log(this.reviews);
-          console.log(this.reviews.some(review => review.itemid === iid));
           return this.reviews.some(review => review.itemid === iid);
         },
         average_rating(iid){
@@ -123,7 +119,6 @@ const fetchData = () => {
           localStorage.setItem('cart', JSON.stringify(existingCart));
           // Trigger event to update cart modal content
           this.$root.$emit("update-cart-modal", existingCart);
-          console.log(existingCart);
         },
         clear_cart(){
           localStorage.removeItem('cart');

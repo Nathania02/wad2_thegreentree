@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
 
+    <!-- J Query -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- navbar -->
     <script src="js/navbar.js"></script>
 
@@ -62,26 +65,26 @@
                                 placeholder="Enter your username">
                         </p>
                         <p class="pb-4 d-flex align-items-center">
-                            <span style="margin-right: 241.63px;">Name</span>
-                            <input type="text" name="name" class="form-control input" id="name"
-                                placeholder="Enter your name">
+                            <span style="margin-right: 237.28px;">First Name</span>
+                            <input type="text" name="firstName" class="form-control input" id="firstName"
+                                placeholder="Enter your first name">
                         </p>
                         <p class="pb-4 d-flex align-items-center">
-                            <span style="margin-right: 241.63px;">Email</span>
+                            <span style="margin-right: 239.37px;">Last Name</span>
+                            <input type="text" name="lastName" class="form-control input" id="lastName"
+                                placeholder="Enter your last name">
+                        </p>
+                        <p class="pb-4 d-flex align-items-center">
+                            <span style="margin-right: 255.66px;">Email</span>
                             <span id="email"></span>
                         </p>
                         <p class="pb-4 d-flex align-items-center">
-                            <span style="margin-right: 193.68px;">Phone Number</span>
+                            <span style="margin-right: 203.24px;">Phone Number</span>
                             <input type="tel" name="phoneNo" class="form-control input" id="phoneNo"
                                 placeholder="Enter your phone number" pattern="[0-9]{8}">
                         </p>
-                        <p class="pb-4 d-flex align-items-center">
-                            <span style="margin-right: 219.4px;">Address</span>
-                            <textarea name="address" class="form-control input" id="address"
-                                placeholder="Enter your address"></textarea>
-                        </p>
                         <p class="pb-4">
-                            <span style="margin-right: 227.77px;">Gender</span>
+                            <span style="margin-right: 233.41px;">Gender</span>
                             <input class="form-check-input" type="radio" name="gender" id="male" value="M">
                             <label class="form-check-label radio mx-3" for="male">Male</label>
 
@@ -93,9 +96,19 @@
 
                         </p>
                         <p class="pb-4 d-flex align-items-center">
-                            <span style="margin-right: 207.77px;">Date of Birth</span>
+                            <span style="margin-right: 220.07px;">Date of Birth</span>
                             <input type="text" name="dateofbirth" class="form-control input" id="dateofbirth"
                                 placeholder="Enter your date of birth" pattern="\d{2}/\d{2}/\d{4}">
+                        </p>
+                        <p class="pb-4 d-flex align-items-center">
+                            <span style="margin-right: 222.46px;">Address</span>
+                            <textarea name="address" class="form-control input" id="address"
+                                placeholder="Enter your address"></textarea>
+                        </p>
+                        <p class="pb-4 d-flex align-items-center">
+                            <span style="margin-right: 227.55px;">Postal Code</span>
+                            <input name="postalCode" class="form-control input" id="postalCode"
+                                placeholder="Enter your postal code" pattern="[0-9]{6}"></input>
                         </p>
                     </div>
 
@@ -156,7 +169,6 @@
                         this.backgroundColorPos = 'transparent'
                     }
                 }
-
             }
         }).mount("#app1")
 

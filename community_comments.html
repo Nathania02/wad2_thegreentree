@@ -22,6 +22,7 @@
   <script type="module" src="js/community/firebase_comments.js"></script>
   <!-- firebase for profile -->
   <script type="module" src="./js/firebase_profile.js"></script>
+  
 
 </head>
 
@@ -34,11 +35,21 @@
     // to do: delete, add likes and dislikes of comments
   </script>
     <div id="main" class="container-fluid">
-      <h1 id="category"></h1>
-      <!-- todo: add in if else statement for category -->
-  
+      <h1 id="category"></h1> 
       <h3 id="title"></h3>
-      <!-- todo: get title of post         -->
+      <button id="abouttopic" onclick="openModal()">About Topic</button>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h2>Topic Description</h2>
+            </div>
+            
+            <p id="topic_desc"></p>
+          </div>
+        </div>
+
+
   
       <div class="container" id="comments_container"></div>
       <!-- <button id='delete'><img id='like_img' src='images/thumb-up.png'></button> -->
@@ -48,27 +59,22 @@
     </div>
 
     <script>
-      //delete comments
-    // const app = Vue.createApp({
-    //   methods: {
-    //     deleteComment() {
-    //       console.log("hello");
-    //       const commentCollectionName = "comments";
-    //       const documentId = 1;
+      var modal = document.getElementById("myModal");
+      var btn = document.getElementById("abouttopic");
 
-    //       db.collection(commentCollectionName)
-    //       .doc(documentId)
-    //       .delete()
-    //       .then(() => {
-    //         console.log("Document successfully deleted")
-    //       })
-    //       .catch((error) => {
-    //         console.log("Error deleting document:", error);
-    //       })
-    //     }
-    //   }
-    //   // element delete needs to be in this page or else cannot retrieve
-    // }).mount("#delete");
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
     </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

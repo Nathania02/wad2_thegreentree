@@ -48,7 +48,7 @@ async function getAndOutputUserData(userId) {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             let data = JSON.parse(JSON.stringify(doc.data()));
-            let keyOrder = ['username', 'name', 'email', 'phoneNo', 'address', 'gender', 'dateofbirth'];
+            let keyOrder = ['username', 'firstName', 'lastName', 'email', 'phoneNo', 'gender', 'dateofbirth', 'address', 'postalCode'];
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
             // console.log(newUserObject);
             for (var field in newUserObject) {
@@ -127,7 +127,7 @@ async function getUserData(userId) {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             let data = JSON.parse(JSON.stringify(doc.data()));
-            let keyOrder = ['username', 'name', 'email', 'phoneNo', 'address', 'gender', 'dateofbirth'];
+            let keyOrder = ['username', 'firstName', 'lastName', 'email', 'phoneNo', 'gender', 'dateofbirth', 'address', 'postalCode'];
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
             // console.log(newUserObject);
             for (var field in newUserObject) {
@@ -148,12 +148,14 @@ const createUserInFirestore = async (uid, username, email) => {
     const userData = {
         userId: uid,
         username: username,
-        name: '',
+        firstName: '',
+        lastName: '',
         email: email,
         phoneNo: '',
         address: '',
         gender: '',
         dateofbirth: '',
+        postalCode: '',
     };
 
     try {
@@ -192,7 +194,6 @@ if (window.location.pathname.includes('signUp.html')) {
                 .catch((error) => {
                     if (error.code == 'auth/email-already-in-use') {
                         displayErrors.innerHTML += `<p>Email already has an account</p>`
-                        signUpForm.reset();
                     }
                 });
         }
@@ -201,7 +202,6 @@ if (window.location.pathname.includes('signUp.html')) {
                 displayErrors.innerHTML += `<p>${err}</p>`;
             }
         }
-        signUpForm.reset();
     })
 }
 
@@ -209,21 +209,25 @@ else if (window.location.pathname.includes('addDetails.html')) {
     const addDetails = document.getElementById('addDetails');
     addDetails.addEventListener('submit', (e) => {
         e.preventDefault();
-        const name = addDetails.name.value;
+        const firstName = addDetails.firstName.value;
+        const lastName = addDetails.lastName.value;
         const gender = document.querySelector('input[name="gender"]:checked').value;
         const phoneNo = addDetails.phoneNo.value;
         const DoB = addDetails.dob.value;
         const address = addDetails.address.value;
+        const postalCode = addDetails.postalCode.value;
 
         onAuthStateChanged(auth, (user) => {
             console.log('User status changed: ', user);
             const userId = user.uid;
             setDoc(doc(db, 'users', userId), {
-                name: name,
+                firstName: firstName,
+                lastName: lastName,
                 gender: gender,
                 phoneNo: phoneNo,
                 dateofbirth: DoB,
-                address: address
+                address: address,
+                postalCode: postalCode,
             }, { merge: true })
                 .then(() => {
                     console.log('Entire data has been updated successfully');
@@ -293,23 +297,27 @@ else if (window.location.pathname.includes('editDetails.html')) {
     const saveChanges = document.getElementById('saveChanges');
     saveChanges.addEventListener('submit', (e) => {
         e.preventDefault();
-        const username = saveChanges.username.value
-        const name = saveChanges.name.value;
+        const username = saveChanges.username.value;
+        const firstName = saveChanges.firstName.value;
+        const lastName = saveChanges.lastName.value;
         const gender = saveChanges.querySelector('input[name="gender"]:checked').value;
         const phoneNo = saveChanges.phoneNo.value;
         const DoB = saveChanges.dateofbirth.value;
         const address = saveChanges.address.value;
+        const postalCode = saveChanges.postalCode.value;
 
         onAuthStateChanged(auth, (user) => {
             console.log('User status changed: ', user);
             const userId = user.uid;
             setDoc(doc(db, 'users', userId), {
                 username: username,
-                name: name,
+                firstName: firstName,
+                lastName: lastName,
                 gender: gender,
                 phoneNo: phoneNo,
                 dateofbirth: DoB,
-                address: address
+                address: address,
+                postalCode: postalCode,
             }, { merge: true })
                 .then(() => {
                     console.log('Entire data has been updated successfully');

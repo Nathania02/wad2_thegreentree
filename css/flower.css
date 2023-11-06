@@ -20,7 +20,7 @@ body {
     bottom: 40px;
     width: 6px;
     height: 100px;
-    background-color: #5f8011;
+    background-image: linear-gradient(to top, #31461f, #5f8011);
     transform-origin: bottom;
 }
 
@@ -33,7 +33,7 @@ body {
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: #5f8011;
+    background-image: linear-gradient(to top, #31461f, #5f8011);
     border: 0;
     border-top-right-radius: 100%;
     border-bottom-left-radius: 100%;
@@ -109,7 +109,7 @@ body {
     left: 50%;
     width: 20px;
     height: 20px;
-    background-color: pink;
+    background-image: linear-gradient(to top, pink, yellow);
     border-radius: 50%;
     transform: translateX(-50%);
 }

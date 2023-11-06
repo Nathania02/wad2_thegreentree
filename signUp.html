@@ -14,6 +14,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- J Query -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- external stylesheet -->
     <link rel="stylesheet" href="css/profile.css">
 
@@ -30,7 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     <!-- flower stylesheet -->
-    <link rel="stylesheet" href="css/flower.css">
+    <link rel="stylesheet" href="css/flower2.css">
 
 </head>
 
@@ -39,50 +42,84 @@
         createNavbarGreen();
     </script>
 
-    <div class="field">
-        <div class="tree tree--1">
-            <span class="flower"></span>
-            <span class="tree__leaf tree__leaf--top-left"></span>
-            <span class="tree__leaf tree__leaf--top-right"></span>
-            <span class="tree__leaf tree__leaf--left"></span>
-            <span class="tree__leaf tree__leaf--right"></span>
-        </div>
-        <img src="images/grass.png" class="grass">
-    </div>
-
-    <div class="container-fluid" style="margin-top: 125px;">
-        <h2 class="text-center mb-4">Sign Up</h2>
-        <form id="signUpForm">
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <div class="mb-3">
-                        <label for="username" class="form-label loginPage">Username</label>
-                        <input type="text" name="username" class="form-control input" id="username"
-                            placeholder="Enter your username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label loginPage">Email address</label>
-                        <input type="email" name="email" class="form-control input" id="email"
-                            placeholder="Enter your email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label loginPage">Password</label>
-                        <input type="password" name="password" class="form-control input" id="password"
-                            placeholder="Enter your password" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label loginPage">Confirm Password</label>
-                        <input type="password" name="confirmPassword" class="form-control input" id="confirmPassword"
-                            placeholder="Confirm your password" required>
-                    </div>
-                    <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
-                    <div id="displayErrors" style="color: red;"></div>
-                    <div class="button">
-                        <button type="submit" class="btn logOutbtn loginPage">Sign Up</button>
-                    </div>
+    <div class="container-fluid">
+        <div class="flower">
+            <div class="container_flower container1">
+                <div class="stick"></div>
+                <div class="leafWrap">
+                    <div class="leaf leaf1"></div>
+                    <div class="leaf leaf2"></div>
+                    <div class="leaf leaf3"></div>
+                    <div class="leaf leaf4"></div>
+                    <div class="leaf leaf5"></div>
+                    <div class="leaf leaf6"></div>
+                    <div class="leaf leaf7"></div>
+                    <div class="leaf leaf8 fallDownYellow"></div>
                 </div>
             </div>
-        </form>
+            <div class="container_flower container2">
+                <div class="stick"></div>
+                <div class="leafWrap">
+                    <div class="leaf leaf1"></div>
+                    <div class="leaf leaf2"></div>
+                    <div class="leaf leaf3"></div>
+                    <div class="leaf leaf4"></div>
+                    <div class="leaf leaf5"></div>
+                    <div class="leaf leaf6"></div>
+                    <div class="leaf leaf7"></div>
+                    <div class="leaf leaf8 fallDownPink"></div>
+                </div>
+            </div>
+            <div class="container_flower container3">
+                <div class="stick"></div>
+                <div class="leafWrap">
+                    <div class="leaf leaf1"></div>
+                    <div class="leaf leaf2"></div>
+                    <div class="leaf leaf3"></div>
+                    <div class="leaf leaf4"></div>
+                    <div class="leaf leaf5"></div>
+                    <div class="leaf leaf6"></div>
+                    <div class="leaf leaf7"></div>
+                    <div class="leaf leaf8 fallDownPurple"></div>
+                </div>
+            </div>
+            <div class="flowerVase"></div>
+        </div>
+
+        <div class="container-fluid" style="margin-top: 100px">
+            <h2 class="text-center mb-4">Sign Up</h2>
+            <form id="signUpForm">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="username" class="form-label loginPage">Username</label>
+                            <input type="text" name="username" class="form-control input" id="username"
+                                placeholder="Enter your username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label loginPage">Email address</label>
+                            <input type="email" name="email" class="form-control input" id="email"
+                                placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label loginPage">Password</label>
+                            <input type="password" name="password" class="form-control input" id="password"
+                                placeholder="Enter your password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label loginPage">Confirm Password</label>
+                            <input type="password" name="confirmPassword" class="form-control input"
+                                id="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
+                        <div id="displayErrors" style="color: red;"></div>
+                        <div class="button marginBottom">
+                            <button type="submit" class="btn logOutbtn loginPage">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

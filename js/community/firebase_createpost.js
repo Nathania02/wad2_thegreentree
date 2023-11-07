@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebas
 // import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getFirestore, collection, addDoc, getDocs, setDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js";
 
 // import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js";
 
@@ -30,7 +31,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-// const storage = getStorage();
+const storage = getStorage();
 const auth = getAuth();
 
 
@@ -103,15 +104,9 @@ checkUserLoginStatus()
             },
             methods: {
                 async createPostInFirestore(){
-                    // var storageRef = storage.ref();
-                    // if(upload_picture.length == 1){
-                    //     var imageRef = storageRef.child("images/" + upload_picture[0].name)
-                    //     imageRef.put()
-                    // } else{
-                    //     for(var i=0;i<upload_picture.length; i++){
-                    //         var imageRef = storageRef.child("images/" + upload_picture[i].name)
-                    //     }
-                    // }
+                    const images = Array.from(this.$refs.images_file.files)
+                    const imageUrls = await Promise.all(images.map(image => this.upload_image(image)));
+                    console.log(imageUrls);
 
                     const lastPageURL = document.referrer;
                     var url  = lastPageURL.split("_");
@@ -136,7 +131,8 @@ checkUserLoginStatus()
                                 communityid: this.community_id,
                                 followercount: 0,
                                 userid: this.user_id,
-                            }
+                                images: imageUrls,
+                            };
                             await setDoc(postRef, postDataRef)
                             .then(() => {
                                 console.log("Document successfully written");
@@ -147,7 +143,16 @@ checkUserLoginStatus()
                             })
                         }
                     }
-                }                
+                },
+                
+                async upload_image(image_file){
+                    if(image_file) {
+                        const storage_ref = ref(storage, 'posts_images/'+ image_file.name);
+                        await uploadBytes(storage_ref, image_file);
+                        console.log("Image uploaded successfully!");
+                        return await getDownloadURL(storage_ref);
+                    }
+                }
             }
         }).mount("#main");
     }

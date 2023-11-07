@@ -13,6 +13,10 @@
 
     <script src="https://unpkg.com/vue@next"></script>
 
+      <!-- J Query -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
     <link rel="stylesheet" href="./css/otherpagescss.css">
     <link rel="stylesheet" href="./css/filterbar.css">
@@ -42,7 +46,7 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <h3>Upload Picture</h3>
-                        <input type="file" class="custom-file-input" id="input_file">
+                        <input type="file" class="custom-file-input" id="input_file" ref="images_file" multiple accept="image/*">
                     </div>
                 </div>
             </div>

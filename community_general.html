@@ -13,6 +13,8 @@
   
     <script src="https://unpkg.com/vue@next"></script>
 
+      <!-- J Query -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <link rel="stylesheet" href="css/otherpagescss.css">
   <link rel="stylesheet" href="css/filterbar.css">
@@ -45,6 +47,8 @@
     </div>
 
     <div class='container-fluid' id='main'>
+
+
       <div class="container col-lg-9 col-md-8 col-12">
         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 g-4">
           <input type="text" class="form-control search-fld" placeholder="Search for a topic" aria-label="Search" v-model="search" @keyup="search_items()">

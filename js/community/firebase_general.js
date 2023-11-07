@@ -96,13 +96,18 @@ function retrievePosts(){
   var rows = "";
   for(var j of communitiesList){
     var name = j.name;
-    if(name.toLowerCase()==community_category){
-        var id = j.id;
-        var title = name;
+    if( /[0-9]/.test(community_category)) {
+      var title = community_category;
+    } else {
+        if(name.toLowerCase()==community_category){
+          var id = j.id;
+          var title = name;
+      }
+    }
         for(var i of postList){
           if(i.communityid==id){
             // var post_array = postList;
-            var topic_title = i.title;
+              var topic_title = i.title;
             var followercount = i.followercount;
             var description = i.desc;
 
@@ -135,10 +140,10 @@ function retrievePosts(){
           }
         }
     }
+    document.getElementById("main").innerHTML += rows;
+    document.getElementById("category").innerText = "Topics under " + title;
+  
   }
-  document.getElementById("main").innerHTML += rows;
-  document.getElementById("category").innerText = "Topics under " + title;
-}
 
 
 const fetchData = () => {

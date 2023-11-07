@@ -149,7 +149,7 @@ function retrieveComments(){
                   +"<div class='container-fluid' id='comment_container'>"
                   +"<p id='post'>"+comment.desc+"</p>"
                   +"<p id='username'>Commented By: "+user.username+"</p>"
-                  +"<p id='likes' class='"+comment.commentsid+"'>Likes: {{ likecount }}</p>"
+                  +"<p id='likes' class='"+comment.commentsid+"'>Likes: "+comment.likecount+"</p>"
 
                   // +"<p v-else id='likes' class='"+comment.commentsid+">Likes: "+comment.likecount+"</p>"
                   +"<p id='dislikes'>Dislikes: "+comment.dislikecount+"</p>"

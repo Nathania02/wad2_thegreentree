@@ -43,6 +43,7 @@ function checkUserLoginStatus() {
 
 async function getAndOutputUserData(userId) {
     try {
+        // displayUserData in editDetails
         const displayUserData = document.getElementById('displayUserData');
         const q = query(collection(db, "users"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
@@ -84,18 +85,31 @@ const profileLink = document.getElementById('profile_link');
 const shopping_cart = document.getElementById('shopping_cart');
 const listing_button = document.getElementById('list_item');
 const atc_btn = document.getElementById('atc_btn_mkt');
-
-
+const profile_image = document.getElementById('profile_image');
 
 checkUserLoginStatus()
-    .then((result) => {
+    .then(async (result) => {
         if (result.loggedIn) {
-            // User is logged in
             console.log('User is logged in:', result.user);
+            const userId = result.user.uid;
             profileLink.href = 'profile.html';
             shopping_cart.style.display = 'block';
             listing_button.style.display = 'block';
 
+            // Use 'await' here to wait for the asynchronous operation
+            const q = query(collection(db, "users"), where("userId", "==", userId));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const userDoc = querySnapshot.docs[0];
+                console.log(userDoc)
+                const profileImage = userDoc.data().profileImage;
+                console.log(profileImage.path)
+                profile_image.src = profileImage.path;
+                profile_image.style.borderRadius = '50%';
+            } else {
+                console.log("No document found for the specified userId.");
+            }
 
         } else {
             // User is not logged in
@@ -106,6 +120,7 @@ checkUserLoginStatus()
     .catch((error) => {
         console.error('Error checking user login status:', error);
     });
+
 
 // rearranges keys so that it displays in the same order everytime
 function rearrangeObjectKeys(originalObject, keyOrder) {
@@ -122,6 +137,7 @@ function rearrangeObjectKeys(originalObject, keyOrder) {
 // outputs user details
 async function getUserData(userId) {
     try {
+        // displayUserData in profile 
         const displayUserData = document.getElementById('displayUserData');
         const q = query(collection(db, "users"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
@@ -129,7 +145,6 @@ async function getUserData(userId) {
             let data = JSON.parse(JSON.stringify(doc.data()));
             let keyOrder = ['username', 'firstName', 'lastName', 'email', 'phoneNo', 'gender', 'dateofbirth', 'address', 'postalCode'];
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
-            // console.log(newUserObject);
             for (var field in newUserObject) {
                 var fieldData = displayUserData.querySelector(`#${field}`);
                 if (fieldData) {
@@ -143,10 +158,12 @@ async function getUserData(userId) {
     }
 };
 
+// create user in firestore
 const createUserInFirestore = async (uid, username, email) => {
     const userDocRef = doc(db, 'users', uid);
     const userData = {
         userId: uid,
+        profileImage: '',
         username: username,
         firstName: '',
         lastName: '',
@@ -209,6 +226,7 @@ else if (window.location.pathname.includes('addDetails.html')) {
     const addDetails = document.getElementById('addDetails');
     addDetails.addEventListener('submit', (e) => {
         e.preventDefault();
+        const profileImage = document.querySelector('input[name="profileImage"]:checked').value;
         const firstName = addDetails.firstName.value;
         const lastName = addDetails.lastName.value;
         const gender = document.querySelector('input[name="gender"]:checked').value;
@@ -221,6 +239,7 @@ else if (window.location.pathname.includes('addDetails.html')) {
             console.log('User status changed: ', user);
             const userId = user.uid;
             setDoc(doc(db, 'users', userId), {
+                profileImage: profileImage,
                 firstName: firstName,
                 lastName: lastName,
                 gender: gender,

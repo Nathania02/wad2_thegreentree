@@ -19,6 +19,9 @@ function createfilterbar_community() {
         <a href="community_general.html">General</a>
         <a href="community_fashion.html">Fashion</a>
         <a href="community_food.html">Food</a>
+        <a href="community_3Rs.html">3Rs</a>
+        <a href="community_reviews.html">Reviews</a>
+        <a href="community_others.html">Others</a>
     </div>
 
     `)

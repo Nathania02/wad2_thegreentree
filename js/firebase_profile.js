@@ -102,11 +102,13 @@ checkUserLoginStatus()
 
             if (!querySnapshot.empty) {
                 const userDoc = querySnapshot.docs[0];
-                console.log(userDoc)
                 const profileImage = userDoc.data().profileImage;
-                console.log(profileImage.path)
-                profile_image.src = profileImage.path;
-                profile_image.style.borderRadius = '50%';
+                if (!window.location.pathname.includes('addDetails.html')) {
+                    profile_image.src = profileImage;
+                    profile_image.style.borderRadius = '50%';
+                    profile_image.style.width = '35px';
+                    profile_image.style.height = '35px';
+                }
             } else {
                 console.log("No document found for the specified userId.");
             }
@@ -184,7 +186,7 @@ const createUserInFirestore = async (uid, username, email) => {
     window.location.href = 'addDetails.html';
 };
 
-if (window.location.pathname.includes('signUp.html')) {
+if (window.location.pathname.includes('signup.html')) {
     // signup 
     const signUpForm = document.getElementById('signUpForm');
     const displayErrors = document.getElementById('displayErrors');

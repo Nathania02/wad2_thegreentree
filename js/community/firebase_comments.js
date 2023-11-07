@@ -85,20 +85,28 @@ var queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var post_id = urlParams.get("postid");
 var post_title = urlParams.get("posttitle");
+var community_id = urlParams.get("communityid");
 
-for(var i of commentsList){
-  var postid = i.postid;
-  for(var j of postList){
-    if(j.id==postid){
-      var community_id = j.communityid;
-      for(var k of communitiesList){
-        if(k.id==community_id){
-          var name = k.name;
-        }
-      }
-    }
+for (var k of communitiesList){
+  if(k.id == community_id){
+    var name = k.name;
   }
 }
+
+// for(var i of commentsList){
+//   var postid = i.postid;
+//   for(var j of postList){
+//     if(j.id==postid){
+//       var community_id = j.communityid;
+//       console.log(community_id);
+//       for(var k of communitiesList){
+//         if(k.id==community_id){
+//           var name = k.name;
+//         }
+//       }
+//     }
+//   }
+// }
 
 function getDescForModal(){
     for(var post of posts_array){
@@ -147,13 +155,13 @@ function retrieveComments(){
                   rows +=
                   "<div class='container-fluid' id='postcontainer'>"
                   +"<div class='container-fluid' id='comment_container'>"
+                  +"<div id='comment_desc'>"
                   +"<p id='post'>"+comment.desc+"</p>"
-                  +"<p id='username'>Commented By: "+user.username+"</p>"
                   +"<p id='likes' class='"+comment.commentsid+"'>Likes: "+comment.likecount+"</p>"
-
                   // +"<p v-else id='likes' class='"+comment.commentsid+">Likes: "+comment.likecount+"</p>"
-                  +"<p id='dislikes'>Dislikes: "+comment.dislikecount+"</p>"
-                  +"<button id='delete' @click='delete_comment'><img id='delete_img' src='images/bin.png'></button>"
+                  +"<p id='dislikes'>Dislikes: "+comment.dislikecount+"</p></div>"
+                  +"<p id='username'>Commented By: "+user.username+"</p>"
+                  +"<button class='delete' id='"+comment.commentsid+"' @click='delete_comment($event)'><img id='delete_img' src='images/bin.png'></button>"
                   +"<button id='like' @click='add_like'><img id='like_img' src='images/thumb-up.png'></button>"
                   +"<button id='dislike' @click='add_dislike'><img id='dislike_img' src='images/thumb-down.png'></button>"
                   +"</div></div><br/>";
@@ -266,16 +274,18 @@ checkUserLoginStatus()
             
           },
 
-          async delete_comment() {
+          async delete_comment(event) {
+            var targetId = event.currentTarget.id;
+            console.log(targetId);
             const comment_desc = document.getElementById("post").innerText;
             for(var comment of comments_array){
-              if(comment.desc == comment_desc){
+              console.log(comment);
+              if(comment.commentsid == targetId){
                 var id_comment = comment.commentsid;
+                console.log(id_comment);
                 var id_user = comment.userid;
+                console.log(id_user);
 
-                // for(var user of users_array){
-                //   console.log(user.userId);
-                //   console.log(id_user);
                   if(this.user_id == id_user) {
                     await deleteDoc(doc(db, "comments", id_comment))
                     .then(() => {

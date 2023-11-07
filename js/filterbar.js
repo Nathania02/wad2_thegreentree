@@ -32,6 +32,7 @@ function open_filter1() {
     document.getElementById("post").classList.add("col-md-8");
     document.getElementById("post2").classList.remove("col-md-12");
     document.getElementById("post2").classList.add("col-md-8");
+    document.getElementById("filBtn").style.position = "fixed";
 }
 
 // close filter bar, ensure to name moving container "main"
@@ -42,18 +43,20 @@ function close_filter1() {
     document.getElementById("post").classList.remove("col-md-8");
     document.getElementById("post2").classList.add("col-md-12");
     document.getElementById("post2").classList.remove("col-md-8");
+    document.getElementById("filBtn").style.position = "";
 }
 
 // can continue to add respective filterbar functions below with the naming convention createfilterbar_community with first letter Uppercase> for standardization
 function createfilterbar_profile() {
     document.write(`
-    <button class="openbtn" onclick="open_filter1()">Filters</button>
+    <button id="filBtn" class="openbtn" onclick="open_filter1()">Filters</button>
 
     <div id="filterbar">
         <a href="javascript:void(0)" class="closebtn" onclick="close_filter1()"><img id="back" src="images/back.png"></a>
         <a href="profile.html">My Account</a>
         <a href="profile_my_purchases.html">My Purchases</a>
         <a href="profile_my_posts.html">My Posts</a>
+        <a href="seller_portal.html">Seller's Portal</a>
     </div>
     `)
     let profile_filter_items = document.getElementById('filterbar');

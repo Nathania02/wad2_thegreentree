@@ -59,13 +59,13 @@
                 <div v-for="order in orders" class="row mb-5">
                     <div class="col-12 col-md-10 col-lg-12 justify-content-center">
                         <div class="w-100 top-box">
-                        <div class="ord-num">
-                            Order No. {{order.orderid}}
+                            <div class="ord-num">
+                                Order No. {{order.orderid}}
+                            </div>
+                            <div class="date">
+                                Date: {{convert_to_date(order.date)}}
+                            </div>
                         </div>
-                        <div class="date">
-                            Date: {{convert_to_date(order.date)}}
-                        </div>
-                    </div>
                         <div v-for="order_det in order.orderdetails" class="w-100">
                             <div class="w-100 seller-info d-flex justify-content-between">
                                 <div class="seller-name">
@@ -92,21 +92,21 @@
                                 </div>
                             </div>
                             <div class="order-det-box d-flex">
-                            <div class="img-container">
-                                <img :src="order_det.item_image" alt="">
+                                <div class="img-container">
+                                    <img :src="order_det.item_image" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        {{order_det.itemname}}
+                                    </div>
+                                    <div class="item-qty">
+                                        Quantity Ordered: {{order_det.quantity}}
+                                    </div>
+                                    <div class="item-price">
+                                        Price: ${{order_det.price}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-info">
-                                <div class="item-name">
-                                    {{order_det.itemname}}
-                                </div>
-                                <div class="item-qty">
-                                    Quantity Ordered: {{order_det.quantity}}
-                                </div>
-                                <div class="item-price">
-                                    Price: ${{order_det.price}}
-                                </div>
-                            </div>
-                        </div>
                         </div>
 
                     <div class="w-100 bottom-box d-flex justify-content-end">

@@ -58,68 +58,133 @@
         <span id="users_product_listing">
         <div class="container-fluid">
             <div class="row ">
-                <div class="col-12 d-flex justify-content-center">
+                <div class="col-12 col-md-10 col-lg-12 d-flex justify-content-center">
                     <div class="header-your-products">
                         <h1>Your Products</h1>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-10">
-                    <div class="row">
-                        <table class="table">
-                            <tr>
+                <div class="col-12 col-md-10 col-lg-10">
+                    <!-- <div class="row"> -->
+                        <table class="table mt-4">
+                            <tr class="header-row">
                                 <th>Product Name</th>
                                 <th>Quantity Left</th>
                                 <th>Options</th>
                             </tr>
-                            <tr v-for="item in items">
-                                <td class="w-50"><a :href="'item.html?iid=' + item.iid">{{item.name}}</a></td>
+                            <tr class="item-row" v-for="item in items">
+                                <td class="w-50"><a class="seller-item-name" :href="'item.html?iid=' + item.iid">{{item.name}}</a></td>
                                 <td class="w-25">{{item.quantity}}</td>
                                 <td class="w-25">
-                                    <button :key="item.iid" @click="edit_item(item.iid)" type="button" class="btn-edit me-2">Edit</button>
-                                    <button :key="item.iid" @click="delete_item(item.iid)" type="button" class="btn-del">Delete</button>
+                                    <button :key="item.iid" @click="edit_item(item.iid)" type="button" class="btn btn-edit me-2">Edit</button>
+                                    <button :key="item.iid" @click="delete_item(item.iid)" type="button" class="btn btn-del">Delete</button>
                                 </td>
                             </tr>
                         </table>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row ">
-                <div class="col-12 d-flex justify-content-center">
+            <div class="row mt-5 mb-3">
+                <div class="col-12 col-md-10 col-lg-12 d-flex justify-content-center">
                     <div class="header-your-ord-t-ff">
                         <h1>Orders to fulfil</h1>
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-10">
-                    <!-- <div class="row">
-                        <table class="table">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Quantity Left</th>
-                                <th>Options</th>
-                            </tr>
-                            <tr v-for="item in items">
-                                <td class="w-50"><a :href="'item.html?iid=' + item.iid">{{item.name}}</a></td>
-                                <td class="w-25">{{item.quantity}}</td>
-                                <td class="w-25">
-                                    <button :key="item.iid" @click="edit_item(item.iid)" type="button" class="btn-edit me-2">Edit</button>
-                                    <button :key="item.iid" @click="delete_item(item.iid)" type="button" class="btn-del">Delete</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div> -->
-                    <div v-for="order in orderdetails_tbff" class="order-summary-container">
-                        <div class="order-id">
-                            <h3>{{order.orderid}}</h3>
-                        </div>
-                        <div class="order-summary">
-                            
-                        </div>
+            <div v-if="orders_tbff.length > 0" class="row d-flex justify-content-center">
+                <div class="col-12 col-md-10 col-lg-10">
+                    <div v-for="order in orders_tbff" class="order-summary-container mb-5">
+                        <div class="w-100 top-box">
+                            <div class="ord-num">
+                                Order No. {{order.orderid}}
+                            </div>
+                            <div class="date">
+                                Date: {{convert_to_date(order.date)}}
+                            </div>
+                            </div>
+
+                            <div class="w-100 buyer-info d-block">
+                                <div class="buyer-name">
+                                    @{{order.buyer_username}}
+                                </div>
+                                <div class="status">
+                                    <div v-if="order.status == 'pending delivery'" class="delivery-text">
+                                        To be delivered
+                                    </div>
+                                    <div v-if="order.status == 'pending pickup'" class="pickup-text">
+                                        Order will be picked up at
+                                        <b>{{order.pickup_location}}</b>
+                                        on <b>{{convert_to_date(order.pickup_date)}}</b>
+                                    </div>
+                                    <div v-if="order.status == 'dispatched'" class="arriving-text">
+                                        Order dispatched and will be delivered by {{convert_to_date(order.delivery_date)}}
+                                    </div>
+                                    <!-- <div v-if="order.status == 'delivered'" class="delivered-text">
+                                        Order delivered on {{convert_to_date(order_det.delivery_date)}}
+                                    </div>
+                                    <div v-if="order.status == 'picked up'" class="pickedup-text">
+                                        Buyer has picked up the order
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="order-det-box d-flex">
+                                <div class="img-container">
+                                    <img :src="order.item_image" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        {{order.item_name}}
+                                    </div>
+                                    <div class="item-qty">
+                                        Quantity Ordered: {{order.quantity}}
+                                    </div>
+                                    <div class="item-price">
+                                        Price: ${{order.price}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="order.status == 'pending delivery'" class="w-100 bottom-box d-block justify-content-between align-items-end">
+                                <div class="deli-noti">
+                                    Once you have dispatched the order, please enter the date by which it will arrive and click dispatch to notify the buyer
+                                </div>
+                                <div class="enter-date">
+                                    <input type="date" v-model="delivery_date" class="form-control w-25" placeholder="Enter delivery date">
+                                </div>
+                                <div class="delivery-btn">
+                                    <button @click="dispatch_order(order.oid)" type="button" class="btn btn-dispatch">Dispatch</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="row d-flex justify-content-center">
+                <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-center">
+                    <div class="no-orders">
+                        You have no orders to fulfil
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 mb-3">
+                <div class="col-12 col-md-10 col-lg-12 d-flex justify-content-center">
+                    <div class="header-your-ord-t-ff">
+                        <h1>Fulfilled Orders</h1>
+                    </div>
+                </div>
+            </div>
+            <div v-if="orders_ff.length > 0">
+                <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-center">
+                    <div class="fulfilled-orders">
+                        You have fulfilled orders
+                    </div>
+                </div>
+            </div>
+            <div v-else class="row d-flex justify-content-center">
+                <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-center">
+                    <div class="no-orders">
+                        You have no fulfilled orders
                     </div>
                 </div>
             </div>

@@ -108,15 +108,15 @@ checkUserLoginStatus()
                     profile_image.style.borderRadius = '50%';
                     profile_image.style.width = '35px';
                     profile_image.style.height = '35px';
+                } else {
+                    console.log("No document found for the specified userId.");
                 }
-            } else {
-                console.log("No document found for the specified userId.");
-            }
 
-        } else {
-            // User is not logged in
-            console.log('User is not logged in.');
-            profileLink.href = 'login.html';
+            } else {
+                // User is not logged in
+                console.log('User is not logged in.');
+                profileLink.href = 'login.html';
+            }
         }
     })
     .catch((error) => {
@@ -149,7 +149,20 @@ async function getUserData(userId) {
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
             for (var field in newUserObject) {
                 var fieldData = displayUserData.querySelector(`#${field}`);
-                if (fieldData) {
+                console.log(field);
+                console.log(newUserObject[field]);
+                if (field === 'gender') {
+                    if (newUserObject[field] == 'M') {
+                        fieldData.textContent = 'Male';
+                    }
+                    else if (newUserObject[field] == 'F') {
+                        fieldData.textContent = 'Female';
+                    }
+                    else {
+                        fieldData.textContent = 'Prefer Not to Say';
+                    }
+                }
+                else if (fieldData) {
                     fieldData.textContent = newUserObject[field];
                 }
             }

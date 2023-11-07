@@ -7,13 +7,14 @@ body {
     min-height: 100vh;
     justify-content: center;
     align-items: flex-end;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .flower {
     position: absolute;
     left: 8%;
     bottom: 0;
+    z-index: -1;
 }
 
 .flowerVase {
@@ -228,10 +229,6 @@ body {
     border-radius: 10vmin 2vmin 10vmin 2vmin;
     clip-path: none;
     transform: rotate(-55deg);
-}
-
-.fallDownYellow {
-    animation: flowerfallDownYellow 8s 1.2s linear forwards;
 }
 
 .fallDownPink {

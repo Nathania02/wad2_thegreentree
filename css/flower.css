@@ -5,7 +5,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .grass {
@@ -22,6 +22,7 @@ body {
     height: 100px;
     background-image: linear-gradient(to top, #31461f, #5f8011);
     transform-origin: bottom;
+    z-index: -1;
 }
 
 .tree--1 {

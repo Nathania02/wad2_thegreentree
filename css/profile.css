@@ -63,6 +63,116 @@ body {
     color: white;
 }
 
+/* CSS FOR SELLER PORTAL */
+
+.top-box{
+    border: 1px solid #5C7345;
+    padding:13px;
+    background-color: #5C7345;
+    color:white;
+}
+
+.ord-num{
+    font-weight:bold;
+    font-size:1.5em;
+}
+
+.order-det-box{
+    border: 1px solid #5C7345;
+    padding-top:15px;
+
+}
+
+.img-container{
+    margin:10px;
+}
+
+.img-container img{
+    width:150px;
+    height:150px;
+}
+
+.item-name{
+    margin-left:15px;
+    font-size: 1.2em;;
+}
+
+.item-qty{
+    margin-left:15px;
+    font-size: 0.8em;
+    font-style:italic;
+}
+
+.item-price{
+    margin-left:15px;
+    font-size: 0.8em;
+    font-weight:bold;
+    bottom:0;
+}
+
+.buyer-info{
+    border-width: 0 1px 0px 1px; /* top right bottom left */
+    border-style: solid;
+    border-color: #5C7345;
+    padding:7px;
+}
+
+.delivery-text .pickup-text .status{
+    font-size:0.8rem;
+    font-style:italic;
+}
+
+.buyer-name{
+    font-style:italic;
+}
+
+.date{
+    font-style:italic;
+    font-size:0.8em;
+}
+
+.deli-noti{
+    font-size:0.8rem;
+}
+
+.btn-dispatch{
+    margin-top:5px;
+    background-color:#5C7345;
+    color:white;
+}
+
+.bottom-box{
+    border-width: 0 1px 1px 1px; /* top right bottom left */
+    border-style: solid;
+    border-color: #5C7345;
+    padding:7px;
+}
+
+.header-row{
+    background-color:#5C7345;
+    color:white;
+}
+
+.item-row{
+    background-color:white;
+    color:#5C7345;
+}
+
+.seller-item-name{
+    color:#5C7345;
+    text-decoration: none;
+}
+
+.btn-edit{
+    background-color:#5C7345;
+    color:white;
+}
+
+.btn-del{
+    background-color:#5C7345;
+    color:white;
+}
+
 .avatar {
     width: 50px;
     height: 50px;

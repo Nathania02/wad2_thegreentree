@@ -38,40 +38,63 @@
         createfilterbar_community();
     </script>
         <div class="container-fluid" id="header">
-            <h1>Create Post</h1>
+            <div class="row">
+                <div class="col-12">
+                    <h1>Create Post</h1>
+                </div>
+            </div>
         </div>
         <!-- <form> -->
-        <div id="main">
+        <div id="upload_form">
             <div class="container rounded" id="postcontainer">
-                <div class="input-group">
-                    <div class="custom-file">
-                        <label for="input_file" class="form-label"><h3>Upload Picture</h3></label>
-                        <span id="requirements"> (Please ensure you upload ONLY one image to represent the topic)</span><br/>
-                        <input type="file" class="custom-file-input" id="input_file" ref="images_file" required>
+                <div class="row">
+                    <div class="col-12 col-md-7 col-lg-9 col-sm-3 d-flex justify-content-center">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <label for="input_file" class="form-label"><h3>Upload Picture</h3></label>
+                                <span id="requirements"> (Please ensure you upload ONLY one image to represent the topic)</span><br/>
+                                <input type="file" class="custom-file-input" id="input_file" ref="images_file" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="container rounded" id="postcontainer">
-                <div class="form-group">
-                    <label for="topic_title">
-                        <h3>Topic Title:</h3>
-                    </label>
-                    <span id="requirements"> (Please do not leave this field blank)</span>
-                    <input type="text" class="form-control" id="topic_title" required>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="topic_title">
+                                <h3>Topic Title:</h3>
+                            </label>
+                            <span id="requirements"> (Please do not leave this field blank)</span>
+                            <input type="text" class="form-control" id="topic_title" required>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="container rounded" id="postcontainer">
-                <div class="form-group">
-                    <label for="topic_about">
-                        <h3>Topic About:</h3>
-                    </label>
-                    <span id="requirements"> (Please do not leave this field blank)</span>
-                    <textarea class="form-control" id="topic_about" placeholder="Enter a short description about the topic"
-                        rows="3" required></textarea>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="topic_about">
+                                <h3>Topic About:</h3>
+                            </label>
+                            <span id="requirements"> (Please do not leave this field blank)</span>
+                            <textarea class="form-control" id="topic_about" placeholder="Enter a short description about the topic"
+                                rows="3" required></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="container" id="button_create_post">
-                <button type="submit" id="create_post" @click="createPostInFirestore()" data-toggle="modal" data-target="#myModal">Create Post</button>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class="mx-auto w-75" type="submit" id="create_post" @click="createPostInFirestore()" data-toggle="modal" data-target="#myModal">Create Post</button>
+                    </div>
+                </div>
             </div>
         </div>
     <!-- </form> -->

@@ -49,13 +49,18 @@ async function getAndOutputUserData(userId) {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             let data = JSON.parse(JSON.stringify(doc.data()));
-            let keyOrder = ['username', 'firstName', 'lastName', 'email', 'phoneNo', 'gender', 'dateofbirth', 'address', 'postalCode'];
+            let keyOrder = ['profileImage', 'username', 'firstName', 'lastName', 'email', 'phoneNo', 'gender', 'dateofbirth', 'address', 'postalCode'];
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
             // console.log(newUserObject);
             for (var field in newUserObject) {
                 var fieldData;
-                if (field === 'gender') {
-                    // Handle gender separately
+                if (field === 'profileImage') {
+                    const avatarRadio = displayUserData.querySelector(`input[name="profileImage"][value="${newUserObject[field]}"]`);
+                    if (avatarRadio) {
+                        avatarRadio.checked = true;
+                    }
+                }
+                else if (field === 'gender') {
                     const genderRadio = displayUserData.querySelector(`input[name="gender"][value="${newUserObject[field]}"]`);
                     if (genderRadio) {
                         genderRadio.checked = true;
@@ -331,6 +336,7 @@ else if (window.location.pathname.includes('editDetails.html')) {
     const saveChanges = document.getElementById('saveChanges');
     saveChanges.addEventListener('submit', (e) => {
         e.preventDefault();
+        const profileImage = saveChanges.querySelector('input[name="profileImage"]:checked').value;
         const username = saveChanges.username.value;
         const firstName = saveChanges.firstName.value;
         const lastName = saveChanges.lastName.value;
@@ -344,6 +350,7 @@ else if (window.location.pathname.includes('editDetails.html')) {
             console.log('User status changed: ', user);
             const userId = user.uid;
             setDoc(doc(db, 'users', userId), {
+                profileImage: profileImage,
                 username: username,
                 firstName: firstName,
                 lastName: lastName,

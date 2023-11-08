@@ -68,6 +68,10 @@ body {
     height: 50px;
 }
 
+.avatarMargin {
+    margin: 10px;
+}
+
 /* CSS FOR SELLER PORTAL */
 
 .top-box {

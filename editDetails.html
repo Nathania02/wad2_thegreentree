@@ -53,7 +53,8 @@
             <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
                 :style="{'background-color': backgroundColorPos}">My Posts</a>
             <a href="seller_portal.html" @mouseover="on_mouseover('seller_portal')"
-                @mouseout="on_mouseout('seller_portal')" :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
+                @mouseout="on_mouseout('seller_portal')" :style="{'background-color': backgroundColorSelPor}">Seller's
+                Portal</a>
         </div>
 
         <div id="main" class="container-fluid">
@@ -61,6 +62,34 @@
                 <div class="row">
                     <div id="displayUserData" class="col contentSection"
                         :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
+                        <p class="pb-4">
+                            <span style="margin-right: 233.41px;">Avatar</span>
+                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption1"
+                                value="images/profilePictures/profilePic1.png">
+                            <label class="form-check-label avatarMargin" for="imageOption1">
+                                <img src="images/profilePictures/profilePic1.png" alt="Image 1" class="avatar">
+                            </label>
+                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption2"
+                                value="images/profilePictures/profilePic2.png">
+                            <label class="form-check-label avatarMargin" for="imageOption1">
+                                <img src="images/profilePictures/profilePic2.png" alt="Image 2" class="avatar">
+                            </label>
+                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption3"
+                                value="images/profilePictures/profilePic3.png">
+                            <label class="form-check-label avatarMargin" for="imageOption3">
+                                <img src="images/profilePictures/profilePic3.png" alt="Image 3" class="avatar">
+                            </label>
+                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption4"
+                                value="images/profilePictures/profilePic4.png">
+                            <label class="form-check-label avatarMargin" for="imageOption4">
+                                <img src="images/profilePictures/profilePic4.png" alt="Image 4" class="avatar">
+                            </label>
+                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption5"
+                                value="images/profilePictures/profilePic5.png">
+                            <label class="form-check-label avatarMargin" for="imageOption5">
+                                <img src="images/profilePictures/profilePic5.png" alt="Image 5" class="avatar">
+                            </label>
+                        </p>
                         <p class="pb-4 d-flex align-items-center">
                             <span style="margin-right: 200px;">Username</span>
                             <input type="text" name="username" class="form-control input" id="username"
@@ -95,7 +124,6 @@
 
                             <input class="form-check-input" type="radio" name="gender" id="pnts" value="O">
                             <label class="form-check-label radio mx-3" for="pnts">Prefer Not To Say</label>
-
                         </p>
                         <p class="pb-4 d-flex align-items-center">
                             <span style="margin-right: 220.07px;">Date of Birth</span>

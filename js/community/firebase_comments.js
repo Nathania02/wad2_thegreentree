@@ -5,9 +5,11 @@ import { db, checkUserLoginStatus } from '../firebase_profile.js';
 
 // Check if user is logged in
 checkUserLoginStatus().then((user) => {
-  if (user) {
+  if (user.loggedIn) {
+    console.log("User is logged in");
     fetch_data(user);
   } else {
+    console.log("No user is logged in");
     fetch_data(null);
   }
 });
@@ -17,7 +19,7 @@ async function fetch_data(user) {
   // Get the logged in user id if exists, or else declare as null
   let logged_in_user_id;
 
-  if(user){
+  if(user != null){
     logged_in_user_id = user.user.uid;
   }else{
     logged_in_user_id = null;

@@ -79,7 +79,7 @@
                                 <td class="w-50"><a class="seller-item-name" :href="'item.html?iid=' + item.iid">{{item.name}}</a></td>
                                 <td class="w-25">{{item.quantity}}</td>
                                 <td class="w-25">
-                                    <button :key="item.iid" @click="edit_item(item.iid)" type="button" class="btn btn-edit me-2">Edit</button>
+                                    <button :key="item.iid" @click="edit_item_qty(item.iid)" type="button" class="btn btn-edit me-2">Edit Quantity</button>
                                     <button :key="item.iid" @click="delete_item(item.iid)" type="button" class="btn btn-del">Delete</button>
                                 </td>
                             </tr>

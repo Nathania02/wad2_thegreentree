@@ -36,6 +36,7 @@ checkUserLoginStatus().then(async (result) => {
             const orig_ord = doc(collection(db, "orders"), order['orderid']);
             const orig_ord_doc = await getDoc(orig_ord);
             const orig_ord_doc_data = orig_ord_doc.data();
+            console.log(orig_ord_doc_data);
             order['buyer_userid'] = orig_ord_doc_data['userid'];
             order['date'] = orig_ord_doc_data['date'];
 
@@ -84,6 +85,24 @@ checkUserLoginStatus().then(async (result) => {
                         } catch (error) {
                             console.error("Error removing document: ", error);
                         }
+                    }
+                },
+                async edit_item_qty(itemid){
+
+                    console.log(itemid);
+                    let new_qty = prompt("Enter new quantity (for made to order items, specify 999. Specify 0 if you want to remove it from the marketplace temporarily): ");
+                    if(isNaN(new_qty)){
+                        alert("Please enter a valid quantity.");
+                        return;
+                    }else if(new_qty < 0 || new_qty == ""){
+                        alert("Please enter a valid quantity.");
+                        return;
+                    }else{
+                        const item_ref = doc(collection(db, "items"), itemid);
+                        await updateDoc(item_ref, {
+                            quantity: new_qty
+                        });
+                        window.location.reload();
                     }
                 },
                 convert_to_date(timestamp) {

@@ -59,7 +59,7 @@
             <div class="col-12 col-md-10 col-lg-10 mb-3">
                 <div class="comm-container w-100 h-100">
                     <div class="commenter-cont">
-                        <span class="commenter">@{{comment.commenter}}</span>
+                        <span class="commenter"><a style="text-decoration: none;" :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
                     </div>
                     <div class="comm-info d-block">
                             <p class="comment-desc">{{comment.desc}}</p>

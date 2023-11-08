@@ -6,14 +6,8 @@ import { db, checkUserLoginStatus } from '../firebase_profile.js';
 // Check if user is logged in
 checkUserLoginStatus().then((user) => {
   if (user) {
-    console.log("User is logged in");
-
-    // if user logged in, fetch data and send logged in user as parameter
     fetch_data(user);
   } else {
-
-    //if user not logged in, fetch data without any parameters
-    console.log("User is not logged in");
     fetch_data(null);
   }
 });
@@ -59,7 +53,6 @@ async function fetch_data(user) {
       const querySnapshot_community = await getDocs(comm_query);
     
       querySnapshot_community.forEach((comm_doc) => {
-        console.log("HI!");
         let docData = comm_doc.data();
         docData['community_id'] = comm_doc.id;
         post_information_array[0]['community_name'] = docData.name;
@@ -118,6 +111,7 @@ async function fetch_data(user) {
       comment['likes'] = likes_array;
     }
 
+    console.log(post_information_array[0]);
     // Create the vue instance
     const app = Vue.createApp({
       data(){
@@ -186,8 +180,6 @@ async function fetch_data(user) {
               let comment_ref = collection(db, "comments");
               let comment_data_ref = {
               desc: this.comment,
-              likecount: 0,
-              dislikecount: 0,
               postid: this.post_information.post_id,
               userid: this.logged_in_user_id,
             }

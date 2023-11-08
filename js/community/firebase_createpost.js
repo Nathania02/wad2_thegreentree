@@ -56,37 +56,23 @@ function checkUserLoginStatus() {
 
 // console.log(user_id);
 const communities = await getDocs(collection(db, 'communities'));
-const posts = await getDocs(collection(db, 'posts'));
-const comments = await getDocs(collection(db, 'comments'));
+// const posts = await getDocs(collection(db, 'posts'));
+// const comments = await getDocs(collection(db, 'comments'));
 
 var communitiesList = communities.docs.map(doc => doc.data());
-var postList = posts.docs.map(doc => doc.data());
-var commentsList = comments.docs.map(doc => doc.data());
+// var postList = posts.docs.map(doc => doc.data());
+// var commentsList = comments.docs.map(doc => doc.data());
 
-const lastPageURL = document.referrer;
+// const lastPageURL = document.referrer;
 
-var url  = lastPageURL.split("_");
-var url = url[2].split(".");
-var community_category = url[0];
+// var url  = lastPageURL.split("_");
+// var url = url[2].split(".");
+// var community_category = url[0];
 
+// var rows = "";
 
-// creating of post
-// checkUserLoginStatus().then((result) => {
-//     if(result.loggedIn){
-//         var images = Array.from(ref.images_input.files);
-//         getImages();
-//     }
-// })
-
-// async function getImages(){
-//     const imageUrls = await Promise.all(images.map)
-
-// }
-
-var rows = "";
-
-var upload_picture = document.getElementById("input_file");
-var post = document.getElementById("create_post");
+// var upload_picture = document.getElementById("input_file");
+// var post = document.getElementById("create_post");
 
 
 checkUserLoginStatus()
@@ -116,8 +102,33 @@ checkUserLoginStatus()
 
                     for(var j of communitiesList){
                         var name = j.name;
-
-                        if(name.toLowerCase()==community_category){
+                        if( /[0-9]/.test(name)) {
+                            if(name==community_category){
+                                this.community_id = j.id;
+                                this.topic_title = document.getElementById("topic_title").value;
+                                this.topic_about = document.getElementById("topic_about").value;
+                                
+                                let postRef = doc(collection(db, "posts"));
+                                let postDataRef = {
+                                    // postid: doc_ref.id,
+                                    title: this.topic_title,
+                                    desc: this.topic_about,
+                                    communityid: this.community_id,
+                                    followercount: 0,
+                                    userid: this.user_id,
+                                    images: imageUrls,                                    
+                                };
+                                await setDoc(postRef, postDataRef)
+                                .then(() => {
+                                    console.log("Document successfully written");
+                                    alert("Post document created successfully");
+                                })
+                                .catch((error) => {
+                                    console.error("Error", error);
+                                })    
+                            }
+                            
+                        } else if(name.toLowerCase()==community_category){
                             this.community_id = j.id;
                             this.topic_title = document.getElementById("topic_title").value;
                             this.topic_about = document.getElementById("topic_about").value;
@@ -154,7 +165,7 @@ checkUserLoginStatus()
                     }
                 }
             }
-        }).mount("#main");
+        }).mount("#upload_form");
     }
 })
 

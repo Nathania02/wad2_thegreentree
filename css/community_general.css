@@ -18,9 +18,6 @@ body {
   color: #5c7345;
 }
 
-/*
-TODO: About topic next to image, add image in
-*/
 
 #createPost {
   position: absolute;
@@ -43,7 +40,7 @@ TODO: About topic next to image, add image in
   color: white;
 }
 
-#main {
+#main_search {
   transition: margin-left .5s;
   padding: 16px;
   margin-top: 5px;
@@ -71,12 +68,10 @@ a {
 }
 
 #about {
-  /* position: inline; */
   width: 40%;
   float: right;
   margin-right: 20px;
-  text-align: justify;
-  /* top: 20px; */
+  /* text-align: justify; */
 }
 
 #postimage_container {
@@ -86,11 +81,8 @@ a {
 }
 
 #post_image {
-  /* position: inline; */
   width: 50%;
   height: 300px;
   float: left;
-  /* padding: 20px; */
-
 }
 

@@ -41,7 +41,7 @@ h1 {
     margin-top: 50px;
 }
 
-#main {
+#upload_form {
     transition: margin-left .5s;
     padding: 16px;
     margin-top: 20px;

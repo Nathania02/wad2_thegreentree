@@ -89,16 +89,25 @@ var url = currentUrl.split("_");
 var url = url[2].split(".");
 var community_category = url[0];
 
-var rows = "";
+retrievePosts();
+
+
+function retrievePosts(){
+  var rows = "";
   for(var j of communitiesList){
     var name = j.name;
-    if(name.toLowerCase()==community_category){
-        var id = j.id;
-        var title = name;
+    if( /[0-9]/.test(community_category)) {
+      var title = community_category;
+    } else {
+        if(name.toLowerCase()==community_category){
+          var id = j.id;
+          var title = name;
+      }
+    }
         for(var i of postList){
           if(i.communityid==id){
             // var post_array = postList;
-            var topic_title = i.title;
+              var topic_title = i.title;
             var followercount = i.followercount;
             var description = i.desc;
 
@@ -107,64 +116,112 @@ var rows = "";
                 var post_id = post.postid;
                 for(var user of usersList){
                   if(user.userId == post.userid){
+                    var images = post.images;
+                    var image = images[0];
+                
                     rows +=
                     "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
                     +"<h3>"+topic_title+"</h3>"
                     +"<h5>Total Followers: "+followercount+"</h5>"
-                    +"<p id='about'>About: <br/>"+description+"<p></a>"
-                    +"<p id='username'>Created By: "+user.username+"</p></button></div>";        
+                    // +"<button id='follow' type='button'>Follow</button>"
+                    +"<div class='container' id='postimage_container'>"
+                    +"<img id='post_image' src='"+image+"'>"
+                    +"<p id='about'>About: <br/>"+description+"<p>"
+                    +"</div><br/>"
+                    +"<p id='username'>Created By: "+user.username+"</p>";        
+                    +"<div class='col-12'>"
+                    +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
+                    +"<div class='carousel-inner'>";
+                    +"</a></button></div></div>";
                   }
                 }
               }
             }
           }
         }
+    }
+    document.getElementById("main").innerHTML += rows;
+    document.getElementById("category").innerText = "Topics under " + title;
+  
   }
-}
 
-
-document.getElementById("main").innerHTML += rows;
-document.getElementById("category").innerText = "Topics under " + title;
 
 const fetchData = () => {
-  const app = Vue.createApp({
-    data() {
-      return {
-        post_items: post_array,
-        search: "",
-      };
-    },
-    methods: {
-      search_items() {
-        if (this.search.trim() === "") {
-          this.post_items = post_array;
-        } else {
-          const search_query = this.search.toLowerCase();
-          this.post_items = this.post_items.filter(topic => topic.title.toLowerCase().includes(search_query))
+  // const comments_array = [];
+  // const post_array = [];
+  // var comments = query(collection(db, "comments"));
+  // const querySnapshot_comments = getDocs(comments)
+  // .then((querySnapshot_comments) => {
+  //   querySnapshot_comments.forEach((doc) => {
+  //     var docData = doc.data();
+  //     docData["postid"] = doc.id;
+  //     comments_array.push(docData);
+  //   }) .catch((error) => {
+  //     console.log("Error getting documents", error);
+  //   });
+  //   var posts = query(collection(db, "posts"));
+  //   const querySnapshot_post = getDocs(posts)
+  //   .then((querySnapshot_post) => {
+  //     querySnapshot_post.forEach((doc) => {
+  //     var docData = doc.data();
+  //     docData["postid"] = doc.id;
+  //     post_array.push(docData);
+  //   })
+  //  }).catch((error) => {
+  //     console.log("Error getting documents", error);
+  //   });
+    const search_app = Vue.createApp({
+      data() {
+        return {
+          post_items: post_array,
+          search: "",
+        };
+      },
+      methods: {
+        search_items() {
+          if (this.search.trim() === "") {
+            this.post_items = post_array;
+          } else {
+            const search_query = this.search.toLowerCase();
+            this.post_items = this.post_items.filter(topic => topic.title.toLowerCase().includes(search_query));
+            console.log(this.post_items);
+          }
         }
-      }
-    },
-      components: {
-        'item-card' : {
-          props: ['topic'],
-          // data() {
-          //   return {
-          //     showButtons: false,
-          //   };
-          // },
-          template: `
-          "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&posttitle="+i.title+"'>"
-          "<h3>"+{{ item.name }}+"</h3>"
-          "<h5>Total Followers: "+{{ followercount}} +"</h5>"
-          "<p id='about'>About: <br/>"+{{ description }}+"<p></a></button></div>";
-          `
+      },
+        components: {
+          'item-card' : {
+            props: ['topic'],
+            // data() {
+            //   return {
+            //     showButtons: false,
+            //   };
+            // },
+            template: `
+            "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&posttitle="+i.title+"'>"
+            "<h3>"+{{ topic.title }}+"</h3>"
+            "<h5>Total Followers: "+{{ topic.followercount}} +"</h5>"
+            "<p id='about'>About: <br/>"+{{ topic.desc }}+"<p></a></button>";
+            `
+          }
         }
-      }
-  });
-  
-  app.mount("#main");
-};
+      }).mount("#main")
+    };
+//   }).mount("#main")
+// };
+
 fetchData();
+
+
+
+
+
+    // })
+//   }).mount("#main")
+  
+//   // app.mount("#main");
+// };
+
+// fetchData();
 
 
 

@@ -1,326 +1,208 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-// import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getFirestore, collection, addDoc, getDocs, setDoc, deleteDoc, updateDoc, query, where, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
+// Importing functions from firebase AND the firebase profile to eliminate redundancy
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { collection, doc, getDoc, query, where, getDocs, deleteDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { db, checkUserLoginStatus } from '../firebase_profile.js';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Check if user is logged in
+checkUserLoginStatus().then((user) => {
+  if (user) {
+    fetch_data(user);
+  } else {
+    fetch_data(null);
+  }
+});
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB930wEyfKpI2gBvgAUprBKWqhcbmcKJzk",
-  authDomain: "wad2thegreentree.firebaseapp.com",
-  databaseURL: "https://wad2thegreentree-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "wad2thegreentree",
-  storageBucket: "wad2thegreentree.appspot.com",
-  messagingSenderId: "731944801799",
-  appId: "1:731944801799:web:ac8492d32f75b71ba3fca2",
-  measurementId: "G-M4GNGPS1MD"
-};
+async function fetch_data(user) {
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
+  // Get the logged in user id if exists, or else declare as null
+  let logged_in_user_id;
 
-function checkUserLoginStatus() {
-  return new Promise((resolve, reject) => {
-      onAuthStateChanged(auth, (user) => {
-          if (user) {
-              // User is logged in
-              resolve({ loggedIn: true, user });
-          } else {
-              // User is not logged in
-              resolve({ loggedIn: false, user: null });
-          }
-      }, (error) => {
-          // An error occurred while checking the login status
-          reject(error);
+  if(user){
+    logged_in_user_id = user.user.uid;
+  }else{
+    logged_in_user_id = null;
+  }
+
+  try {
+    // Get the post ID & community ID from the URL
+    const url_params = new URLSearchParams(window.location.search);
+    const post_id = url_params.get('postid');
+    const comm_id = url_params.get('communityid');
+
+    // Define post info array & comments array
+    const post_information_array = [];
+    const comments_array = [];
+
+    // Retrieve post information from the db
+    const post_ref = doc(collection(db, "posts"), post_id);
+    const postDoc = await getDoc(post_ref);
+
+    if (postDoc.exists()) {
+      const post_data = postDoc.data();
+      post_data['post_id'] = postDoc.id;
+      post_information_array.push(post_data);
+    } else {
+      console.error("Post not found");
+    }
+
+    // Retrieve community category from the db
+    console.log(comm_id);
+
+    const comm_query = query(collection(db, "communities"), where("id", "==", Number(comm_id)));    
+    try {
+      const querySnapshot_community = await getDocs(comm_query);
+    
+      querySnapshot_community.forEach((comm_doc) => {
+        let docData = comm_doc.data();
+        docData['community_id'] = comm_doc.id;
+        post_information_array[0]['community_name'] = docData.name;
       });
-  });
-}
+    } catch (error) {
+      console.error("Error getting documents: ", error);
+    }
+    
+    // Retrieve poster information from the database
 
+    const u = doc(collection(db, "users"), post_information_array[0]['userid']);
+    const querySnapshot_users = await getDoc(u);
 
-const communities = await getDocs(collection(db, 'communities'));
-const posts = await getDocs(collection(db, 'posts'));
-const comments = await getDocs(collection(db, 'comments'));
-const users = await getDocs(collection(db, 'users'));
+    if (querySnapshot_users.exists()) {
+      const user_data = querySnapshot_users.data();
+      post_information_array[0]['poster'] = user_data.username;
+    }else{
+      console.error("User not found");
+    }
 
-var communitiesList = communities.docs.map(doc => doc.data());
-var postList = posts.docs.map(doc => doc.data());
-var commentsList = comments.docs.map(doc => doc.data());
-var usersList = users.docs.map(doc => doc.data());
+    // Retrieve relevant comments and the poster username from the database
+    const c = query(collection(db, "comments"), where("postid", "==", post_id));
+    const querySnapshot = await getDocs(c);
 
-var comments_array = []
-var posts_array = []
-var users_array = []
+    querySnapshot.forEach((doc) => {
+      let docData = doc.data();
+      docData['comment_id'] = doc.id;
+      comments_array.push(docData);
+    });
 
-var commentslist = query(collection(db, "comments"));
-var postlist = query(collection(db, "posts"));
-var userslist = query(collection(db, "users"));
+    for (let comment of comments_array){
+      const uq = doc(collection(db, "users"), comment['userid']);
+      const querySnapshot_user = await getDoc(uq);
 
-const querySnapshot_comments = await getDocs(commentslist);
-const querySnapshot_post = await getDocs(postlist);
-const querySnapshot_users = await getDocs(userslist);
+      if (querySnapshot_user.exists()) {
+        const user_data = querySnapshot_user.data();
+        comment['commenter'] = user_data.username;
+      }
+    }
 
+    post_information_array[0]['comments'] = comments_array;
 
-querySnapshot_comments.forEach((doc) => {
-  var docData = doc.data();
-  docData["commentsid"] = doc.id;
-  comments_array.push(docData);
-})
+    // Retrieve relevant likes from like table
 
+    for (let comment of comments_array) {
 
-querySnapshot_post.forEach((doc) => {
-  var docData_post = doc.data();
-  posts_array.push(docData_post);
-})
+      const l = query(collection(db, "likes"), where("postid", "==", comment.comment_id));
+      const querySnapshot_likes = await getDocs(l);
 
+      let likes_array = [];
+      querySnapshot_likes.forEach((doc) => {
+        let docData = doc.data();
+        docData['like_id'] = doc.id;
+        likes_array.push(docData);
+      });
+      comment['likes'] = likes_array;
+    }
 
-
-var queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-var post_id = urlParams.get("postid");
-var post_title = urlParams.get("posttitle");
-
-for(var i of commentsList){
-  var postid = i.postid;
-  for(var j of postList){
-    if(j.id==postid){
-      var community_id = j.communityid;
-      for(var k of communitiesList){
-        if(k.id==community_id){
-          var name = k.name;
+    console.log(post_information_array[0]);
+    // Create the vue instance
+    const app = Vue.createApp({
+      data(){
+        return{
+          logged_in_user_id: logged_in_user_id,
+          post_information: post_information_array[0],
+          comment: "",
         }
-      }
-    }
-  }
-}
-
-function getDescForModal(){
-    for(var post of posts_array){
-    if(post.title == post_title) {
-      var desc = post.desc;
-
-      if(document.getElementById("topic_desc")) {
-        document.getElementById("topic_desc").innerText = desc;
-      }
-      
-    }
-  }
-}
-
-
-
-if(document.getElementById("category")) {
-  document.getElementById("category").innerText = "Category: "+ name;
-}
-
-if(document.getElementById("title")) {
-  document.getElementById("title").innerText = "Title: "+ post_title;
-}
-
-getDescForModal();
-retrieveComments();
-
-
-//retrieving of comments
-function retrieveComments(){
-  try{
-     var rows = "";
-     var comments_list = [];
-        for(var comment of comments_array){
-          if(comment.postid == post_id){
-            comments_list.push(comment.postid);
+      },
+      methods:{
+        add_like(comm_id, likes_array){
+          if(this.logged_in_user_id == null){
+            alert("You must be logged in to like a comment");
+          }else{
+            let like_exists = false;
+            for (let like of likes_array){
+              if(like['userid'] == this.logged_in_user_id && like['postid'] == comm_id){
+                like_exists = true;
+                break;
+              }
+            }
+            if(like_exists){
+              alert("You have already liked this comment");
+            }else{
+              let like_ref = collection(db, "likes");
+              let like_data_ref = {
+                postid: comm_id,
+                userid: this.logged_in_user_id,
+              }
+              addDoc(like_ref, like_data_ref)
+              .then((doc_ref) => {
+                console.log("Like created with ID: ", doc_ref.id );
+                location.reload();
+              })
+              .catch((error) => {
+                console.log("Error creating like document:", error);
+              })
             }
           }
-        if(comments_list.length != 0) {
-          for(var comment of comments_array){
-            if(comment.postid == post_id){  
-              for(var user of usersList){
-                if(user.userId == comment.userid){
-                  console.log(comment.likecount);
-                  // var number_of_likes = comment.likecount;
-                  rows +=
-                  "<div class='container-fluid' id='postcontainer'>"
-                  +"<div class='container-fluid' id='comment_container'>"
-                  +"<p id='post'>"+comment.desc+"</p>"
-                  +"<p id='username'>Commented By: "+user.username+"</p>"
-                  +"<p id='likes' class='"+comment.commentsid+"'>Likes: "+comment.likecount+"</p>"
-
-                  // +"<p v-else id='likes' class='"+comment.commentsid+">Likes: "+comment.likecount+"</p>"
-                  +"<p id='dislikes'>Dislikes: "+comment.dislikecount+"</p>"
-                  +"<button id='delete' @click='delete_comment'><img id='delete_img' src='images/bin.png'></button>"
-                  +"<button id='like' @click='add_like'><img id='like_img' src='images/thumb-up.png'></button>"
-                  +"<button id='dislike' @click='add_dislike'><img id='dislike_img' src='images/thumb-down.png'></button>"
-                  +"</div></div><br/>";
-                }
-              }
-            } 
-          }
-        } else{
-          rows += "<p id='no-comments'>No Commments for now...Be the first to comment!</p>"; 
-        }
-        if(document.getElementById("comments_container")){
-          document.getElementById("comments_container").innerHTML = rows;  
-        }
-      } catch (error) {
-        console.log("Error retrieving comments", error);
-      }
-    }
 
 
-checkUserLoginStatus() 
-  .then((result) => {
-    if(result.loggedIn){
-      const postcomments_app = Vue.createApp({
-        data(){
-          return{
-            description: "",
-            postid: post_id,
-            user_id: result.user.uid,
-            likes: 0,
-            disliked: 0,
-            comment_id: ""
+        },
+        delete_comment(comm_id, comm_poster_id){
+          let is_confirmed = confirm("Are you sure you want to delete this comment?");
+          if(is_confirmed){
+            if (logged_in_user_id == comm_poster_id){
+              const comment_ref = doc(collection(db, "comments"), comm_id);
+              deleteDoc(comment_ref).then(() => {
+                console.log("Comment successfully deleted!");
+                location.reload();
+              })
+            }else{
+              alert("You cannot delete this comment");
+            }
           }
         },
-        methods: {
-          async post_comments() {
-            this.description = document.getElementById("comments").value;
-            var queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            this.post_id = urlParams.get("postid");
-
-            querySnapshot_comments.forEach((doc) => {
-              var docData = doc.data();
-              docData["commentid"] = doc.id;
-              comments_array.push(docData);
-            })            
-  
-            let commentRef = doc(collection(db, "comments"));
-            let commentDataRef = {
-              desc: this.description,
-              likecount: 0,
-              dislikecount: 0,
-              postid: post_id,
-              userid: this.user_id,
+        async post_comments() {  
+          if(this.logged_in_user_id == null){
+            alert("You must be logged in to post a comment");
+            return;
+          }else{
+            if(this.comment == ""){
+              alert("Comment cannot be empty");
+              return;
+            }else{
+              let comment_ref = collection(db, "comments");
+              let comment_data_ref = {
+              desc: this.comment,
+              postid: this.post_information.post_id,
+              userid: this.logged_in_user_id,
             }
-            await setDoc(commentRef, commentDataRef)
-            .then(() => {
-              console.log("Comment created");
-              window.location.reload();
-            })
-            .catch((error) => {
-              console.log("Error creating comment documnet:", error);
-            })
-          },
-          
-          async add_like() {
-            const comment_desc = document.getElementById("post").innerText;
-            for(var comment of comments_array){
-              console.log(comments_array);
-              if(comment.desc == comment_desc){
-                var id_comment = comment.commentsid;
-                const data = {
-                  likecount: this.likes+1
-                }
-                let updatecommentRef = doc(db, "comments", id_comment);
-                await updateDoc(updatecommentRef, data)
-                .then(() => {
-                  console.log("documnet updated");
-                  // const documentRef = doc(db, "comments", id_comment);
-                  // const updates = onSnapshot(doc(db, "comments", id_comment), (doc) => {
-                  //   if(doc.exists) {
-                  //     var updated_data = doc.data();
-                  //     console.log(updated_data);
-                  //     var likecount = updated_data.likecount;
-                  //     for(comment of comments_array){
-                  //       if(comment.commentsid == id_comment){
-                  //         comments_array[comment] == updated_data;
-                          // document.getElementsByClassName(id_comment)[0].innerText = "Likes: " + this.likes++;
 
-                          // retrieveComments();
-                      //   }
-                      // }
-                      // console.log(comments_array);
-                      // console.log(likecount);
-                    // }
-                  // })
-                  
-                  document.getElementsByClassName(id_comment)[0].innerText = "Likes: " + this.likes++;
-                  // window.location.reload();
-                }) 
-                .catch((error) => {
-                  console.log(error);
-                })
-    
-              }
+          console.log(comment_data_ref);
+          await addDoc(comment_ref, comment_data_ref)
+          .then((doc_ref) => {
+            console.log("Comment created with ID: ", doc_ref.id );
+            location.reload();
+          })
+          .catch((error) => {
+            console.log("Error creating comment document:", error);
+          })
             }
-          },
-
-          add_dislike() {
-            this.dislike++;
-            
-          },
-
-          async delete_comment() {
-            const comment_desc = document.getElementById("post").innerText;
-            for(var comment of comments_array){
-              if(comment.desc == comment_desc){
-                var id_comment = comment.commentsid;
-                var id_user = comment.userid;
-
-                // for(var user of users_array){
-                //   console.log(user.userId);
-                //   console.log(id_user);
-                  if(this.user_id == id_user) {
-                    await deleteDoc(doc(db, "comments", id_comment))
-                    .then(() => {
-                      console.log("Document succesfully deleted");
-                      window.location.reload();
-                    })
-                    .catch((error) => {
-                      console.log("Unable to delete document", error);
-                    })
-                  } else {
-                    alert("You are unable to delete this comment as you are not the creator.");
-                    break;
-                  }
-                }
-              // }
-            } 
           }
-        }
-      }).mount("#main");
-    } else {
-      const nopostcommments_app = Vue.createApp({
-        methods: {
-          async post_comments(){
-            alert("Please log in to post a comment");
-          }
-        }
-      }).mount("#main");
-    }
-  })  
+        },
+      }
+    }).mount("#main");
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
 
-
-
-//delete comments
-// async function delete_comments() {
-//   console.log("hello");
-//   try{
-//     await deleteDoc(doc(db, "comments", 1));
-//     console.log("Comment document deleted successfully");
-//   } catch(error) {
-//     console.log("Error deleting comment documnet:", error);
-//   }
-// }
-
-// var deleteCommentbtn = document.getElementById("delete");
-// deleteCommentbtn.addEventListener("click", delete_comments);
 
 

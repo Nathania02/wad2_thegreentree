@@ -39,8 +39,8 @@
     // to do: delete, add likes and dislikes of comments
   </script>
     <div id="main" class="container-fluid">
-      <h1 id="category">Category: {{post_information.community_name}}</h1> 
-      <h3 id="title">Title: {{post_information.title}}</h3>
+      <h1 id="category"></h1> 
+      <h3 id="title"></h3>
       <button id="abouttopic" onclick="openModal()">About Topic</button>
         <div id="myModal" class="modal">
           <div class="modal-content">
@@ -49,38 +49,16 @@
               <h2>Topic Description</h2>
             </div>
             
-            <p id="topic_desc">
-              {{post_information.desc}}
-            </p>
+            <p id="topic_desc"></p>
           </div>
         </div>
-        <br><br>
-        <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
-            <div class="col-12 col-md-10 col-lg-10 mb-3">
-                <div class="comm-container w-100 h-100">
-                    <div class="commenter-cont">
-                        <span class="commenter"><a style="text-decoration: none;" :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
-                    </div>
-                    <div class="comm-info d-block">
-                            <p class="comment-desc">{{comment.desc}}</p>
-                    </div>
-                    <div class="bottom-bar d-flex justify-content-between">
-                        <div class="like-dislike">
-                            {{comment.likes.length}} likes, {{comment.dislikecount}} dislikes
-                        </div>
-                        <div class="comm-buttons">
-                                <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button>
-                                <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button>
-                                <button @click="add_dislike"><img id="dislike_img" src="images/thumb-down.png"></button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
+
+
+  
+      <div class="container" id="comments_container"></div>
+      <!-- <button id='delete'><img id='like_img' src='images/thumb-up.png'></button> -->
       <div class="container" id="addcomments">
-        <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
-        <button type="submit" id="post_comments" @click="post_comments()"><img src="images/send_button.png" id="send"></button>
+        <input type="text" id="comments" placeholder="Enter your comments here..."><button type="submit" id="post_comments" @click="post_comments()"><img src="images/send_button.png" id="send"></button>
       </div>
     </div>
 
@@ -103,11 +81,9 @@
       }
     </script>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    crossorigin="anonymous"></script>
 
 </body>
 

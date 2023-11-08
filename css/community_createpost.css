@@ -49,7 +49,10 @@ h1 {
     /* position: relative; */
 }
 
-#input_file, #topic_title, #topic_about {
-    font-family: 'Times New Roman', Times, serif;
+
+#requirements{
+    font-size:0.7rem;
+    font-style:italic;
+    margin-bottom: 10px;
 }
 

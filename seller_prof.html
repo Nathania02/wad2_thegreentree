@@ -22,8 +22,6 @@
   <!-- Vue -->
   <script src="https://unpkg.com/vue@next"></script>
 
-  <!-- Typed JS -->
-  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 </head>
 
 <body>
@@ -31,11 +29,11 @@
     createNavbarGreen();
   </script>
   <br><br><br>
-  <div class="w-100 h-100">
-    <p class="pt-5 pb-5 mb-4 header-marketplace"><span id="header-mkt">USER'S PRODUCTS</span></p>
-  </div>
 
   <div class="container-fluid" id="product_listing">
+    <div class="w-100 h-100">
+        <p class="pt-5 pb-5 mb-4 header-marketplace"><span id="header-mkt">SHOP {{seller_info.username}}'s PRODUCTS</span></p>
+      </div>
     <div class="row">
       <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
         <div class="position-sticky">
@@ -64,31 +62,19 @@
         </div>
       </nav>
 
-      <div class="col-lg-9 col-md-8 col-12">
+      <div v-if="items.length > 0" class="col-lg-9 col-md-8 col-12">
         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 g-4">
           <input type="text" class="form-control search-fld" placeholder="Search for a product" aria-label="Search" v-model="search" @keyup="search_items()">
           <item-card v-for="item in items" :key="item.id" :item="item"></item-card>
         </div>
       </div>
+      <div v-else class="col-lg-9 col-md-8 col-12">
+        <h1 class="text-center mt-5">No products found</h1>
+      </div>
     </div>
   </div>
 
  
-
-  <script>
-
-    function initTyped() {
-          var typed = new Typed('#header-mkt', {
-            strings: ["",'THE MARKETPLACE'],
-            typeSpeed: 50,
-            loop: true
-          });
-        }
-        
-    initTyped();
-
-  </script>
-
   <!-- Firebase For Profile -->
   <script type="module" src="./js/firebase_profile.js"></script>
 
@@ -96,5 +82,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Firebase for Marketplace -->
-  <script type="module" src="js/firebase_marketplace.js" defer></script>
+  <script type="module" src="js/seller_profile.js" defer></script>
 </body>

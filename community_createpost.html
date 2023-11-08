@@ -45,8 +45,9 @@
             <div class="container rounded" id="postcontainer">
                 <div class="input-group">
                     <div class="custom-file">
-                        <h3>Upload Picture</h3>
-                        <input type="file" class="custom-file-input" id="input_file" ref="images_file" multiple accept="image/*">
+                        <label for="input_file" class="form-label"><h3>Upload Picture</h3></label>
+                        <span id="requirements"> (Please ensure you upload ONLY one image to represent the topic)</span><br/>
+                        <input type="file" class="custom-file-input" id="input_file" ref="images_file" required>
                     </div>
                 </div>
             </div>
@@ -55,6 +56,7 @@
                     <label for="topic_title">
                         <h3>Topic Title:</h3>
                     </label>
+                    <span id="requirements"> (Please do not leave this field blank)</span>
                     <input type="text" class="form-control" id="topic_title" required>
                 </div>
             </div>
@@ -63,6 +65,7 @@
                     <label for="topic_about">
                         <h3>Topic About:</h3>
                     </label>
+                    <span id="requirements"> (Please do not leave this field blank)</span>
                     <textarea class="form-control" id="topic_about" placeholder="Enter a short description about the topic"
                         rows="3" required></textarea>
                 </div>

@@ -1,5 +1,6 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* background-color: antiquewhite;  */
   }
 
 #post {
@@ -45,7 +46,7 @@ TODO: About topic next to image, add image in
 #main {
   transition: margin-left .5s;
   padding: 16px;
-  margin-top: 20px;
+  margin-top: 5px;
   text-align: center;
 }
 
@@ -70,5 +71,26 @@ a {
 }
 
 #about {
-  font-family: 'Times New Roman', Times, serif;
+  /* position: inline; */
+  width: 40%;
+  float: right;
+  margin-right: 20px;
+  text-align: justify;
+  /* top: 20px; */
 }
+
+#postimage_container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+#post_image {
+  /* position: inline; */
+  width: 50%;
+  height: 300px;
+  float: left;
+  /* padding: 20px; */
+
+}
+

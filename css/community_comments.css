@@ -229,3 +229,34 @@ button{
     text-align: justify;
     /* top: 20px; */
 }
+
+/* ARA'S CSS FILES */
+
+.comm-container{
+    border: 1px solid grey;
+}
+
+.comm-info{
+    padding:10px;
+    border-bottom: 1px solid grey;
+}
+
+.commenter-cont{
+    padding-left:10px;
+    background-color:#5c7345;
+    color:white;
+}
+.commenter{
+    font-style:italic;
+    font-size: 0.8rem;
+}
+.bottom-bar{
+    padding:10px;
+    background-color:#5c7345;
+    color:white;
+}
+.like-dislike{
+    background-color:#5c7345;
+    color:white;
+}
+

@@ -32,11 +32,6 @@ function createNavbarGreen() {
                         <img id="profile_image" src="rsrc/navbar/profile.png" height="30" width="30">
                         </a></div>
                     </li>
-                        <li class="nav-item px-3"><div title="Inbox">
-                        <a class="nav-link" href="inbox.html">
-                        <img src="rsrc/navbar/inbox.png" height="30" width="30">
-                        </a></div>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -79,12 +74,12 @@ function createNavbarGreen() {
     list_items[5].addEventListener('mouseout', function () {
         prof_to_white(list_items[5]);
     });
-    list_items[6].addEventListener('mouseover', function () {
-        inbox_to_green(list_items[6]);
-    });
-    list_items[6].addEventListener('mouseout', function () {
-        inbox_to_white(list_items[6]);
-    });
+    // list_items[6].addEventListener('mouseover', function () {
+    //     inbox_to_green(list_items[6]);
+    // });
+    // list_items[6].addEventListener('mouseout', function () {
+    //     inbox_to_white(list_items[6]);
+    // });
 }
 
 $(document).ready(function () {
@@ -131,17 +126,17 @@ function prof_to_white(element) {
     // image.setAttribute('src', 'rsrc/navbar/profile.png');
 }
 
-function inbox_to_green(element) {
-    element.style.backgroundColor = "white";
-    var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/inbox_green.png");
-}
+// function inbox_to_green(element) {
+//     element.style.backgroundColor = "white";
+//     var image = element.getElementsByTagName('img')[0];
+//     image.setAttribute("src", "rsrc/navbar/inbox_green.png");
+// }
 
-function inbox_to_white(element) {
-    element.style.backgroundColor = "transparent";
-    var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/inbox.png");
-}
+// function inbox_to_white(element) {
+//     element.style.backgroundColor = "transparent";
+//     var image = element.getElementsByTagName('img')[0];
+//     image.setAttribute("src", "rsrc/navbar/inbox.png");
+// }
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');

@@ -54,19 +54,19 @@
             </p>
           </div>
         </div>
-        <br><br>
-        <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
-            <div class="col-12 col-md-10 col-lg-10 mb-3">
+        <div id="main_comments">
+            <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
+            <div class="col-12 col-md-10 col-lg-10 mb-2">
                 <div class="comm-container w-100 h-100">
                     <div class="commenter-cont">
-                        <span class="commenter"><a style="text-decoration: none;" :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
+                        <span class="commenter"><a :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
                     </div>
                     <div class="comm-info d-block">
                             <p class="comment-desc">{{comment.desc}}</p>
                     </div>
                     <div class="bottom-bar d-flex justify-content-between">
                         <div class="like-dislike">
-                            {{comment.likes.length}} likes, {{comment.dislikecount}} dislikes
+                            {{comment.likes.length}} likes, 0 dislikes
                         </div>
                         <div class="comm-buttons">
                                 <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button>
@@ -82,6 +82,8 @@
         <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
         <button type="submit" id="post_comments" @click="post_comments()"><img src="images/send_button.png" id="send"></button>
       </div>
+
+        </div>
     </div>
 
     <script>

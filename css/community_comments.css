@@ -2,17 +2,28 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#category, #title {
-    text-align: center;
-}
-#category {
-    margin-top: -60px;
+#heading{
+    text-align: center;    
+    /* margin-top: 10px; */
+
 }
 
-#main {
+#category, #title {
+    text-align: center;
+    /* position: absolute; */
+}
+/* #category {
+    margin-top: -60px;
+} */
+
+/* #main {
+    position: relative;
+} */
+
+#main_comments {
     transition: margin-left .5s;
     padding: 16px;
-    margin-top: 100px;
+    margin-top: 5px;
     position: relative;
     }
 
@@ -41,9 +52,9 @@ body{
 /* #username {
     position: absolute;
     top: 10px;
-    right: 10px;
-}
- */
+    bottom: 10px;
+} */
+
 
 .delete {
     width: 60px;
@@ -63,7 +74,7 @@ body{
     /* position: absolute; */
 }
 
-#like {
+.like {
     width: 60px;
     height: 60px;
     right: 20px;
@@ -81,6 +92,7 @@ body{
     position: absolute;
     /* background-color: white; */
     border: none;
+    white-space: nowrap;
 }
 
 #likes {
@@ -107,6 +119,7 @@ body{
     background-color: #5c7345;
     padding: 10px;
     border-radius: 0.375em;
+    margin-top: 10px;
 }
 
 #comments{
@@ -137,8 +150,8 @@ button{
     border: none;
     border-radius: 0.375em;
     position: absolute;
-    top: -50px;
-    right: -10px;
+    top: 5px;
+    right: 0px;
     font-size: 20px;
     cursor: pointer;
     background-color: #5c7345;
@@ -258,5 +271,13 @@ button{
 .like-dislike{
     background-color:#5c7345;
     color:white;
+}
+
+.commenter a {
+    color: white;
+}
+
+.commenter a:hover{
+    color: blue;
 }
 

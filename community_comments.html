@@ -21,7 +21,10 @@
   <link rel="stylesheet" href="css/filterbar.css">
   <link rel="stylesheet" href="css/community_comments.css">
 
+  <!-- Navbar CSS & JS -->
   <script src="js/navbar.js"></script>
+  <link rel="stylesheet" href="css/navbar.css">
+  
   <script src="js/filterbar.js"></script>
   <script type="module" src="js/community/firebase_comments.js"></script>
   <!-- firebase for profile -->
@@ -66,12 +69,12 @@
                     </div>
                     <div class="bottom-bar d-flex justify-content-between">
                         <div class="like-dislike">
-                            {{comment.likes.length}} likes, {{comment.dislikecount}} dislikes
+                            {{comment.likes.length}} likes
                         </div>
                         <div class="comm-buttons">
                                 <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button>
                                 <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button>
-                                <button @click="add_dislike"><img id="dislike_img" src="images/thumb-down.png"></button>
+                                <!-- <button @click="add_dislike"><img id="dislike_img" src="images/thumb-down.png"></button> -->
                         </div>
                     </div>
                     

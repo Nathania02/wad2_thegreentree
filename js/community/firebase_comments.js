@@ -136,7 +136,7 @@ async function fetch_data(user) {
               }
             }
             if(like_exists){
-              alert("You have already liked this comment");
+              console.log(likes_array);
             }else{
               let like_ref = collection(db, "likes");
               let like_data_ref = {

@@ -74,12 +74,6 @@ function createNavbarGreen() {
     list_items[5].addEventListener('mouseout', function () {
         prof_to_white(list_items[5]);
     });
-    // list_items[6].addEventListener('mouseover', function () {
-    //     inbox_to_green(list_items[6]);
-    // });
-    // list_items[6].addEventListener('mouseout', function () {
-    //     inbox_to_white(list_items[6]);
-    // });
 }
 
 $(document).ready(function () {
@@ -116,27 +110,24 @@ function comm_to_white(element) {
 
 function prof_to_green(element) {
     element.style.backgroundColor = "white";
-    // var image = element.getElementsByTagName('img')[0];
-    // image.setAttribute("src", "rsrc/navbar/profile_green.png");
+    let link = element.getElementsByTagName('a')[0];
+    console.log(link.href);
+    if(link.href.includes("login.html")) {
+    var image = element.getElementsByTagName('img')[0];
+    image.setAttribute("src", "rsrc/navbar/profile_green.png");
+    }
+    
 }
 
 function prof_to_white(element) {
     element.style.backgroundColor = "transparent";
-    // var image = element.getElementsByTagName('img')[0];
-    // image.setAttribute('src', 'rsrc/navbar/profile.png');
+    let link = element.getElementsByTagName('a')[0];
+    if(link.href.includes("login.html")) {
+    var image = element.getElementsByTagName('img')[0];
+    image.setAttribute('src', 'rsrc/navbar/profile.png');
+    }
 }
 
-// function inbox_to_green(element) {
-//     element.style.backgroundColor = "white";
-//     var image = element.getElementsByTagName('img')[0];
-//     image.setAttribute("src", "rsrc/navbar/inbox_green.png");
-// }
-
-// function inbox_to_white(element) {
-//     element.style.backgroundColor = "transparent";
-//     var image = element.getElementsByTagName('img')[0];
-//     image.setAttribute("src", "rsrc/navbar/inbox.png");
-// }
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');

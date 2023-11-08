@@ -1,13 +1,31 @@
 // open filter bar, ensure to name moving container "main"
 function open_filter() {
-    document.getElementById("filterbar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("filterbar").style.width = "150px";
+    if(document.getElementById("main_search")){
+        document.getElementById("main_search").style.marginLeft = "150px";
+    }
+    if(document.getElementById("upload_form")){
+        document.getElementById("upload_form").style.marginLeft = "150px";
+    }
+    if(document.getElementById("main_comments")){
+        document.getElementById("main_comments").style.marginLeft = "150px";
+    }
+
 }
 
 // close filter bar, ensure to name moving container "main"
 function close_filter() {
     document.getElementById("filterbar").style.width = "0px";
-    document.getElementById("main").style.marginLeft = "0px";
+    if(document.getElementById("main_search")){
+        document.getElementById("main_search").style.marginLeft = "0px";
+    }
+    if(document.getElementById("upload_form")){
+        document.getElementById("upload_form").style.marginLeft = "0px";
+    }
+    if(document.getElementById("main_comments")){
+        document.getElementById("main_comments").style.marginLeft = "0px";
+    }
+
 }
 
 function createfilterbar_community() {

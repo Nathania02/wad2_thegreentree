@@ -134,7 +134,11 @@ const fetchData = (iid) => {
                   window.location.href = "login.html";
                 },
                 add_to_cart(){
-                  const existing_cart = JSON.parse(localStorage.getItem('cart')) || {};
+                  if(this.item.quantity < this.quantity){
+                    alert("You have exceeded the available quantity for this item");
+                    return;
+                  }else{
+                    const existing_cart = JSON.parse(localStorage.getItem('cart')) || {};
 
                     const item_name = this.item.name;
                     const item_price = this.item.price;
@@ -144,6 +148,7 @@ const fetchData = (iid) => {
                     existing_cart[iid] = [item_name, item_price, item_quantity, item_first_image];
 
                     localStorage.setItem('cart', JSON.stringify(existing_cart));
+                  }
                 },
                 edit_item(){
 

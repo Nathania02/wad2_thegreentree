@@ -131,5 +131,9 @@ body {
     cursor: pointer;
     border-radius: 5px;
     width:45%;
+}
 
+.quantity-left{
+    font-size:0.8rem;
+    font-style: italic;
 }

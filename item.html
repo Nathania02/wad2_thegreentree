@@ -63,6 +63,7 @@
                         <span v-else>Average rating is {{get_rating()}}, based on
                             {{get_number_of_reviews()}}.</span><br>
                     </div>
+                    <span v-if="item.quantity != 999" class="quantity-left">Quantity Left: {{item.quantity}}</span>
                     <hr class="my-4">
                     <div class="long-desc">
                         {{item.longdesc}}

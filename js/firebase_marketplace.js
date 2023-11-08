@@ -27,6 +27,7 @@
   const db = getFirestore(app);  
 
 const fetchData = () => {
+  const all_items_array = [];
   const items_array = [];
   const reviews_array = [];
   getDocs(collection(db, "reviews"))
@@ -43,8 +44,16 @@ const fetchData = () => {
       querySnapshot.forEach((doc) => {
         let docData = doc.data();
         docData['iid'] = doc.id;
-        items_array.push(docData);
+        all_items_array.push(docData);
       });
+
+    for (let item of all_items_array){
+      if(item.quantity != 0){
+        items_array.push(item);
+      }
+    }
+
+    console.log(items_array);
 
     const app = Vue.createApp({
       data() {

@@ -226,6 +226,8 @@ function populate_shopping_cart() {
                 // Remove the corresponding cart item element from the DOM
                 this.closest('.cart-item').remove();
 
+                // Refresh the modal
+                populate_shopping_cart();
 
             });
 
@@ -248,16 +250,12 @@ function populate_shopping_cart() {
         tt_price_element.className = 'cart-total-price';
         tt_price_element.textContent = 'Total: $' + tt_price.toFixed(2);
         cartItemsContainer.appendChild(tt_price_element);
-        // cartItems.forEach(function(item) {
-        //     // Create a new element for each cart item
-        //     var cartItemElement = document.createElement('div');
-        //     cartItemElement.textContent = item.name + ' - $' + item.price;
-        //     // Append the cart item element to the modal body
-        //     cartItemsContainer.appendChild(cartItemElement);
-        // });
     } else {
         // If cart is empty, display a message in the modal
         cartItemsContainer.textContent = 'Your cart is empty.';
+        document.getElementsByClassName('cart-checkout-btn')[0].disabled = true;
+        document.getElementsByClassName('cart-checkout-btn')[0].style.backgroundColor = 'grey';
+        document.getElementsByClassName('cart-checkout-btn')[0].style.color = 'white';
     }
 }
 

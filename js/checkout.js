@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { collection, getDocs, query, where, doc, addDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { db, checkUserLoginStatus } from './firebase_profile.js';
 
 const pickup_locations =  [
@@ -24,31 +24,6 @@ const pickup_locations =  [
 const INITIAL_LATITUDE = 1.3521; // Example latitude value
 const INITIAL_LONGITUDE = 103.8198; // Example longitude value
 const INITIAL_ZOOM_LEVEL = 12;
-
-// function initMap(pickup_locations) {
-//     // Create a new map instance
-//     const map = new google.maps.Map(document.getElementById('map-container'), {
-//         center: { lat: INITIAL_LATITUDE, lng: INITIAL_LONGITUDE }, // Set initial center of the map
-//         zoom: INITIAL_ZOOM_LEVEL, // Set initial zoom level
-//     });
-
-//     // Example: Add markers for pickup locations
-//     this.pickup_locations.forEach(location => {
-//         new google.maps.Marker({
-//             position: { lat: location.latitude, lng: location.longitude },
-//             map: map,
-//             title: location.name,
-//         });
-//     });
-// }
-
-// function initMap() {
-//     // Create a new map instance
-//     const map = new google.maps.Map(document.getElementById('map-container'), {
-//         center: { lat: INITIAL_LATITUDE, lng: INITIAL_LONGITUDE }, // Set initial center of the map
-//         zoom: INITIAL_ZOOM_LEVEL, // Set initial zoom level
-//     });
-// }
 
 checkUserLoginStatus()
     .then((result) => {
@@ -151,7 +126,7 @@ checkUserLoginStatus()
                         }
                         return total;
                     },
-                    checkout(){
+                    async checkout(){
                         if(this.fname.trim() == "" || this.lname.trim() == "" || this.phone.trim() == "" || this.email.trim() == "" ){
                             alert("Please fill in all the fields");
                             return;
@@ -241,6 +216,19 @@ checkUserLoginStatus()
                                     .then((doc_ref) => {
                                     console.log("Document written with ID: ", doc_ref.id);
                                     current_additions += 1;
+                                    const item_ref = doc(collection(db, "items"), order_item['iid']);
+                                    getDoc(item_ref).then((querySnapshot) => {
+                                        let item = querySnapshot.data();
+                                        console.log(item);
+                                        if(item['quantity'] != 999){
+                                            let new_stock = item['quantity'] - order_item['quantity'];
+                                            let item_doc_ref = doc(db, "items", order_item['iid']);
+                                            updateDoc(item_doc_ref, {
+                                                quantity: new_stock
+                                            });
+                                        }
+                                    });
+
                                     if(current_additions == required_additions){
                                         console.log("all done");
                                         localStorage.removeItem('cart');

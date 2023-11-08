@@ -183,7 +183,6 @@ async function fetch_data(user) {
               postid: this.post_information.post_id,
               userid: this.logged_in_user_id,
             }
-
           console.log(comment_data_ref);
           await addDoc(comment_ref, comment_data_ref)
           .then((doc_ref) => {

@@ -100,6 +100,12 @@ function createfilterbar_profile() {
     a_items[3].addEventListener('mouseout', function () {
         mouseout_post(a_items[3]);
     });
+    a_items[4].addEventListener('mouseover', function () {
+        mouseover_post(a_items[4]);
+    });
+    a_items[4].addEventListener('mouseout', function () {
+        mouseout_post(a_items[4]);
+    });
 }
 
 function mouseover_acc(element) {

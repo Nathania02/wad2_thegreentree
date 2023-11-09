@@ -21,10 +21,11 @@ body {
 }
 
 .contentSection {
-    transition: margin-left 0.5s, font-size 0.5s;
+    transition: margin-left 0.5s;
     margin-top: 50px;
     font-size: 25px;
     padding-left: 12px;
+    padding-right: 12px;
     padding-top: 30px;
 }
 
@@ -54,8 +55,7 @@ body {
 .borderFields {
     border: 3px #5c7345 dashed;
     border-radius: 1rem;
-    padding-left: 1rem;
-    padding-top: 1rem;
+    margin-bottom: 20px;
 }
 
 .badgeForInput {
@@ -68,9 +68,6 @@ body {
     height: 50px;
 }
 
-.avatarMargin {
-    margin: 10px;
-}
 
 /* CSS FOR SELLER PORTAL */
 

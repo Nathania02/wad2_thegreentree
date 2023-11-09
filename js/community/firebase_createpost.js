@@ -130,7 +130,8 @@ checkUserLoginStatus()
                                     communityid: this.community_id,
                                     followercount: 0,
                                     userid: this.user_id,
-                                    images: imageUrls,                                    
+                                    images: imageUrls,
+                                    dateposted: new Date(),                                    
                                 };
                                 await setDoc(postRef, postDataRef)
                                 .then(() => {

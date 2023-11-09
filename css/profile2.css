@@ -2,7 +2,7 @@ body {
     color: #5C7345;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
 }
 
 .col-transition {

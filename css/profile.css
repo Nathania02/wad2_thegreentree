@@ -21,12 +21,13 @@ body {
 }
 
 .contentSection {
-    transition: margin-left 0.5s;
+    align-self:center;
+    align-items: center;
+    transition: margin-left 0.5s, font-size 0.5s;
     margin-top: 50px;
     font-size: 25px;
-    padding-left: 12px;
-    padding-right: 12px;
     padding-top: 30px;
+    border:1px solid #5C7345;
 }
 
 .logOutbtn {
@@ -55,7 +56,8 @@ body {
 .borderFields {
     border: 3px #5c7345 dashed;
     border-radius: 1rem;
-    margin-bottom: 20px;
+    padding-left: 1rem;
+    padding-top: 1rem;
 }
 
 .badgeForInput {
@@ -68,6 +70,9 @@ body {
     height: 50px;
 }
 
+.avatarMargin {
+    margin: 10px;
+}
 
 /* CSS FOR SELLER PORTAL */
 
@@ -180,4 +185,49 @@ body {
 .btn-del {
     background-color: #5C7345;
     color: white;
+}
+
+.summary-text{
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.info-divider{
+    width:82%;
+}
+
+/* CSS FOR NEW  */
+
+.sidebar-design{
+    background-color: #5C7345;
+    color: white;
+    
+    
+}
+
+.header-profile{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:3em;
+    text-align:center;
+    /* font-weight: lighter; */
+}
+
+.filter-div{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color:white;
+}
+
+.filterbar-link {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.filterbar-link:hover {
+    color: #f1f1f1;
 }

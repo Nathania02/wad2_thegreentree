@@ -40,168 +40,94 @@
         createNavbarGreen();
     </script>
     <div id="app1">
-        <button class="openbtn" @click="open_filter1()" :style="{ position: filterButtonPosition }">Filters</button>
-
-        <!-- filterbar -->
-        <div id="filterbar" :style="{width: width}">
-            <a href="javascript:void(0)" class="closebtn" @click="close_filter1()"><img id="back"
-                    src="images/back.png"></a>
-            <a href="profile.html" @mouseover="on_mouseover('account')" @mouseout="on_mouseout('account')"
-                :style="{'background-color': backgroundColorAcc}">My Account</a>
-            <a href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
-                @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
-            <!-- <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
-                :style="{'background-color': backgroundColorPos}">My Posts</a> -->
-            <a href="seller_portal.html" @mouseover="on_mouseover('seller_portal')"
-                @mouseout="on_mouseout('seller_portal')" :style="{'background-color': backgroundColorSel}">Seller's
-                Portal</a>
-        </div>
-
+        <div class="w-100 h-100">
+            <p class="pt-5 mt-5 header-profile"><span id="header-mkt">Update Profile</span></p>
+            <p class="text-center summary-text">Please key in your changes and click 'Save Changes'</p>
+          </div>
         <div id="main" class="container-fluid">
             <form id="saveChanges">
-                <div id="displayUserData" class="row contentSection" :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
-                    <div class="col-md-6 col-sm-12 borderFields d-flex justify-content-between align-items-center" style="padding: 20px;">
-                        <span style="margin-right: 10px;">Avatar</span>
-                        <input class="form-check-input" type="radio" name="profileImage" id="imageOption1"
-                            value="images/profilePictures/profilePic1.png">
-                        <label class="form-check-label" for="imageOption1">
-                            <img src="images/profilePictures/profilePic1.png" alt="Image 1" class="avatar">
-                        </label>
-                        <input class="form-check-input" type="radio" name="profileImage" id="imageOption2"
-                            value="images/profilePictures/profilePic2.png">
-                        <label class="form-check-label avatarMargin" for="imageOption1">
-                            <img src="images/profilePictures/profilePic2.png" alt="Image 2" class="avatar">
-                        </label>
-                        <input class="form-check-input" type="radio" name="profileImage" id="imageOption3"
-                            value="images/profilePictures/profilePic3.png">
-                        <label class="form-check-label avatarMargin" for="imageOption3">
-                            <img src="images/profilePictures/profilePic3.png" alt="Image 3" class="avatar">
-                        </label>
-                        <input class="form-check-input" type="radio" name="profileImage" id="imageOption4"
-                            value="images/profilePictures/profilePic4.png">
-                        <label class="form-check-label avatarMargin" for="imageOption4">
-                            <img src="images/profilePictures/profilePic4.png" alt="Image 4" class="avatar">
-                        </label>
-                        <input class="form-check-input" type="radio" name="profileImage" id="imageOption5"
-                            value="images/profilePictures/profilePic5.png">
-                        <label class="form-check-label avatarMargin" for="imageOption5">
-                            <img src="images/profilePictures/profilePic5.png" alt="Image 5" class="avatar">
-                        </label>
-                    </div>
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>Username</span>
-                        <input type="text" name="username" class="form-control input" id="username"
-                            placeholder="Enter your username">
-                    </div>
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>First Name</span>
-                        <input type="text" name="firstName" class="form-control input" id="firstName"
-                            placeholder="Enter your first name">
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>Last Name</span>
-                        <input type="text" name="lastName" class="form-control input" id="lastName"
-                            placeholder="Enter your last name">
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields d-flex align-items-center">
-                        <span style="margin-right: 10px;">Email</span>
-                        <span id="email"></span>
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>Phone Number</span>
-                        <input type="tel" name="phoneNo" class="form-control input" id="phoneNo"
-                            placeholder="Enter your phone number" pattern="[0-9]{8}">
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields d-flex justify-content-between align-items-center">
-                        <span style="margin-right: 10px;">Gender</span>
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="M">
-                        <label class="form-check-label radio mx-3" for="male">Male</label>
-
-                        <input class="form-check-input" type="radio" name="gender" id="female" value="F">
-                        <label class="form-check-label radio mx-3" for="female">Female</label>
-
-                        <input class="form-check-input" type="radio" name="gender" id="pnts" value="O">
-                        <label class="form-check-label radio mx-3" for="pnts">Prefer Not To Say</label>
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>Date of Birth</span>
-                        <input type="text" name="dateofbirth" class="form-control input" id="dateofbirth"
-                            placeholder="Enter your date of birth" pattern="\d{2}/\d{2}/\d{4}">
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>Address</span>
-                        <textarea name="address" class="form-control input" id="address"
-                            placeholder="Enter your address"></textarea>
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                        <span>Postal Code</span>
-                        <input name="postalCode" class="form-control input" id="postalCode"
-                            placeholder="Enter your postal code" pattern="[0-9]{6}"></input>
-                    </div>
-
-                    <!-- <div id="displayUserData" class="col"
-                        :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Avatar</span>
-                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption1"
-                                value="images/profilePictures/profilePic1.png">
-                            <label class="form-check-label avatarMargin" for="imageOption1">
-                                <img src="images/profilePictures/profilePic1.png" alt="Image 1" class="avatar">
-                            </label>
-                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption2"
-                                value="images/profilePictures/profilePic2.png">
-                            <label class="form-check-label avatarMargin" for="imageOption1">
-                                <img src="images/profilePictures/profilePic2.png" alt="Image 2" class="avatar">
-                            </label>
-                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption3"
-                                value="images/profilePictures/profilePic3.png">
-                            <label class="form-check-label avatarMargin" for="imageOption3">
-                                <img src="images/profilePictures/profilePic3.png" alt="Image 3" class="avatar">
-                            </label>
-                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption4"
-                                value="images/profilePictures/profilePic4.png">
-                            <label class="form-check-label avatarMargin" for="imageOption4">
-                                <img src="images/profilePictures/profilePic4.png" alt="Image 4" class="avatar">
-                            </label>
-                            <input class="form-check-input" type="radio" name="profileImage" id="imageOption5"
-                                value="images/profilePictures/profilePic5.png">
-                            <label class="form-check-label avatarMargin" for="imageOption5">
-                                <img src="images/profilePictures/profilePic5.png" alt="Image 5" class="avatar">
-                            </label>
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Username</span>
-                            <input type="text" name="username" class="form-control input" id="username"
-                                placeholder="Enter your username">
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>First Name</span>
-                            <input type="text" name="firstName" class="form-control input" id="firstName"
-                                placeholder="Enter your first name">
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Last Name</span>
-                            <input type="text" name="lastName" class="form-control input" id="lastName"
-                                placeholder="Enter your last name">
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Email</span>
-                            <span id="email"></span>
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Phone Number</span>
-                            <input type="tel" name="phoneNo" class="form-control input" id="phoneNo"
-                                placeholder="Enter your phone number" pattern="[0-9]{8}">
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Gender</span>
+                <div id="displayUserData">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-12">
+                        Avatar
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4">
+                                <input class="form-check-input" type="radio" name="profileImage" id="imageOption1"
+                                    value="images/profilePictures/profilePic1.png">
+                                <label class="form-check-label avatarMargin" for="imageOption1">
+                                    <img src="images/profilePictures/profilePic1.png" alt="Image 1" class="avatar">
+                                </label>
+                                <input class="form-check-input" type="radio" name="profileImage" id="imageOption2"
+                                    value="images/profilePictures/profilePic2.png">
+                                <label class="form-check-label avatarMargin" for="imageOption1">
+                                    <img src="images/profilePictures/profilePic2.png" alt="Image 2" class="avatar">
+                                </label>
+                                <input class="form-check-input" type="radio" name="profileImage" id="imageOption3"
+                                    value="images/profilePictures/profilePic3.png">
+                                <label class="form-check-label avatarMargin" for="imageOption3">
+                                    <img src="images/profilePictures/profilePic3.png" alt="Image 3" class="avatar">
+                                </label>
+                                <input class="form-check-input" type="radio" name="profileImage" id="imageOption4"
+                                    value="images/profilePictures/profilePic4.png">
+                                <label class="form-check-label avatarMargin" for="imageOption4">
+                                    <img src="images/profilePictures/profilePic4.png" alt="Image 4" class="avatar">
+                                </label>
+                                <input class="form-check-input" type="radio" name="profileImage" id="imageOption5"
+                                    value="images/profilePictures/profilePic5.png">
+                                <label class="form-check-label avatarMargin" for="imageOption5">
+                                    <img src="images/profilePictures/profilePic5.png" alt="Image 5" class="avatar">
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Username
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <input type="text" name="username" class="form-control input" id="username"
+                                    placeholder="Enter your username">
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            First Name
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <input type="text" name="firstName" class="form-control input" id="firstName"
+                                    placeholder="Enter your first name">
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Last Name
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <input type="text" name="lastName" class="form-control input" id="lastName"
+                                    placeholder="Enter your last name">
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Email
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <span id="email"></span>
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Phone Number
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <input type="tel" name="phoneNo" class="form-control input" id="phoneNo"
+                                    placeholder="Enter your phone number" pattern="[0-9]{8}">
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12 pb-4">
+                            Gender
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
                             <input class="form-check-input" type="radio" name="gender" id="male" value="M">
                             <label class="form-check-label radio mx-3" for="male">Male</label>
 
@@ -210,92 +136,46 @@
 
                             <input class="form-check-input" type="radio" name="gender" id="pnts" value="O">
                             <label class="form-check-label radio mx-3" for="pnts">Prefer Not To Say</label>
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Date of Birth</span>
-                            <input type="text" name="dateofbirth" class="form-control input" id="dateofbirth"
-                                placeholder="Enter your date of birth" pattern="\d{2}/\d{2}/\d{4}">
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Address</span>
-                            <textarea name="address" class="form-control input" id="address"
-                                placeholder="Enter your address"></textarea>
-                        </p>
-                        <p class="pb-4 d-flex justify-content-between align-items-center borderFields">
-                            <span>Postal Code</span>
-                            <input name="postalCode" class="form-control input" id="postalCode"
-                                placeholder="Enter your postal code" pattern="[0-9]{6}"></input>
-                        </p>
-                    </div> -->
-
-                    <div class="button text-end">
-                        <button type="submit" name="saveChanges" id="saveChanges" class="logOutbtn loginPage me-3">Save
-                            changes</button>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Date of Birth
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <input type="text" name="dateofbirth" class="form-control input" id="dateofbirth"
+                                    placeholder="Enter your date of birth" pattern="\d{2}/\d{2}/\d{4}">
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Address
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <textarea name="address" class="form-control input" id="address"
+                                    placeholder="Enter your address"></textarea>
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-12">
+                            Postal Code
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <p class="pb-4 d-flex align-items-center">
+                                <input name="postalCode" class="form-control input" id="postalCode"
+                                    placeholder="Enter your postal code" pattern="[0-9]{6}"></input>
+                            </p>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-12">
+                            <div class="button text-end">
+                                <button type="submit" name="saveChanges" id="saveChanges" class="logOutbtn loginPage me-3">Save
+                                    changes</button>
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
+
             </form>
         </div>
     </div>
-
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    fontSize: '25px',
-                    marginLeft: '',
-                    width: '0px',
-                    backgroundColorAcc: 'transparent',
-                    backgroundColorPur: 'transparent',
-                    // backgroundColorPos: 'transparent',
-                    backgroundColorSel: 'transparent',
-                    filterButtonPosition: ''
-                }
-            },
-            methods: {
-                open_filter1() {
-                    this.fontSize = '20px';
-                    this.marginLeft = '250px';
-                    this.width = '250px';
-                    this.filterButtonPosition = 'fixed';
-                },
-                close_filter1() {
-                    this.fontSize = '25px';
-                    this.marginLeft = '';
-                    this.width = '0px';
-                    this.filterButtonPosition = '';
-                },
-                on_mouseover(link) {
-                    if (link === 'account') {
-                        this.backgroundColorAcc = '#D8EAC7'
-                    }
-                    else if (link === 'purchases') {
-                        this.backgroundColorPur = '#D8EAC7'
-                    }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = '#D8EAC7'
-                    }
-                    // else if (link === 'seller_portal') {
-                    //     this.backgroundColorSel = '#D8EAC7'
-                    // }
-                },
-                on_mouseout(link) {
-                    if (link === 'account') {
-                        this.backgroundColorAcc = 'transparent'
-                    }
-                    else if (link === 'purchases') {
-                        this.backgroundColorPur = 'transparent'
-                    }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = 'transparent'
-                    }
-                    // else if (link === 'seller_portal') {
-                    //     this.backgroundColorSel = '#D8EAC7'
-                    // }
-                }
-            }
-        }).mount("#app1")
-
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 

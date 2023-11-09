@@ -26,18 +26,15 @@
 }
 
 .openbtn {
-    position: relative;
+    top:80px;
+    position: sticky;
     font-size: 20px;
     cursor: pointer;
     background-color: #5c7345;
     color: white;
-    padding: 10px 15px;
     border: none;
-    margin-left: 30px;
-    top: 100px;
-    border-radius: 0.375rem;
+    z-index:999;
 }
-
 
 .openbtn:hover {
     background-color: #444;
@@ -53,12 +50,12 @@
     margin-top: 10px;
 }
 
-/* #main {
+#main {
     transition: margin-left .5s;
     padding: 16px;
     margin-top: 53px;
     position: relative;
-} */
+}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

@@ -40,181 +40,180 @@
         createNavbarGreen();
     </script>
     <div id="app">
-        <button class="openbtn" @click="open_filter1()" :style="{ position: filterButtonPosition }">Filters</button>
 
-        <!-- filterbar -->
-        <div id="filterbar" :style="{width: width}">
-            <a href="javascript:void(0)" class="closebtn" @click="close_filter1()"><img id="back"
-                    src="images/back.png"></a>
-            <a href="profile.html" @mouseover="on_mouseover('account')" @mouseout="on_mouseout('account')"
-                :style="{'background-color': backgroundColorAcc}">My Account</a>
-            <a href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
-                @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
-            <!-- <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
-                :style="{'background-color': backgroundColorPos}">My Posts</a> -->
-            <a href="seller_portal.html" @mouseover="on_mouseover('seller_portal')"
-                @mouseout="on_mouseout('seller_portal')" :style="{'background-color': backgroundColorSelPor}">Seller's
-                Portal</a>
-        </div>
-
-        <div id="main" class="container-fluid">
-            <div id="displayUserData" class="row contentSection"
-                :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Username</span>
-                    <span id="username"></span>
+        <div class="w-100 h-100">
+            <p class="pt-5 mt-5 header-profile"><span id="header-mkt">Your Profile</span></p>
+            <p class="text-center summary-text">A summary of your information</p>
+          </div>
+        
+          <div class="container-fluid" id="main">
+            <div class="row">
+              <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
+                <div class="position-sticky">
+                  <div class="mt-4 filters-header d-flex justify-content-center">
+                    <h5>Profile Settings</h5>
+                  </div>
+                  <hr class="filter-div">
+                  <a class="filterbar-link" href="profile.html" @mouseover="on_mouseover('account')" @mouseout="on_mouseout('account')"
+                        :style="{'background-color': backgroundColorAcc}">My Account</a>
+                    <a class="filterbar-link" href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
+                        @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
+                    <a class="filterbar-link" href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
+                        :style="{'background-color': backgroundColorPos}">My Posts</a>
+                    <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')" @mouseout="on_mouseout('seller_portal')"
+                        :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
                 </div>
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">First Name</span>
-                    <span id="firstName"></span>
+              </nav>
+        
+              <div id="displayUserData" class="col-lg-9 col-md-8 col-12">
+                <div class="row row-cols-1 row-cols-lg-9 row-cols-md-8 row-cols-sm-2 g-4 d-flex justify-content-center">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Username</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="username"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>First Name</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="firstName"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Last Name</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="lastName"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Email</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="email"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Phone Number</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="phoneNo"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Gender</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="gender"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Date of Birth</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="dateofbirth"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Address</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="address"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-3 col-md-3">
+                        <span><b>Postal Code</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-5">
+                        <span id="postalCode"></span>
+                    </div>
+                    <hr class="info-divider mt-2">
+                    <div class="col-12 col-lg-9 col-md-8">
+                        <div class="button text-end">
+                            <button type="button" name="editButton" id="editButton"
+                                class="logOutbtn loginPage me-3">Edit</button>
+                            <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log
+                                Out</button>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Last Name</span>
-                    <span id="lastName"></span>
-                </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Email</span>
-                    <span id="email"></span>
-                </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Phone Number</span>
-                    <span id="phoneNo"></span>
-                </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Gender</span>
-                    <span id="gender"></span>
-                </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Date of Birth</span>
-                    <span id="dateofbirth"></span>
-                </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Address</span>
-                    <span id="address"></span>
-                </div>
-
-                <div class="col-md-6 col-sm-12 borderFields" style="padding: 20px;">
-                    <span style="margin-right: 10px;">Postal Code</span>
-                    <span id="postalCode"></span>
-                </div>
-                <div class="button text-end">
+              </div>
+            </div>
+          </div>
+                <!-- <div class="button text-end">
                     <button type="button" name="editButton" id="editButton"
                         class="logOutbtn loginPage me-3">Edit</button>
                     <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log
                         Out</button>
-                </div>
-            </div>
-        </div>
-<!-- 
-        <div id="main" class="container-fluid">
-            <div class="row">
-                <div id="displayUserData" class="col contentSection"
-                    :style="{ 'font-size': fontSize, 'margin-left': marginLeft }">
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 200px;">Username</span>
-                        <span id="username"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 190.4px;">First Name</span>
-                        <span id="firstName"></span>
-                    </p>
-
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 194.13px;">Last Name</span>
-                        <span id="lastName"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 255.66px;">Email</span>
-                        <span id="email"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 141.56px;">Phone Number</span>
-                        <span id="phoneNo"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 233.41px;">Gender</span>
-                        <span id="gender"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 167.93px;">Date of Birth</span>
-                        <span id="dateofbirth"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 222.46px;">Address</span>
-                        <span id="address"></span>
-                    </p>
-                    <p class="pb-4 borderFields">
-                        <span style="margin-right: 178.29px;">Postal Code</span>
-                        <span id="postalCode"></span>
-                    </p>
                 </div> -->
 
-                <script>
-                    const app = Vue.createApp({
-                        data() {
-                            return {
-                                fontSize: '25px',
-                                marginLeft: '',
-                                width: '0px',
-                                backgroundColorAcc: 'transparent',
-                                backgroundColorPur: 'transparent',
-                                // backgroundColorPos: 'transparent',
-                                backgroundColorSelPor: 'transparent',
-                                filterButtonPosition: ''
-                            }
-                        },
-                        methods: {
-                            open_filter1() {
-                                this.fontSize = '20px';
-                                this.marginLeft = '250px';
-                                this.width = '250px';
-                                this.filterButtonPosition = 'fixed';
-                            },
-                            close_filter1() {
-                                this.fontSize = '25px';
-                                this.marginLeft = '';
-                                this.width = '0px';
-                                this.filterButtonPosition = '';
-                            },
-                            on_mouseover(link) {
-                                if (link === 'account') {
-                                    this.backgroundColorAcc = '#D8EAC7';
-                                }
-                                else if (link === 'purchases') {
-                                    this.backgroundColorPur = '#D8EAC7';
-                                }
-                                // else if (link === 'posts') {
-                                //     this.backgroundColorPos = '#D8EAC7';
-                                // }
-                                else if (link === 'seller_portal') {
-                                    this.backgroundColorSelPor = '#D8EAC7';
-                                }
-                            },
-                            on_mouseout(link) {
-                                if (link === 'account') {
-                                    this.backgroundColorAcc = 'transparent';
-                                }
-                                else if (link === 'purchases') {
-                                    this.backgroundColorPur = 'transparent';
-                                }
-                                // else if (link === 'posts') {
-                                //     this.backgroundColorPos = 'transparent';
-                                // }
-                                else if (link === 'seller_portal') {
-                                    this.backgroundColorSelPor = 'transparent';
-                                }
-                            }
+            </div>
+        </div>
+    </div>
 
-                        }
-                    }).mount("#app")
 
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    fontSize: '25px',
+                    marginLeft: '',
+                    width: '0px',
+                    backgroundColorAcc: 'transparent',
+                    backgroundColorPur: 'transparent',
+                    backgroundColorPos: 'transparent',
+                    backgroundColorSelPor: 'transparent',
+                    filterButtonPosition: ''
+                }
+            },
+            methods: {
+                open_filter1() {
+                    this.fontSize = '20px';
+                    this.marginLeft = '250px';
+                    this.width = '250px';
+                    this.filterButtonPosition = 'fixed';
+                },
+                close_filter1() {
+                    this.fontSize = '25px';
+                    this.marginLeft = '';
+                    this.width = '0px';
+                    this.filterButtonPosition = '';
+                },
+                on_mouseover(link) {
+                    if (link === 'account') {
+                        this.backgroundColorAcc = '#D8EAC7';
+                    }
+                    else if (link === 'purchases') {
+                        this.backgroundColorPur = '#D8EAC7';
+                    }
+                    else if (link === 'posts') {
+                        this.backgroundColorPos = '#D8EAC7';
+                    }
+                    else if (link === 'seller_portal') {
+                        this.backgroundColorSelPor = '#D8EAC7';
+                    }
+                },
+                on_mouseout(link) {
+                    if (link === 'account') {
+                        this.backgroundColorAcc = 'transparent';
+                    }
+                    else if (link === 'purchases') {
+                        this.backgroundColorPur = 'transparent';
+                    }
+                    else if (link === 'posts') {
+                        this.backgroundColorPos = 'transparent';
+                    }
+                    else if (link === 'seller_portal') {
+                        this.backgroundColorSelPor = 'transparent';
+                    }
+                }
+
+            }
+        }).mount("#app")
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

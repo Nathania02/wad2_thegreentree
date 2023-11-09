@@ -62,6 +62,15 @@ checkUserLoginStatus().then(async (result) => {
                     orders_tbff: orders_tbff,
                     orders_ff: orders_ff,
                     delivery_date: null,
+                     // sidebar
+                     fontSize: '25px',
+                     marginLeft: '',
+                     width: '0px',
+                     backgroundColorAcc: 'transparent',
+                     backgroundColorPur: 'transparent',
+                     backgroundColorPos: 'transparent',
+                     backgroundColorSelPor: 'transparent',
+                     filterButtonPosition: ''
                 };
             },
             computed: {
@@ -134,6 +143,34 @@ checkUserLoginStatus().then(async (result) => {
                                 });
                             }
                         }
+                    }
+                },
+                on_mouseover(link) {
+                    if (link === 'account') {
+                        this.backgroundColorAcc = '#D8EAC7';
+                    }
+                    else if (link === 'purchases') {
+                        this.backgroundColorPur = '#D8EAC7';
+                    }
+                    else if (link === 'posts') {
+                        this.backgroundColorPos = '#D8EAC7';
+                    }
+                    else if (link === 'seller_portal') {
+                        this.backgroundColorSelPor = '#D8EAC7';
+                    }
+                },
+                on_mouseout(link) {
+                    if (link === 'account') {
+                        this.backgroundColorAcc = 'transparent';
+                    }
+                    else if (link === 'purchases') {
+                        this.backgroundColorPur = 'transparent';
+                    }
+                    else if (link === 'posts') {
+                        this.backgroundColorPos = 'transparent';
+                    }
+                    else if (link === 'seller_portal') {
+                        this.backgroundColorSelPor = 'transparent';
                     }
                 }
             }

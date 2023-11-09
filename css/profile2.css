@@ -170,3 +170,39 @@ body {
     /* font-size:0.8em; */
     text-align:center;
 }
+
+/* CSS FOR NEW  */
+
+.sidebar-design{
+    background-color: #5C7345;
+    color: white;
+    
+    
+}
+
+.header-profile{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:3em;
+    text-align:center;
+    /* font-weight: lighter; */
+}
+
+.filter-div{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color:white;
+}
+
+.filterbar-link {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.filterbar-link:hover {
+    color: #f1f1f1;
+}

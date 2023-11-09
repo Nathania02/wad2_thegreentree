@@ -204,7 +204,7 @@ const createUserInFirestore = async (uid, username, email) => {
     window.location.href = 'addDetails.html';
 };
 
-if (window.location.pathname.includes('signup.html')) {
+if (window.location.pathname.includes('signUp.html')) {
     // signup 
     const signUpForm = document.getElementById('signUpForm');
     const displayErrors = document.getElementById('displayErrors');

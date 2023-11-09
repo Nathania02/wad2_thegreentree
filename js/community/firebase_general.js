@@ -83,6 +83,8 @@ querySnapshot_post.forEach((doc) => {
   post_array.push(docData);
 })
 
+console.log(post_array);
+
 //sort the posts by dateposted
 
 post_array.sort(function(a,b){

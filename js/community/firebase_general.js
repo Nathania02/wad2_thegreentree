@@ -107,63 +107,6 @@ var community_category = url[0];
 
 retrievePosts();
 
-
-// function retrievePosts(){
-//   var rows = "";
-//   for(var j of communitiesList){
-//     var name = j.name;
-//     if( /[0-9]/.test(community_category)) {
-//       var title = community_category;
-//     } else {
-//         if(name.toLowerCase()==community_category){
-//           var id = j.id;
-//           var title = name;
-//       }
-//     }
-//         for(var i of postList){
-//           if(i.communityid==id){
-//             // var post_array = postList;
-//               var topic_title = i.title;
-//             var followercount = i.followercount;
-//             var description = i.desc;
-
-//             for(var post of post_array){
-//               if(topic_title == post.title){
-//                 var post_id = post.postid;
-//                 for(var user of usersList){
-//                   if(user.userId == post.userid){
-//                     var images = post.images;
-//                     var image = images[0];
-                
-//                     rows +=
-//                     "<div class='col'>"
-//                     +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-//                     +"<h3>"+topic_title+"</h3>"
-//                     +"<h5>Total Followers: "+followercount+"</h5>"
-//                     // +"<button id='follow' type='button'>Follow</button>"
-//                     +"<div class='container' id='postimage_container'>"
-//                     +"<img id='post_image' src='"+image+"'>"
-//                     +"<p id='about'>About: <br/>"+description+"<p>"
-//                     +"</div><br/>"
-//                     +"<p id='username'>Created By: "+user.username+"</p>";        
-//                     +"<div class='col-12'>"
-//                     +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
-//                     +"<div class='carousel-inner'>";
-//                     +"</a></button></div></div>";
-//                     +"</div>"
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//     }
-//     document.getElementById("main").innerHTML += rows;
-//     document.getElementById("category").innerText = "Topics under " + title;
-  
-//   }
-
-
   function retrievePosts(){
     var rows = "";
     for(var j of communitiesList){
@@ -171,14 +114,11 @@ retrievePosts();
       if(name == community_category){
         var title = community_category;
         var id=j.id;
-        for(var i of postList){
-          if(i.communityid==id){
-            var topic_title = i.title;
-            var followercount = i.followercount;
-            var description = i.desc;
   
             for(var post of post_array){
-              if(topic_title == post.title){
+              if(post.communityid == id){
+                var topic_title = post.title;
+                var description = post.desc;
                 var post_id = post.postid;
                 var post_date = post.date;
                 var post_time = post.time;
@@ -187,21 +127,6 @@ retrievePosts();
                     var images = post.images;
                     var image = images[0];
                 
-                    // rows +=
-                    // +"<div class='col d-flex justify-content-center'>"
-                    // +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-                    // +"<h3>"+topic_title+"</h3>"
-                    // // +"<button id='follow' type='button'>Follow</button>"
-                    // +"<div class='container' id='postimage_container'>"
-                    // +"<img id='post_image' src='"+image+"'>"
-                    // +"<p id='about'>About: <br/>"+description+"<p>"
-                    // +"</div><br/>"
-                    // +"<p id='username'>Created By: "+user.username+"</p>";        
-                    // +"<div class='col-12'>"
-                    // +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
-                    // +"<div class='carousel-inner'>";
-                    // +"</a></button></div></div>";
-                    // +"</div>"
 
                     rows += `
                     <div class="col-12 d-flex justify-content-center" id="post">
@@ -229,86 +154,52 @@ retrievePosts();
                 `;
                     }
                   }
-                }
-              }
+              
             }
           }  
         }  else {
           if(name.toLowerCase()==community_category){
             var id = j.id;
             var title = name;
-            for(var i of postList){
-              if(i.communityid==id){
-                // var post_array = postList;
-                  var topic_title = i.title;
-                var followercount = i.followercount;
-                var description = i.desc;
     
-                for(var post of post_array){
-                  if(topic_title == post.title){
-                    var post_id = post.postid;
-                    var post_date = post.date;
-                    var post_time = post.time;
-                    for(var user of usersList){
-                      if(user.userId == post.userid){
-                        var images = post.images;
-                        var image = images[0];
+            for(var post of post_array){
+              if(post.communityid == id){
+                var topic_title = post.title;
+                var description = post.desc;
+                var post_id = post.postid;
+                var post_date = post.date;
+                var post_time = post.time;
+                for(var user of usersList){
+                  if(user.userId == post.userid){
+                    var images = post.images;
+                    var image = images[0];
 
-                    //     rows +=
-                    //     "<div class='col d-flex justify-content-center'>"
-                    // +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-                    // +"<h3>"+topic_title+"</h3>"
-                    // // +"<button id='follow' type='button'>Follow</button>"
-                    // +"<div class='container' id='postimage_container'>"
-                    // +"<img id='post_image' src='"+image+"'>"
-                    // +"<p id='about'>About: <br/>"+description+"<p>"
-                    // +"</div><br/>"
-                    // +"<p id='username'>Created By: "+user.username+"</p>";        
-                    // +"<div class='col-12'>"
-                    // +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
-                    // +"<div class='carousel-inner'>";
-                    // +"</a></button></div></div>";
-                    // +"</div>"
 
-                    rows += `
-                        <div class="col-12 d-flex justify-content-center" id="post">
-                            <a style="text-decoration:none;color:#5c7345;" href="community_comments.html?communityid=${id}&postid=${post_id}&posttitle=${topic_title}">
-                                <div class="topic-title d-flex justify-content-center mb-3">
-                                    <h3>${topic_title}</h3>
-                                </div>
-                                <div class="row image-and-about">
-                                    <div class="col-md-6 col-lg-6">
-                                        <div class="image-container">
-                                            <img class="w-100" src='${image}'>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6">
-                                        <div class="about">
-                                            <p id='about'>About: <br/>${description}</p>
-                                        </div>
+                rows += `
+                    <div class="col-12 d-flex justify-content-center" id="post">
+                        <a style="text-decoration:none;color:#5c7345;" href="community_comments.html?communityid=${id}&postid=${post_id}&posttitle=${topic_title}">
+                            <div class="topic-title d-flex justify-content-center mb-3">
+                                <h3>${topic_title}</h3>
+                            </div>
+                            <div class="row image-and-about">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="image-container">
+                                        <img class="w-100" src='${image}'>
                                     </div>
                                 </div>
-                                <div class="createdby mt-3">
-                                    <p id='username'>Created By: ${user.username} on ${post_date}, ${post_time}</p>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="about">
+                                        <p id='about'>About: <br/>${description}</p>
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                    `;
+                            </div>
+                            <div class="createdby mt-3">
+                                <p id='username'>Created By: ${user.username} on ${post_date}, ${post_time}</p>
+                            </div>
+                        </a>
+                    </div>
+                `;
 
-      
-                        // "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-                        // +"<h3>"+topic_title+"</h3>"
-                        // +"<h5>Total Followers: "+followercount+"</h5>"
-                        // // +"<button id='follow' type='button'>Follow</button>"
-                        // +"<div class='container' id='postimage_container'>"
-                        // +"<img id='post_image' src='"+image+"'>"
-                        // +"<p id='about'>About: <br/>"+description+"<p>"
-                        // +"</div><br/>"
-                        // +"<p id='username'>Created By: "+user.username+"</p>";        
-                        // +"<div class='col-12'>"
-                        // +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
-                        // +"<div class='carousel-inner'>";
-                        // +"</a></button></div></div>";
                       }
                     }
                   }
@@ -316,91 +207,10 @@ retrievePosts();
               }
             }  
           }
-        }
-      }
+        
+      
       
       document.getElementById("main_search").innerHTML += rows;
       document.getElementById("category").innerText = "Topics under " + title;
     }
   
-
-
-// const fetchData = () => {
-  // const comments_array = [];
-  // const post_array = [];
-  // var comments = query(collection(db, "comments"));
-  // const querySnapshot_comments = getDocs(comments)
-  // .then((querySnapshot_comments) => {
-  //   querySnapshot_comments.forEach((doc) => {
-  //     var docData = doc.data();
-  //     docData["postid"] = doc.id;
-  //     comments_array.push(docData);
-  //   }) .catch((error) => {
-  //     console.log("Error getting documents", error);
-  //   });
-  //   var posts = query(collection(db, "posts"));
-  //   const querySnapshot_post = getDocs(posts)
-  //   .then((querySnapshot_post) => {
-  //     querySnapshot_post.forEach((doc) => {
-  //     var docData = doc.data();
-  //     docData["postid"] = doc.id;
-  //     post_array.push(docData);
-  //   })
-  //  }).catch((error) => {
-  //     console.log("Error getting documents", error);
-  //   });
-//     const search_app = Vue.createApp({
-//       data() {
-//         return {
-//           post_items: post_array,
-//           search: "",
-//         };
-//       },
-//       methods: {
-//         search_items() {
-//           if (this.search.trim() === "") {
-//             this.post_items = post_array;
-//           } else {
-//             const search_query = this.search.toLowerCase();
-//             this.post_items = this.post_items.filter(topic => topic.title.toLowerCase().includes(search_query));
-//             console.log(this.post_items);
-//           }
-//         }
-//       },
-//         components: {
-//           'item-card' : {
-//             props: ['topic'],
-//             // data() {
-//             //   return {
-//             //     showButtons: false,
-//             //   };
-//             // },
-//             template: `
-//             "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&posttitle="+i.title+"'>"
-//             "<h3>"+{{ topic.title }}+"</h3>"
-//             "<h5>Total Followers: "+{{ topic.followercount}} +"</h5>"
-//             "<p id='about'>About: <br/>"+{{ topic.desc }}+"<p></a></button>";
-//             `
-//           }
-//         }
-//       }).mount("#main")
-//     };
-// //   }).mount("#main")
-// // };
-
-// fetchData();
-
-
-
-
-
-    // })
-//   }).mount("#main")
-  
-//   // app.mount("#main");
-// };
-
-// fetchData();
-
-
-

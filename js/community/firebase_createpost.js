@@ -143,6 +143,7 @@ checkUserLoginStatus()
                                 followercount: 0,
                                 userid: this.user_id,
                                 images: imageUrls,
+                                dateposted: new Date(),
                             };
                             await setDoc(postRef, postDataRef)
                             .then(() => {

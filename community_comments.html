@@ -55,42 +55,72 @@
               <h2>Topic Description</h2>
               <h5><a style="text-decoration:none;color:white;":href="'seller_prof.html?id='+post_information.userid">Posted by <u>@{{post_information.poster}}</u></a></h5>
             </div>
-            
+            <div class="d-flex justify-content-center">
+            <img class="mt-4" :src="post_information.images[0]" alt="topic image" style="height:40%; width:40%">
+          </div>
             <p id="topic_desc">
               {{post_information.desc}}
             </p>
           </div>
         </div>
-        <div id="main_comments">
-            <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
-            <div class="col-12 col-md-10 col-lg-10 mb-2">
-                <div class="comm-container w-100 h-100">
-                    <div class="commenter-cont">
-                        <span class="commenter"><a :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
-                    </div>
-                    <div class="comm-info d-block">
-                            <p class="comment-desc">{{comment.desc}}</p>
-                    </div>
-                    <div class="bottom-bar d-flex justify-content-between">
-                        <div class="like-dislike">
-                            {{comment.likes.length}} likes
-                        </div>
-                        <div class="comm-buttons">
-                                <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button>
-                                <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button>
-                                <!-- <button @click="add_dislike"><img id="dislike_img" src="images/thumb-down.png"></button> -->
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-      <div class="container" id="addcomments">
-        <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
-        <button type="submit" id="post_comments" @click="post_comments()"><img src="images/send_button.png" id="send"></button>
-      </div>
 
-        </div>
+        <div class="row mt-5">
+          <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
+            <div class="position-sticky">
+              <div class="mt-4 mb-2 filters-header d-flex justify-content-center">
+                <h5>Other Pages</h5>
+              </div>
+              <hr class="filter-div">
+              <a class="link-item ms-2 mb-5" href="community_general.html">General</a><br>
+              <a class="link-item ms-2 mb-5" href="community_fashion.html">Fashion</a><br>
+              <a class="link-item ms-2 mb-5" href="community_food.html">Food</a><br>
+              <a class="link-item ms-2 mb-5" href="community_3Rs.html">3Rs</a><br>
+              <a class="link-item ms-2 mb-5" href="community_reviews.html">Reviews</a><br>
+              <a class="link-item ms-2 mb-5" href="community_others.html">Others</a><br>
+              <br>
+            </div>
+          </nav>
+    
+          <div class="col-lg-9 col-md-8 col-12 mt-2 mb-3">
+            <div class="row row-cols-1 row-cols-lg-12 row-cols-md-12 row-cols-sm-12 g-4">
+                <div id="main_comments">
+                  <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
+                  <div class="col-12 col-md-11 col-lg-11 mb-4">
+                      <div class="comm-container w-100 h-100">
+                          <div class="commenter-cont">
+                              <span class="commenter"><a :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
+                              <span class="commenter"> commented on {{comment.datepart}}, {{comment.timepart}}</span>
+                          </div>
+                          <div class="comm-info d-block">
+                                  <p class="comment-desc">{{comment.desc}}</p>
+                          </div>
+                          <div class="bottom-bar d-flex justify-content-between">
+                              <div class="like-dislike">
+                                  {{comment.likes.length}} likes
+                              </div>
+                              <div class="comm-buttons">
+                                      <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button>
+                                      <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button>
+                                      <!-- <button @click="add_dislike"><img id="dislike_img" src="images/thumb-down.png"></button> -->
+                              </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+            <div class="container" id="addcomments">
+              <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
+              <button type="submit" id="post_comments" @click="post_comments()"><img src="images/send_button.png" id="send"></button>
+            </div>
+      
+              </div>
+    
+            </div>
+          </div>
+    
+        
+      </div>
+       
     </div>
 
     <script>

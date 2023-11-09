@@ -105,4 +105,10 @@ color: white;
 font-size:1.2rem;
 }
 
+.link-item:hover{
+  background-color: white;
+  color: #5C7345;
+  text-decoration:none;
+  padding: 0.5rem;
+}
 

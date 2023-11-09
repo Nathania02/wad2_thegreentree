@@ -92,14 +92,16 @@
                                   <p class="comment-desc">{{comment.desc}}</p>
                           </div>
                           <div class="bottom-bar d-flex justify-content-between">
-                              <div class="like-dislike">
+                            <div class="comm-buttons">
+                              <a @click="add_like(comment.comment_id, comment.likes)" style="cursor:pointer;"><img class="ms-2" src="images/thumb-up.png" id="send" style="height:30px;width:30px;"></a>
+                              <a v-if="logged_in_user_id == comment.userid" @click="add_like(comment.comment_id, comment.likes)" style="cursor:pointer;"><img class="ms-2" src="images/bin-white.png" id="send" style="height:30px;width:30px;"></a>
+                              <!-- <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button> -->
+                              <!-- <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button> -->
+                              </div>
+                              <div class="like-dislike me-3">
                                   {{comment.likes.length}} likes
                               </div>
-                              <div class="comm-buttons">
-                                      <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button>
-                                      <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button>
-                                      <!-- <button @click="add_dislike"><img id="dislike_img" src="images/thumb-down.png"></button> -->
-                              </div>
+                              
                           </div>
                           
                       </div>
@@ -107,7 +109,9 @@
               </div>
             <div class="container" id="addcomments">
               <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
-              <button type="submit" id="post_comments" @click="post_comments()"><img src="images/send_button.png" id="send"></button>
+              <a @click="post_comments()" style="cursor:pointer;"><img class="ms-4" src="images/send_button.png" id="send" style="height:50px;width:50px;"></a>
+              <!-- <button type="submit" id="post_comments" @click="post_comments()"><a @click="post_comments()"><img src="images/send_button.png" id="send"></a></button> -->
+
             </div>
       
               </div>

@@ -129,14 +129,14 @@ retrievePosts();
                 
 
                     rows += `
-                    <div class="col-12 d-flex justify-content-center" id="post">
+                    <div class="col-12 d-flex justify-content-center mb-4" id="post">
                         <a style="text-decoration:none;color:#5c7345;" href="community_comments.html?communityid=${id}&postid=${post_id}&posttitle=${topic_title}">
-                            <div class="topic-title d-flex justify-content-center mb-3">
+                            <div class="mt-2 topic-title d-flex justify-content-center mb-3">
                                 <h3>${topic_title}</h3>
                             </div>
                             <div class="row image-and-about">
                                 <div class="col-md-6 col-lg-6">
-                                    <div class="image-container">
+                                    <div class="image-container mb-5">
                                         <img class="w-100" src='${image}'>
                                     </div>
                                 </div>
@@ -146,8 +146,8 @@ retrievePosts();
                                     </div>
                                 </div>
                             </div>
-                            <div class="createdby mt-3">
-                                <p id='username'>Created By: ${user.username} on ${post_date}, ${post_time}</p>
+                            <div class="createdby d-flex justify-content-center">
+                                <p id='username'>Created by <b> ${user.username} </b> on <b>${post_date}, ${post_time}</b></p>
                             </div>
                         </a>
                     </div>
@@ -176,9 +176,9 @@ retrievePosts();
 
 
                 rows += `
-                    <div class="col-12 d-flex justify-content-center" id="post">
+                    <div class="col-12 d-flex justify-content-center mb-4" id="post">
                         <a style="text-decoration:none;color:#5c7345;" href="community_comments.html?communityid=${id}&postid=${post_id}&posttitle=${topic_title}">
-                            <div class="topic-title d-flex justify-content-center mb-3">
+                            <div class="mt-3 topic-title d-flex justify-content-center mb-3">
                                 <h3>${topic_title}</h3>
                             </div>
                             <div class="row image-and-about">
@@ -188,13 +188,13 @@ retrievePosts();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
-                                    <div class="about">
+                                    <div class="about mb-5">
                                         <p id='about'>About: <br/>${description}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="createdby mt-3">
-                                <p id='username'>Created By: ${user.username} on ${post_date}, ${post_time}</p>
+                            <div class="createdby d-flex justify-content-center">
+                                <p id='username'>Created by <b> ${user.username} </b> on <b>${post_date}, ${post_time}</b></p>
                             </div>
                         </a>
                     </div>

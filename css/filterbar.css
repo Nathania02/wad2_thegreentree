@@ -3,11 +3,9 @@
     width: 0;
     position: fixed;
     z-index: 1;
-    top: 170px;
     left: 0px;
     background-color: #5c7345;
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 60px;
 }
 
@@ -19,6 +17,7 @@
     color: white;
     display: block;
     transition: 0.3s;
+    margin-bottom:0;
 }
 
 #filterbar a:hover {
@@ -50,12 +49,12 @@
     margin-top: 10px;
 }
 
-#main {
+/* #main {
     transition: margin-left .5s;
     padding: 16px;
     margin-top: 53px;
     position: relative;
-}
+} */
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

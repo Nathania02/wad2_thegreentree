@@ -29,7 +29,7 @@
     <script src="./js/filterbar.js"></script>
 
     <!-- filter bar css -->
-    <link rel="stylesheet" href="css/filterbar.css">
+    <!-- <link rel="stylesheet" href="css/filterbar.css"> -->
 
     <!-- external stylesheet -->
     <link rel="stylesheet" href="css/profile.css">
@@ -42,8 +42,8 @@
     <div id="app">
 
         <div class="w-100 h-100">
-            <p class="pt-5 mt-5 header-profile"><span id="header-mkt">Your Profile</span></p>
-            <p class="text-center summary-text">A summary of your information</p>
+            <p class="pt-5 mt-5 header-profile"><span id="header-mkt">YOUR PROFILE</span></p>
+            <p class="text-center summary-text mb-5">A summary of your information</p>
           </div>
         
           <div class="container-fluid" id="main">
@@ -58,79 +58,77 @@
                         :style="{'background-color': backgroundColorAcc}">My Account</a>
                     <a class="filterbar-link" href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
                         @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
-                    <a class="filterbar-link" href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
-                        :style="{'background-color': backgroundColorPos}">My Posts</a>
                     <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')" @mouseout="on_mouseout('seller_portal')"
                         :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
                 </div>
               </nav>
         
-              <div id="displayUserData" class="col-lg-9 col-md-8 col-12">
+              <div id="displayUserData" class="col-lg-9 col-md-8 col-12 mt-4">
                 <div class="row row-cols-1 row-cols-lg-9 row-cols-md-8 row-cols-sm-2 g-4 d-flex justify-content-center">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Username</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="username"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>First Name</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="firstName"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Last Name</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="lastName"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Email</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="email"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Phone Number</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="phoneNo"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Gender</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="gender"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Date of Birth</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="dateofbirth"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Address</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="address"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
+                    <div class="col-10 col-lg-3 col-md-3">
                         <span><b>Postal Code</b></span>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
+                    <div class="col-10 col-lg-6 col-md-5">
                         <span id="postalCode"></span>
                     </div>
                     <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-9 col-md-8">
+                    <div class="col-10 col-lg-9 col-md-8">
                         <div class="button text-end">
                             <button type="button" name="editButton" id="editButton"
                                 class="logOutbtn loginPage me-3">Edit</button>

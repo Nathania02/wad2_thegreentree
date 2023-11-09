@@ -76,7 +76,6 @@ function createfilterbar_profile() {
         <a href="javascript:void(0)" class="closebtn" onclick="close_filter1()"><img id="back" src="images/back.png"></a>
         <a href="profile.html">My Account</a>
         <a href="profile_my_purchases.html">My Purchases</a>
-        <a href="profile_my_posts.html">My Posts</a>
         <a href="seller_portal.html">Seller's Portal</a>
     </div>
     `)
@@ -95,16 +94,10 @@ function createfilterbar_profile() {
         mouseout_purchase(a_items[2]);
     });
     a_items[3].addEventListener('mouseover', function () {
-        mouseover_post(a_items[3]);
+        mouseover_seller(a_items[3]);
     });
     a_items[3].addEventListener('mouseout', function () {
-        mouseout_post(a_items[3]);
-    });
-    a_items[4].addEventListener('mouseover', function () {
-        mouseover_post(a_items[4]);
-    });
-    a_items[4].addEventListener('mouseout', function () {
-        mouseout_post(a_items[4]);
+        mouseout_seller(a_items[3]);
     });
 }
 
@@ -123,11 +116,11 @@ function mouseover_purchase(element) {
 function mouseout_purchase(element) {
     element.style.backgroundColor = "transparent";
 }
-function mouseover_post(element) {
+function mouseover_seller(element) {
     element.style.backgroundColor = "#D8EAC7";
 }
 
-function mouseout_post(element) {
+function mouseout_seller(element) {
     element.style.backgroundColor = "transparent";
 }
 

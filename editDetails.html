@@ -50,10 +50,10 @@
                 :style="{'background-color': backgroundColorAcc}">My Account</a>
             <a href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
                 @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
-            <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
-                :style="{'background-color': backgroundColorPos}">My Posts</a>
+            <!-- <a href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
+                :style="{'background-color': backgroundColorPos}">My Posts</a> -->
             <a href="seller_portal.html" @mouseover="on_mouseover('seller_portal')"
-                @mouseout="on_mouseout('seller_portal')" :style="{'background-color': backgroundColorSelPor}">Seller's
+                @mouseout="on_mouseout('seller_portal')" :style="{'background-color': backgroundColorSel}">Seller's
                 Portal</a>
         </div>
 
@@ -246,7 +246,8 @@
                     width: '0px',
                     backgroundColorAcc: 'transparent',
                     backgroundColorPur: 'transparent',
-                    backgroundColorPos: 'transparent',
+                    // backgroundColorPos: 'transparent',
+                    backgroundColorSel: 'transparent',
                     filterButtonPosition: ''
                 }
             },
@@ -273,6 +274,9 @@
                     else if (link === 'posts') {
                         this.backgroundColorPos = '#D8EAC7'
                     }
+                    // else if (link === 'seller_portal') {
+                    //     this.backgroundColorSel = '#D8EAC7'
+                    // }
                 },
                 on_mouseout(link) {
                     if (link === 'account') {
@@ -284,6 +288,9 @@
                     else if (link === 'posts') {
                         this.backgroundColorPos = 'transparent'
                     }
+                    // else if (link === 'seller_portal') {
+                    //     this.backgroundColorSel = '#D8EAC7'
+                    // }
                 }
             }
         }).mount("#app1")

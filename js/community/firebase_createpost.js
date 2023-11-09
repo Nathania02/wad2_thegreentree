@@ -121,6 +121,7 @@ checkUserLoginStatus()
                                 .then(() => {
                                     console.log("Document successfully written");
                                     alert("Post document created successfully");
+                                    
                                 })
                                 .catch((error) => {
                                     console.error("Error", error);

@@ -1,88 +1,111 @@
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    /* background-color: antiquewhite;  */
-  }
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* background-color: antiquewhite;  */
+}
 
 #post {
-  padding: 20px;
-  width: 80%;
-  margin-top: 10px;
-  text-align: left;
-  color: #5c7345;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 0.375em;
+padding: 20px;
+width: 80%;
+margin-top: 10px;
+text-align: left;
+color: #5c7345;
+background-color: white;
+border: 1px solid grey;
+border-radius: 0.375em;
 }
 
 #post a {
-  color: #5c7345;
+color: #5c7345;
 }
 
+/*
+TODO: About topic next to image, add image in
+*/
 
 #createPost {
-  position: absolute;
-  right: 30px;
-  top: 100px;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #5c7345;
-  color: white;
-  padding: 10px 10px;
-  border: none;
-  border-radius: 0.375rem;
+font-size: 20px;
+cursor: pointer;
+background-color: #5c7345;
+color: white;
+padding: 10px 10px;
+border: none;
+border-radius: 0.375rem;
 }
 
 #createPost:hover {
-  background-color: #444;
+background-color: #444;
 }
 
 #createPost a:hover {
-  color: white;
+color: white;
 }
 
-#main_search {
-  /* transition: margin-left .5s;
-  padding: 16px;
-  margin-top: 5px; */
-  text-align: center;
+#main {
+transition: margin-left .5s;
+padding: 16px;
+margin-top: 5px;
+text-align: center;
 }
 
 #plus {
-  width: 20px;
-  height: 20px;
+width: 20px;
+height: 20px;
 }
 
 a {
-  text-decoration: none;
-  color: white;
+text-decoration: none;
+color: white;
 }
 
 #category {
-  text-align: center;
-  margin-top: 50px;
+text-align: center;
+margin-top: 50px;
 }
 
 #find_out_more { 
-  text-align: center;
-  color: grey;
+text-align: center;
+color: grey;
 }
 
 #about {
-  width: 40%;
-  float: right;
-  margin-right: 20px;
-  /* text-align: justify; */
+/* position: inline; */
+width: 40%;
+float: right;
+margin-right: 20px;
+text-align: justify;
+/* top: 20px; */
 }
 
 #postimage_container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
+position: relative;
+width: 100%;
+overflow: hidden;
 }
 
 #post_image {
-  width: 50%;
-  height: 300px;
-  float: left;
+/* position: inline; */
+width: 50%;
+height: 300px;
+float: left;
+/* padding: 20px; */
+}
+
+/* ARA SIDEBAR */
+
+.sidebar-design{
+background-color: #5C7345;
+color: white;
+margin-bottom: 1rem;
+}
+
+.filter-div{
+margin-top: 1rem;
+margin-bottom: 1rem;
+color:white;
+}
+
+.link-item{
+color: white;
+font-size:1.2rem;
 }
 

@@ -31,6 +31,9 @@
     <!-- filter bar css -->
     <!-- <link rel="stylesheet" href="css/filterbar.css"> -->
 
+    <!-- leaves stylesheet -->
+    <link rel="stylesheet" href="css/leaves.css">
+
     <!-- external stylesheet -->
     <link rel="stylesheet" href="css/profile.css">
 </head>
@@ -39,6 +42,19 @@
     <script>
         createNavbarGreen();
     </script>
+    <section>
+        <div class="set">
+            <div><img class="leaf" src="images/leaves1.png"></div>
+            <div><img class="leaf" src="images/leaves2.png"></div>
+            <div><img class="leaf" src="images/leaves3.png"></div>
+            <div><img class="leaf" src="images/leaves4.png"></div>
+            <div><img class="leaf" src="images/leaves1.png"></div>
+            <div><img class="leaf" src="images/leaves2.png"></div>
+            <div><img class="leaf" src="images/leaves3.png"></div>
+            <div><img class="leaf" src="images/leaves4.png"></div>
+        </div>
+    </section>
+
     <div id="app">
 
         <div class="w-100 h-100">
@@ -137,18 +153,17 @@
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
-                <!-- <div class="button text-end">
+        </div>
+        <!-- <div class="button text-end">
                     <button type="button" name="editButton" id="editButton"
                         class="logOutbtn loginPage me-3">Edit</button>
                     <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log
                         Out</button>
                 </div> -->
 
-            </div>
-        </div>
+    </div>
+    </div>
     </div>
 
 
@@ -161,7 +176,6 @@
                     width: '0px',
                     backgroundColorAcc: 'transparent',
                     backgroundColorPur: 'transparent',
-                    backgroundColorPos: 'transparent',
                     backgroundColorSelPor: 'transparent',
                     filterButtonPosition: ''
                 }
@@ -186,9 +200,6 @@
                     else if (link === 'purchases') {
                         this.backgroundColorPur = '#D8EAC7';
                     }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = '#D8EAC7';
-                    }
                     else if (link === 'seller_portal') {
                         this.backgroundColorSelPor = '#D8EAC7';
                     }
@@ -199,9 +210,6 @@
                     }
                     else if (link === 'purchases') {
                         this.backgroundColorPur = 'transparent';
-                    }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = 'transparent';
                     }
                     else if (link === 'seller_portal') {
                         this.backgroundColorSelPor = 'transparent';

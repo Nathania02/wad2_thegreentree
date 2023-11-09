@@ -28,6 +28,10 @@
     <script src="./js/filterbar.js"></script>
 
     <!-- filter bar css -->
+    <link rel="stylesheet" href="css/filterbar.css">
+
+    <!-- leaves stylesheet -->
+    <link rel="stylesheet" href="css/leaves.css">
     <!-- <link rel="stylesheet" href="css/filterbar.css"> -->
 
     <!-- external stylesheet -->
@@ -39,6 +43,19 @@
     <script>
         createNavbarGreen();
     </script>
+
+    <section>
+        <div class="set">
+            <div><img class="leaf" src="images/leaves1.png"></div>
+            <div><img class="leaf" src="images/leaves2.png"></div>
+            <div><img class="leaf" src="images/leaves3.png"></div>
+            <div><img class="leaf" src="images/leaves4.png"></div>
+            <div><img class="leaf" src="images/leaves1.png"></div>
+            <div><img class="leaf" src="images/leaves2.png"></div>
+            <div><img class="leaf" src="images/leaves3.png"></div>
+            <div><img class="leaf" src="images/leaves4.png"></div>
+        </div>
+    </section>
 
     <span id="purchases_listing">
         <div id="main" class="container-fluid mt-5">
@@ -58,6 +75,8 @@
                                   :style="{'background-color': backgroundColorAcc}">My Account</a>
                               <a class="filterbar-link" href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
                                   @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
+                              <a class="filterbar-link" href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
+                                  :style="{'background-color': backgroundColorPos}">My Posts</a>
                               <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')" @mouseout="on_mouseout('seller_portal')"
                                   :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
                           </div>
@@ -65,75 +84,76 @@
 
 
 
-                    <div v-if="orders.length == 0" class="col-lg-9 col-md-8 col-12 d-flex justify-content-center">
-                            <p class="pt-5 pb-5 mb-4 header-marketplace">You have no purchases yet!</p>
-                    </div>
-                    <div v-else class="col-lg-9 col-md-8 col-12 justify-content-center">
-                        <div v-for="order in orders" class="row row-cols-1 row-cols-lg-9 row-cols-md-8 row-cols-sm-2 g-4 d-flex justify-content-center mb-5">
-                            <div class="col-sm-12 col-md-11 col-lg-11">
-                                <div class="w-100 top-box">
-                                    <div class="ord-num">
-                                        Order No. {{order.orderid}}
-                                    </div>
-                                    <div class="date">
-                                        Date: {{convert_to_date(order.date)}}
-                                    </div>
+                <div v-if="orders.length == 0" class="col-lg-9 col-md-8 col-12 d-flex justify-content-center">
+                    <p class="pt-5 pb-5 mb-4 header-marketplace">You have no purchases yet!</p>
+                </div>
+                <div v-else class="col-lg-9 col-md-8 col-12 justify-content-center">
+                    <div v-for="order in orders"
+                        class="row row-cols-1 row-cols-lg-9 row-cols-md-8 row-cols-sm-2 g-4 d-flex justify-content-center mb-5">
+                        <div class="col-sm-12 col-md-11 col-lg-11">
+                            <div class="w-100 top-box">
+                                <div class="ord-num">
+                                    Order No. {{order.orderid}}
                                 </div>
-                                <div v-for="order_det in order.orderdetails" class="w-100">
-                                    <div class="w-100 seller-info d-flex justify-content-between">
-                                        <div class="seller-name">
-                                            @{{order_det.item_owner_name}}
-                                        </div>
-                                        <div class="status">
-                                            <div v-if="order_det.status == 'pending delivery'" class="delivery-text">
-                                                Seller is yet to dispatch your order
-                                            </div>
-                                            <div v-if="order_det.status == 'pending pickup'" class="pickup-text">
-                                                Please pick up your order at 
-                                                <b>{{order_det.pickup_location}}</b>
-                                                on <b>{{convert_to_date(order_det.pickup_date)}}</b>
-                                            </div>
-                                            <div v-if="order_det.status == 'dispatched'" class="arriving-text">
-                                                Order arriving on {{convert_to_date(order_det.delivery_date)}}
-                                            </div>
-                                            <div v-if="order_det.status == 'delivered'" class="delivered-text">
-                                                Order arriving on {{convert_to_date(order_det.delivery_date)}}
-                                            </div>
-                                            <div v-if="order_det.status == 'picked up'" class="pickedup-text">
-                                                Order arriving on {{convert_to_date(order_det.delivery_date)}}
-                                            </div>
-                                        </div>
+                                <div class="date">
+                                    Date: {{convert_to_date(order.date)}}
+                                </div>
+                            </div>
+                            <div v-for="order_det in order.orderdetails" class="w-100">
+                                <div class="w-100 seller-info d-flex justify-content-between">
+                                    <div class="seller-name">
+                                        @{{order_det.item_owner_name}}
                                     </div>
-                                    <div class="order-det-box d-flex">
-                                        <div class="img-container">
-                                            <img :src="order_det.item_image" alt="">
+                                    <div class="status">
+                                        <div v-if="order_det.status == 'pending delivery'" class="delivery-text">
+                                            Seller is yet to dispatch your order
                                         </div>
-                                        <div class="item-info">
-                                            <div class="item-name">
-                                                {{order_det.itemname}}
-                                            </div>
-                                            <div class="item-qty">
-                                                Quantity Ordered: {{order_det.quantity}}
-                                            </div>
-                                            <div class="item-price">
-                                                Price: ${{order_det.price}}
-                                            </div>
+                                        <div v-if="order_det.status == 'pending pickup'" class="pickup-text">
+                                            Please pick up your order at
+                                            <b>{{order_det.pickup_location}}</b>
+                                            on <b>{{convert_to_date(order_det.pickup_date)}}</b>
+                                        </div>
+                                        <div v-if="order_det.status == 'dispatched'" class="arriving-text">
+                                            Order arriving on {{convert_to_date(order_det.delivery_date)}}
+                                        </div>
+                                        <div v-if="order_det.status == 'delivered'" class="delivered-text">
+                                            Order arriving on {{convert_to_date(order_det.delivery_date)}}
+                                        </div>
+                                        <div v-if="order_det.status == 'picked up'" class="pickedup-text">
+                                            Order arriving on {{convert_to_date(order_det.delivery_date)}}
                                         </div>
                                     </div>
                                 </div>
-        
-                                <div class="w-100 bottom-box d-flex justify-content-end">
-                                    <div class="total-price">
-                                        Order Total: ${{order.total}}
+                                <div class="order-det-box d-flex">
+                                    <div class="img-container">
+                                        <img :src="order_det.item_image" alt="">
                                     </div>
+                                    <div class="item-info">
+                                        <div class="item-name">
+                                            {{order_det.itemname}}
+                                        </div>
+                                        <div class="item-qty">
+                                            Quantity Ordered: {{order_det.quantity}}
+                                        </div>
+                                        <div class="item-price">
+                                            Price: ${{order_det.price}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-100 bottom-box d-flex justify-content-end">
+                                <div class="total-price">
+                                    Order Total: ${{order.total}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </span>
-    
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

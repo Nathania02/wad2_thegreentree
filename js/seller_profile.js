@@ -3,22 +3,24 @@ import { db, checkUserLoginStatus } from './firebase_profile.js';
 
 checkUserLoginStatus().then((user) => {
     if (user.loggedIn) {
-      fetch_data(user);
+      const url_params = new URLSearchParams(window.location.search);
+      const user_id = url_params.get('id');
+
+      if(user.user.uid == user_id){
+        window.location.href = "seller_portal.html";
+      }else{
+        fetch_data();
+      }
     } else {
-      fetch_data(null);
+      fetch_data();
     }
 });
 
 
-async function fetch_data(user) {
+async function fetch_data() {
 
     const url_params = new URLSearchParams(window.location.search);
     const user_id = url_params.get('id');
-
-    if(user != null){
-    if(user.user.uid == user_id){
-        window.location.href = "seller_portal.html";
-    }}else{
 
     const items_array = [];
     const reviews_array = [];
@@ -194,7 +196,5 @@ async function fetch_data(user) {
       });
   
       app.mount("#product_listing");
-
-    }
 
 };

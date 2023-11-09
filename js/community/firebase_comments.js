@@ -114,6 +114,19 @@ async function fetch_data(user) {
     }
 
     console.log(post_information_array[0]);
+
+    // Retrieve the person who posted the post
+    const poster_id = post_information_array[0]['userid'];
+    const poster_ref = doc(collection(db, "users"), poster_id);
+    const poster_doc = await getDoc(poster_ref);
+
+    if (poster_doc.exists()) {
+      const poster_data = poster_doc.data();
+      post_information_array[0]['poster'] = poster_data.username;
+    }
+
+
+
     // Create the vue instance
     const app = Vue.createApp({
       data(){

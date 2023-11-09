@@ -39,10 +39,12 @@ checkUserLoginStatus().then(async (result) => {
             console.log(orig_ord_doc_data);
             order['buyer_userid'] = orig_ord_doc_data['userid'];
             order['date'] = orig_ord_doc_data['date'];
+            console.log(order['buyer_userid']);
 
             const user_ref = doc(collection(db, "users"), order['buyer_userid']);
             const user_doc = await getDoc(user_ref);
             const user_doc_data = user_doc.data();
+            console.log(user_doc_data);
             order['buyer_username'] = user_doc_data['username'];
         }
 

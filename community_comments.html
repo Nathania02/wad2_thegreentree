@@ -37,7 +37,7 @@
 
   <script>
     createNavbarGreen();
-    createfilterbar_community();
+    // createfilterbar_community();
 
     // to do: delete, add likes and dislikes of comments
   </script>
@@ -45,14 +45,15 @@
       <div id="heading">
         <h1 id="category">Category: {{post_information.community_name}}</h1> 
         <h3 id="title">Title: {{post_information.title}}</h3>
-
+        <button id="abouttopic" onclick="openModal()">About Topic</button>
       </div>
-      <button id="abouttopic" onclick="openModal()">About Topic</button>
+      
         <div id="myModal" class="modal">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header d-block justify-content-center">
               <span class="close" onclick="closeModal()">&times;</span>
               <h2>Topic Description</h2>
+              <h5><a style="text-decoration:none;color:white;":href="'seller_prof.html?id='+post_information.userid">Posted by <u>@{{post_information.poster}}</u></a></h5>
             </div>
             
             <p id="topic_desc">

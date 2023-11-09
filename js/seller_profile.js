@@ -2,7 +2,7 @@ import { collection, doc, getDoc, query, where, getDocs, deleteDoc, addDoc } fro
 import { db, checkUserLoginStatus } from './firebase_profile.js';
 
 checkUserLoginStatus().then((user) => {
-    if (user) {
+    if (user.loggedIn) {
       fetch_data(user);
     } else {
       fetch_data(null);
@@ -15,9 +15,10 @@ async function fetch_data(user) {
     const url_params = new URLSearchParams(window.location.search);
     const user_id = url_params.get('id');
 
+    if(user != null){
     if(user.user.uid == user_id){
         window.location.href = "seller_portal.html";
-    }else{
+    }}else{
 
     const items_array = [];
     const reviews_array = [];

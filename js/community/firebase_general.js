@@ -169,22 +169,46 @@ retrievePosts();
                     var images = post.images;
                     var image = images[0];
                 
-                    rows +=
-                    "<div class='col'>"
-                    +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-                    +"<h3>"+topic_title+"</h3>"
-                    +"<h5>Total Followers: "+followercount+"</h5>"
-                    // +"<button id='follow' type='button'>Follow</button>"
-                    +"<div class='container' id='postimage_container'>"
-                    +"<img id='post_image' src='"+image+"'>"
-                    +"<p id='about'>About: <br/>"+description+"<p>"
-                    +"</div><br/>"
-                    +"<p id='username'>Created By: "+user.username+"</p>";        
-                    +"<div class='col-12'>"
-                    +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
-                    +"<div class='carousel-inner'>";
-                    +"</a></button></div></div>";
-                    +"</div>"
+                    // rows +=
+                    // +"<div class='col d-flex justify-content-center'>"
+                    // +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
+                    // +"<h3>"+topic_title+"</h3>"
+                    // // +"<button id='follow' type='button'>Follow</button>"
+                    // +"<div class='container' id='postimage_container'>"
+                    // +"<img id='post_image' src='"+image+"'>"
+                    // +"<p id='about'>About: <br/>"+description+"<p>"
+                    // +"</div><br/>"
+                    // +"<p id='username'>Created By: "+user.username+"</p>";        
+                    // +"<div class='col-12'>"
+                    // +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
+                    // +"<div class='carousel-inner'>";
+                    // +"</a></button></div></div>";
+                    // +"</div>"
+
+                    rows += `
+                    <div class="col-12 d-flex justify-content-center" id="post">
+                        <a style="text-decoration:none;color:#5c7345;" href="community_comments.html?communityid=${id}&postid=${post_id}&posttitle=${topic_title}">
+                            <div class="topic-title d-flex justify-content-center mb-3">
+                                <h3>${topic_title}</h3>
+                            </div>
+                            <div class="row image-and-about">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="image-container">
+                                        <img class="w-100" src='${image}'>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="about">
+                                        <p id='about'>About: <br/>${description}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="createdby mt-3">
+                                <p id='username'>Created By: ${user.username}</p>
+                            </div>
+                        </a>
+                    </div>
+                `;
                     }
                   }
                 }
@@ -210,22 +234,47 @@ retrievePosts();
                         var images = post.images;
                         var image = images[0];
 
-                        rows +=
-                        "<div class='col'>"
-                    +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
-                    +"<h3>"+topic_title+"</h3>"
-                    +"<h5>Total Followers: "+followercount+"</h5>"
-                    // +"<button id='follow' type='button'>Follow</button>"
-                    +"<div class='container' id='postimage_container'>"
-                    +"<img id='post_image' src='"+image+"'>"
-                    +"<p id='about'>About: <br/>"+description+"<p>"
-                    +"</div><br/>"
-                    +"<p id='username'>Created By: "+user.username+"</p>";        
-                    +"<div class='col-12'>"
-                    +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
-                    +"<div class='carousel-inner'>";
-                    +"</a></button></div></div>";
-                    +"</div>"
+                    //     rows +=
+                    //     "<div class='col d-flex justify-content-center'>"
+                    // +"<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
+                    // +"<h3>"+topic_title+"</h3>"
+                    // // +"<button id='follow' type='button'>Follow</button>"
+                    // +"<div class='container' id='postimage_container'>"
+                    // +"<img id='post_image' src='"+image+"'>"
+                    // +"<p id='about'>About: <br/>"+description+"<p>"
+                    // +"</div><br/>"
+                    // +"<p id='username'>Created By: "+user.username+"</p>";        
+                    // +"<div class='col-12'>"
+                    // +"<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"
+                    // +"<div class='carousel-inner'>";
+                    // +"</a></button></div></div>";
+                    // +"</div>"
+
+                    rows += `
+                        <div class="col-12 d-flex justify-content-center" id="post">
+                            <a style="text-decoration:none;color:#5c7345;" href="community_comments.html?communityid=${id}&postid=${post_id}&posttitle=${topic_title}">
+                                <div class="topic-title d-flex justify-content-center mb-3">
+                                    <h3>${topic_title}</h3>
+                                </div>
+                                <div class="row image-and-about">
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="image-container">
+                                            <img class="w-100" src='${image}'>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="about">
+                                            <p id='about'>About: <br/>${description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="createdby mt-3">
+                                    <p id='username'>Created By: ${user.username}</p>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+
       
                         // "<button id='post' type='button'><a id='postButton' href='community_comments.html?communityid="+id+"&postid="+post_id+"&posttitle="+topic_title+"'>"
                         // +"<h3>"+topic_title+"</h3>"

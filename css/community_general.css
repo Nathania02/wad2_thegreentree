@@ -7,7 +7,6 @@ body {
 padding: 20px;
 width: 80%;
 margin-top: 10px;
-text-align: left;
 color: #5c7345;
 background-color: white;
 border: 1px solid grey;
@@ -68,12 +67,7 @@ color: grey;
 }
 
 #about {
-/* position: inline; */
-width: 40%;
-float: right;
-margin-right: 20px;
-text-align: justify;
-/* top: 20px; */
+  font-size: 0.8em;
 }
 
 #postimage_container {
@@ -84,9 +78,10 @@ overflow: hidden;
 
 #post_image {
 /* position: inline; */
-width: 50%;
+/* width: 50%; */
 height: 300px;
-float: left;
+width:100%;
+/* float: left; */
 /* padding: 20px; */
 }
 

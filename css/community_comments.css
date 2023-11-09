@@ -149,9 +149,9 @@ button{
 #abouttopic {
     border: none;
     border-radius: 0.375em;
-    position: absolute;
+    /* position: absolute;
     top: 5px;
-    right: 0px;
+    right: 0px; */
     font-size: 20px;
     cursor: pointer;
     background-color: #5c7345;

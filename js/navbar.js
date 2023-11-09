@@ -17,9 +17,7 @@ function createNavbarGreen() {
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="marketplaceDropdown">
                             <li><a class="dropdown-item" href="marketplace.html">Marketplace</a></li>
-                            <li><a class="dropdown-item list-item" id="list_item" href="list_item.html">List an Item</a></li>
-                            <li><a class="dropdown-item shopping-cart" id="shopping_cart">Shopping Cart</a></li>
-                            
+                            <li><a class="dropdown-item list-item" id="list_item" href="list_item.html">List an Item</a></li>                            
                         </ul>
                     </li>
                     <li class="nav-item px-3"><div title="Community">
@@ -27,6 +25,12 @@ function createNavbarGreen() {
                         <img src="rsrc/navbar/community.png" height="30" width="30">
                         </a></div>
                     </li>
+                    <li class="nav-item px-3 shopping-cart" id="shopping_cart"><div title="Cart">
+                        <a class="nav-link" >
+                        <img src="rsrc/navbar/cart.png" height="30" width="30">
+                        </a></div>
+                    </li>
+
                     <li class="nav-item px-3"><div title="Profile">
                         <a class="nav-link" id="profile_link" href="login.html">
                         <img id="profile_image" src="rsrc/navbar/profile.png" height="30" width="30">
@@ -62,11 +66,11 @@ function createNavbarGreen() {
     list_items[0].addEventListener('mouseout', function () {
         mk_to_white(list_items[0]);
     });
-    list_items[4].addEventListener('mouseover', function () {
-        comm_to_green(list_items[4]);
+    list_items[3].addEventListener('mouseover', function () {
+        comm_to_green(list_items[3]);
     });
-    list_items[4].addEventListener('mouseout', function () {
-        comm_to_white(list_items[4]);
+    list_items[3].addEventListener('mouseout', function () {
+        comm_to_white(list_items[3]);
     });
     list_items[5].addEventListener('mouseover', function () {
         prof_to_green(list_items[5]);

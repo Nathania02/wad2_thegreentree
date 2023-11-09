@@ -98,6 +98,21 @@ checkUserLoginStatus()
                     var url = url[2].split(".");
                     var community_category = url[0];
 
+                    if(this.topic_title.length == 0){
+                        alert ("Please enter a topic title");
+                        return;
+                    }
+
+                    if(this.topic_about.length == 0){
+                        alert("Please enter a description for this topic");
+                        return;
+                    }
+
+                    if(images.length == 0){
+                        alert("Please upload ONLY one image");
+                        return;
+                    }
+
 
                     for(var j of communitiesList){
                         var name = j.name;
@@ -115,12 +130,15 @@ checkUserLoginStatus()
                                     communityid: this.community_id,
                                     followercount: 0,
                                     userid: this.user_id,
-                                    images: imageUrls,                                    
+                                    images: imageUrls,
+                                    dateposted: new Date(),                                    
                                 };
                                 await setDoc(postRef, postDataRef)
                                 .then(() => {
                                     console.log("Document successfully written");
                                     alert("Post document created successfully");
+                                    console.log(lastPageURL);
+                                    window.location.href = lastPageURL;    
                                     
                                 })
                                 .catch((error) => {
@@ -143,11 +161,14 @@ checkUserLoginStatus()
                                 followercount: 0,
                                 userid: this.user_id,
                                 images: imageUrls,
+                                dateposted: new Date(),
                             };
                             await setDoc(postRef, postDataRef)
                             .then(() => {
                                 console.log("Document successfully written");
                                 alert("Post document created successfully");
+                                console.log(lastPageURL);
+                                window.location.href = lastPageURL;
                             })
                             .catch((error) => {
                                 console.error("Error", error);

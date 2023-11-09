@@ -281,3 +281,23 @@ button{
     color: blue;
 }
 
+/* ARA SIDEBAR */
+
+.sidebar-design{
+    background-color: #5C7345;
+    color: white;
+    margin-bottom: 1rem;
+    }
+    
+    .filter-div{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color:white;
+    }
+    
+    .link-item{
+    color: white;
+    font-size:1.2rem;
+    }
+    
+

@@ -85,7 +85,17 @@ async function fetch_data(user) {
       comments_array.push(docData);
     });
 
+    // Arrange the comments by date & time posted
+
+    comments_array.sort(function(a,b){
+      return b.dateposted - a.dateposted;
+    });
+
     for (let comment of comments_array){
+
+      comment['datepart'] = comment['dateposted'].toDate().toLocaleDateString();
+      comment['timepart'] = comment['dateposted'].toDate().toLocaleTimeString();
+
       const uq = doc(collection(db, "users"), comment['userid']);
       const querySnapshot_user = await getDoc(uq);
 
@@ -197,11 +207,12 @@ async function fetch_data(user) {
               desc: this.comment,
               postid: this.post_information.post_id,
               userid: this.logged_in_user_id,
+              dateposted: new Date(),
             }
           console.log(comment_data_ref);
           await addDoc(comment_ref, comment_data_ref)
           .then((doc_ref) => {
-            console.log("Comment created with ID: ", doc_ref.id );
+            // console.log("Comment created with ID: ", doc_ref.id );
             location.reload();
           })
           .catch((error) => {

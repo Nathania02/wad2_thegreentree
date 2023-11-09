@@ -99,6 +99,19 @@ checkUserLoginStatus()
             const userId = result.user.uid;
             profileLink.href = 'profile.html';
             shopping_cart.style.display = 'block';
+            shopping_cart.style.cursor = 'pointer';
+
+            shopping_cart.addEventListener('mouseover', function () {
+                shopping_cart.style.backgroundColor = 'white';
+                var image = shopping_cart.getElementsByTagName('img')[0];
+                image.setAttribute("src", "rsrc/navbar/cart_green.png");
+            });
+            shopping_cart.addEventListener('mouseout', function () {
+                shopping_cart.style.backgroundColor = 'transparent';
+                var image = shopping_cart.getElementsByTagName('img')[0];
+                image.setAttribute("src", "rsrc/navbar/cart.png");
+            });
+
             listing_button.style.display = 'block';
 
             // Use 'await' here to wait for the asynchronous operation

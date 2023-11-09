@@ -83,6 +83,20 @@ querySnapshot_post.forEach((doc) => {
   post_array.push(docData);
 })
 
+//sort the posts by dateposted
+
+post_array.sort(function(a,b){
+  return b.dateposted - a.dateposted;
+});
+
+console.log(post_array);
+
+// store the date and time alone in a variable in the post array
+for(let post of post_array){
+  post["date"] = post['dateposted'].toDate().toLocaleDateString();
+  post["time"] = post['dateposted'].toDate().toLocaleTimeString();
+}
+
 var currentUrl = window.location.href;
 
 var url = currentUrl.split("_");
@@ -164,6 +178,8 @@ retrievePosts();
             for(var post of post_array){
               if(topic_title == post.title){
                 var post_id = post.postid;
+                var post_date = post.date;
+                var post_time = post.time;
                 for(var user of usersList){
                   if(user.userId == post.userid){
                     var images = post.images;
@@ -204,7 +220,7 @@ retrievePosts();
                                 </div>
                             </div>
                             <div class="createdby mt-3">
-                                <p id='username'>Created By: ${user.username}</p>
+                                <p id='username'>Created By: ${user.username} on ${post_date}, ${post_time}</p>
                             </div>
                         </a>
                     </div>
@@ -229,6 +245,8 @@ retrievePosts();
                 for(var post of post_array){
                   if(topic_title == post.title){
                     var post_id = post.postid;
+                    var post_date = post.date;
+                    var post_time = post.time;
                     for(var user of usersList){
                       if(user.userId == post.userid){
                         var images = post.images;
@@ -269,7 +287,7 @@ retrievePosts();
                                     </div>
                                 </div>
                                 <div class="createdby mt-3">
-                                    <p id='username'>Created By: ${user.username}</p>
+                                    <p id='username'>Created By: ${user.username} on ${post_date}, ${post_time}</p>
                                 </div>
                             </a>
                         </div>

@@ -9,15 +9,16 @@ body {
 }
 
 .grass {
-    width: 30%;
+    width: 10%;
     position: absolute;
     bottom: -2px;
-    left: 70%;
+    left: 80%;
+    animation: grassGrows 10s linear infinite;
 }
 
 .tree {
     position: absolute;
-    bottom: 40px;
+    bottom: 10px;
     width: 6px;
     height: 100px;
     background-image: linear-gradient(to top, #31461f, #5f8011);
@@ -68,39 +69,78 @@ body {
 
 @keyframes treeGrows {
     0% {
-        transform: scale(2);
+        transform: scale(1);
     }
 
     15% {
-        transform: scale(2.5);
+        transform: scale(1.5);
     }
 
     25% {
-        transform: scale(2.5);
+        transform: scale(1.5);
     }
 
     40% {
-        transform: scale(3);
+        transform: scale(2);
     }
 
     50% {
-        transform: scale(3);
+        transform: scale(2);
     }
 
     65% {
-        transform: scale(3.5);
+        transform: scale(2.5);
     }
 
     75% {
-        transform: scale(3.5);
+        transform: scale(2.5);
     }
 
     90% {
-        transform: scale(4);
+        transform: scale(3);
     }
 
     100% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes grassGrows {
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.5);
+    }
+
+    25% {
+        transform: scale(1.5);
+    }
+
+    40% {
         transform: scale(2);
+    }
+
+    50% {
+        transform: scale(2);
+    }
+
+    65% {
+        transform: scale(2.5);
+    }
+
+    75% {
+        transform: scale(2.5);
+    }
+
+    90% {
+        transform: scale(3);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
 

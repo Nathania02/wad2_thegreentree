@@ -31,6 +31,9 @@
     <!-- filter bar css -->
     <link rel="stylesheet" href="css/filterbar.css">
 
+    <!-- leaves stylesheet -->
+    <link rel="stylesheet" href="css/leaves.css">
+
     <!-- external stylesheet -->
     <link rel="stylesheet" href="css/profile.css">
 </head>
@@ -39,118 +42,134 @@
     <script>
         createNavbarGreen();
     </script>
+    <section>
+        <div class="set">
+            <div><img class="leaf" src="images/leaves1.png"></div>
+            <div><img class="leaf" src="images/leaves2.png"></div>
+            <div><img class="leaf" src="images/leaves3.png"></div>
+            <div><img class="leaf" src="images/leaves4.png"></div>
+            <div><img class="leaf" src="images/leaves1.png"></div>
+            <div><img class="leaf" src="images/leaves2.png"></div>
+            <div><img class="leaf" src="images/leaves3.png"></div>
+            <div><img class="leaf" src="images/leaves4.png"></div>
+        </div>
+    </section>
+
     <div id="app">
 
         <div class="w-100 h-100">
             <p class="pt-5 mt-5 header-profile"><span id="header-mkt">Your Profile</span></p>
             <p class="text-center summary-text">A summary of your information</p>
-          </div>
-        
-          <div class="container-fluid" id="main">
+        </div>
+
+        <div class="container-fluid" id="main">
             <div class="row">
-              <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
-                <div class="position-sticky">
-                  <div class="mt-4 filters-header d-flex justify-content-center">
-                    <h5>Profile Settings</h5>
-                  </div>
-                  <hr class="filter-div">
-                  <a class="filterbar-link" href="profile.html" @mouseover="on_mouseover('account')" @mouseout="on_mouseout('account')"
-                        :style="{'background-color': backgroundColorAcc}">My Account</a>
-                    <a class="filterbar-link" href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
-                        @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
-                    <a class="filterbar-link" href="profile_my_posts.html" @mouseover="on_mouseover('posts')" @mouseout="on_mouseout('posts')"
-                        :style="{'background-color': backgroundColorPos}">My Posts</a>
-                    <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')" @mouseout="on_mouseout('seller_portal')"
-                        :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
-                </div>
-              </nav>
-        
-              <div id="displayUserData" class="col-lg-9 col-md-8 col-12">
-                <div class="row row-cols-1 row-cols-lg-9 row-cols-md-8 row-cols-sm-2 g-4 d-flex justify-content-center">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Username</b></span>
+                <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
+                    <div class="position-sticky">
+                        <div class="mt-4 filters-header d-flex justify-content-center">
+                            <h5>Profile Settings</h5>
+                        </div>
+                        <hr class="filter-div">
+                        <a class="filterbar-link" href="profile.html" @mouseover="on_mouseover('account')"
+                            @mouseout="on_mouseout('account')" :style="{'background-color': backgroundColorAcc}">My
+                            Account</a>
+                        <a class="filterbar-link" href="profile_my_purchases.html"
+                            @mouseover="on_mouseover('purchases')" @mouseout="on_mouseout('purchases')"
+                            :style="{'background-color': backgroundColorPur}">My Purchases</a>
+                        <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')"
+                            @mouseout="on_mouseout('seller_portal')"
+                            :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="username"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>First Name</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="firstName"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Last Name</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="lastName"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Email</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="email"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Phone Number</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="phoneNo"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Gender</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="gender"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Date of Birth</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="dateofbirth"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Address</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="address"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-3 col-md-3">
-                        <span><b>Postal Code</b></span>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-5">
-                        <span id="postalCode"></span>
-                    </div>
-                    <hr class="info-divider mt-2">
-                    <div class="col-12 col-lg-9 col-md-8">
-                        <div class="button text-end">
-                            <button type="button" name="editButton" id="editButton"
-                                class="logOutbtn loginPage me-3">Edit</button>
-                            <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log
-                                Out</button>
+                </nav>
+
+                <div id="displayUserData" class="col-lg-9 col-md-8 col-12">
+                    <div
+                        class="row row-cols-1 row-cols-lg-9 row-cols-md-8 row-cols-sm-2 g-4 d-flex justify-content-center">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Username</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="username"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>First Name</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="firstName"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Last Name</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="lastName"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Email</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="email"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Phone Number</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="phoneNo"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Gender</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="gender"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Date of Birth</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="dateofbirth"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Address</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="address"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <span><b>Postal Code</b></span>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-5">
+                            <span id="postalCode"></span>
+                        </div>
+                        <hr class="info-divider mt-2">
+                        <div class="col-12 col-lg-9 col-md-8">
+                            <div class="button text-end">
+                                <button type="button" name="editButton" id="editButton"
+                                    class="logOutbtn loginPage me-3">Edit</button>
+                                <button type="button" name="logoutButton" id="logoutButton"
+                                    class="logOutbtn loginPage">Log
+                                    Out</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
-                <!-- <div class="button text-end">
+        </div>
+        <!-- <div class="button text-end">
                     <button type="button" name="editButton" id="editButton"
                         class="logOutbtn loginPage me-3">Edit</button>
                     <button type="button" name="logoutButton" id="logoutButton" class="logOutbtn loginPage">Log
                         Out</button>
                 </div> -->
 
-            </div>
-        </div>
+    </div>
+    </div>
     </div>
 
 
@@ -163,7 +182,6 @@
                     width: '0px',
                     backgroundColorAcc: 'transparent',
                     backgroundColorPur: 'transparent',
-                    backgroundColorPos: 'transparent',
                     backgroundColorSelPor: 'transparent',
                     filterButtonPosition: ''
                 }
@@ -188,9 +206,6 @@
                     else if (link === 'purchases') {
                         this.backgroundColorPur = '#D8EAC7';
                     }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = '#D8EAC7';
-                    }
                     else if (link === 'seller_portal') {
                         this.backgroundColorSelPor = '#D8EAC7';
                     }
@@ -201,9 +216,6 @@
                     }
                     else if (link === 'purchases') {
                         this.backgroundColorPur = 'transparent';
-                    }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = 'transparent';
                     }
                     else if (link === 'seller_portal') {
                         this.backgroundColorSelPor = 'transparent';

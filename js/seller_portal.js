@@ -20,18 +20,18 @@ checkUserLoginStatus().then(async (result) => {
             const order_det_querySnapshot = await getDocs(o);
 
             order_det_querySnapshot.forEach((order_det_doc) => {
-                
+
                 let order_det_doc_data = order_det_doc.data();
                 order_det_doc_data['oid'] = order_det_doc.id;
                 order_det_doc_data['itemid'] = item['iid'];
                 order_det_doc_data['item_name'] = item['name'];
                 order_det_doc_data['item_image'] = item['photos'][0];
-                
+
                 orders_array.push(order_det_doc_data);
             });
         }
 
-        for(let order of orders_array){
+        for (let order of orders_array) {
             console.log(order);
             const orig_ord = doc(collection(db, "orders"), order['orderid']);
             const orig_ord_doc = await getDoc(orig_ord);
@@ -64,15 +64,14 @@ checkUserLoginStatus().then(async (result) => {
                     orders_tbff: orders_tbff,
                     orders_ff: orders_ff,
                     delivery_date: null,
-                     // sidebar
-                     fontSize: '25px',
-                     marginLeft: '',
-                     width: '0px',
-                     backgroundColorAcc: 'transparent',
-                     backgroundColorPur: 'transparent',
-                     backgroundColorPos: 'transparent',
-                     backgroundColorSelPor: 'transparent',
-                     filterButtonPosition: ''
+                    // sidebar
+                    fontSize: '25px',
+                    marginLeft: '',
+                    width: '0px',
+                    backgroundColorAcc: 'transparent',
+                    backgroundColorPur: 'transparent',
+                    backgroundColorSelPor: 'transparent',
+                    filterButtonPosition: ''
                 };
             },
             computed: {
@@ -98,17 +97,17 @@ checkUserLoginStatus().then(async (result) => {
                         }
                     }
                 },
-                async edit_item_qty(itemid){
+                async edit_item_qty(itemid) {
 
                     console.log(itemid);
                     let new_qty = prompt("Enter new quantity (for made to order items, specify 999. Specify 0 if you want to remove it from the marketplace temporarily): ");
-                    if(isNaN(new_qty)){
+                    if (isNaN(new_qty)) {
                         alert("Please enter a valid quantity.");
                         return;
-                    }else if(new_qty < 0 || new_qty == ""){
+                    } else if (new_qty < 0 || new_qty == "") {
                         alert("Please enter a valid quantity.");
                         return;
-                    }else{
+                    } else {
                         const item_ref = doc(collection(db, "items"), itemid);
                         await updateDoc(item_ref, {
                             quantity: new_qty
@@ -119,18 +118,18 @@ checkUserLoginStatus().then(async (result) => {
                 convert_to_date(timestamp) {
                     let date = timestamp.toDate();
                     return date.toLocaleDateString("en-SG");
-                  },
-                dispatch_order(oid){
+                },
+                dispatch_order(oid) {
                     console.log(oid);
                     console.log(this.delivery_date);
                     console.log(new Date());
-                    if(this.delivery_date == null){
+                    if (this.delivery_date == null) {
                         alert("Please select a delivery date.");
-                    }else {
+                    } else {
                         let date = new Date(this.delivery_date);
-                        if(date <= new Date()){
+                        if (date <= new Date()) {
                             alert("Please select a future date.");
-                        }else{
+                        } else {
                             const is_confirmed = confirm("Are you sure you want to dispatch this order?");
                             if (is_confirmed) {
                                 const to_update_order_ref = doc(db, "orderdetails", oid);
@@ -154,9 +153,6 @@ checkUserLoginStatus().then(async (result) => {
                     else if (link === 'purchases') {
                         this.backgroundColorPur = '#D8EAC7';
                     }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = '#D8EAC7';
-                    }
                     else if (link === 'seller_portal') {
                         this.backgroundColorSelPor = '#D8EAC7';
                     }
@@ -167,9 +163,6 @@ checkUserLoginStatus().then(async (result) => {
                     }
                     else if (link === 'purchases') {
                         this.backgroundColorPur = 'transparent';
-                    }
-                    else if (link === 'posts') {
-                        this.backgroundColorPos = 'transparent';
                     }
                     else if (link === 'seller_portal') {
                         this.backgroundColorSelPor = 'transparent';

@@ -41,9 +41,9 @@ body {
 }
 
 #main_search {
-  transition: margin-left .5s;
+  /* transition: margin-left .5s;
   padding: 16px;
-  margin-top: 5px;
+  margin-top: 5px; */
   text-align: center;
 }
 

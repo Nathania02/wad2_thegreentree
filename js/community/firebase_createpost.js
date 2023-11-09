@@ -85,7 +85,6 @@ checkUserLoginStatus()
                     community_id: "",
                     topic_title: "",
                     topic_about: "",
-                    
                 }
             },
             methods: {

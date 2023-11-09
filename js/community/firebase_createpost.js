@@ -136,6 +136,8 @@ checkUserLoginStatus()
                                 .then(() => {
                                     console.log("Document successfully written");
                                     alert("Post document created successfully");
+                                    console.log(lastPageURL);
+                                    window.location.href = lastPageURL;    
                                     
                                 })
                                 .catch((error) => {
@@ -164,6 +166,7 @@ checkUserLoginStatus()
                             .then(() => {
                                 console.log("Document successfully written");
                                 alert("Post document created successfully");
+                                console.log(lastPageURL);
                                 window.location.href = lastPageURL;
                             })
                             .catch((error) => {

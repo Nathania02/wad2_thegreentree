@@ -44,7 +44,6 @@
                 </div>
             </div>
         </div>
-        <!-- <form> -->
         <div id="upload_form">
             <div class="container rounded" id="postcontainer">
                 <div class="row">
@@ -68,7 +67,7 @@
                                 <h3>Topic Title:</h3>
                             </label>
                             <span id="requirements"> (Please do not leave this field blank)</span>
-                            <input type="text" class="form-control" id="topic_title" required>
+                            <input type="text" class="form-control" id="topic_title" v-model="topic_title" required>
                         </div>
                     </div>
                 </div>
@@ -82,7 +81,7 @@
                                 <h3>Topic About:</h3>
                             </label>
                             <span id="requirements"> (Please do not leave this field blank)</span>
-                            <textarea class="form-control" id="topic_about" placeholder="Enter a short description about the topic"
+                            <textarea class="form-control" id="topic_about" v-model="topic_about" placeholder="Enter a short description about the topic"
                                 rows="3" required></textarea>
                         </div>
                     </div>
@@ -97,7 +96,6 @@
                 </div>
             </div>
         </div>
-    <!-- </form> -->
 
 
 

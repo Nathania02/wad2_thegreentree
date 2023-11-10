@@ -61,8 +61,8 @@
           </div>
         </div>
 
-        <div class="w-100 row mt-5">
-          <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design">
+        <div class="row mt-5 d-flex justify-content-center">
+          <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design mb-4">
             <div class="position-sticky">
               <div class="mt-4 mb-2 filters-header d-flex justify-content-center">
                 <h5>Other Pages</h5>
@@ -83,7 +83,7 @@
                 <div id="main_comments">
                   <div v-if="post_information.comments.length > 0">
                   <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
-                  <div class="col-12 col-md-11 col-lg-11 mb-4">
+                  <div class="col-11 col-md-11 col-lg-11 mb-4">
                       <div class="comm-container w-100 h-100">
                           <div class="commenter-cont">
                               <span class="commenter"><a :href="'seller_prof.html?id='+comment.userid">@{{comment.commenter}}</a></span>
@@ -94,11 +94,13 @@
                           </div>
                           <div class="bottom-bar d-flex justify-content-between">
                             <div class="comm-buttons">
-                              <a @click="add_like(comment.comment_id, comment.likes)" style="cursor:pointer;"><img class="ms-2" src="images/thumb-up.png" id="send" style="height:30px;width:30px;"></a>
+                              <a @click="add_like(comment.comment_id, comment.likes)" style="cursor:pointer;"><img class="ms-2" :src="thumb_img_comp(comment.comment_id, comment.likes)" id="send" style="height:30px;width:30px;"></a>
                               <a v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)" style="cursor:pointer;"><img class="ms-2" src="images/bin-white.png" id="send" style="height:30px;width:30px;"></a>
                               </div>
                               <div class="like-dislike me-3">
-                                  {{comment.likes.length}} likes
+                                  {{comment.likes.length}} 
+                                  <span v-if="comment.likes.length==1"> like</span>
+                                  <span v-else> likes</span>
                               </div>
                               
                           </div>
@@ -112,13 +114,17 @@
                 No comments yet. Be the first to comment!
                 </div>
               </div>
-            <div class="container" id="add_comments">
-              <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
-              <a @click="post_comments()" style="cursor:pointer;"><img class="ms-4" src="images/send_button.png" id="send" style="height:50px;width:50px;"></a>
-              <!-- <button type="submit" id="post_comments" @click="post_comments()"><a @click="post_comments()"><img src="images/send_button.png" id="send"></a></button> -->
-
+              <div class="row row-cols-1 row-cols-lg-12 row-cols-md-12 row-cols-sm-12 d-flex justify-content-center">
+                <div class="row d-flex justify-content-center">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-11" id="add_comments">
+                <div class="container">
+                  <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">
+                  <a @click="post_comments()" style="cursor:pointer;"><img class="ms-4 send-btn" src="images/send_button.png" id="send" style="height:50px;width:50px;"></a>
+                  <!-- <button type="submit" id="post_comments" @click="post_comments()"><a @click="post_comments()"><img src="images/send_button.png" id="send"></a></button> -->
+                </div>
+              </div>
             </div>
-      
+            </div>
               </div>
     
             </div>

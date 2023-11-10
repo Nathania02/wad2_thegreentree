@@ -146,6 +146,8 @@ async function fetch_data(user) {
           logged_in_user_id: logged_in_user_id,
           post_information: post_information_array[0],
           comment: "",
+          thumb_img_normal: "images/heart.png",
+          thumb_img_red: "images/heart-red.png",
         }
       },
       methods:{
@@ -187,6 +189,28 @@ async function fetch_data(user) {
             }
           }
 
+
+        },
+        thumb_img_comp(comm_id, likes_array){
+          if(this.logged_in_user_id == null){
+            console.log("user not logged in");
+            return this.thumb_img_nomral;
+          }else{
+            let like_exists = false;
+            for (let like of likes_array){
+              if(like['userid'] == this.logged_in_user_id && like['postid'] == comm_id){
+                like_exists = true;
+                break;
+              }
+            }
+            if(like_exists){
+              console.log("like exists");
+              return this.thumb_img_red;
+            }else{
+              console.log("like does not exist");
+              return this.thumb_img_normal;
+            }
+          }
 
         },
         delete_comment(comm_id, comm_poster_id){

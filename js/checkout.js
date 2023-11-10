@@ -223,15 +223,17 @@ checkUserLoginStatus()
                                             let item_doc_ref = doc(db, "items", order_item['iid']);
                                             updateDoc(item_doc_ref, {
                                                 quantity: new_stock
+                                            }).then(() => {
+                                                console.log("Document successfully updated!");
+                                                if(current_additions == required_additions){
+                                                    console.log("all done");
+                                                    localStorage.removeItem('cart');
+                                                    window.location.href = 'success.html?orderid=' + doc_order_ref.id + '&total=' + this.calculate_total_price() + '&date=' + new Date() + '&status=pending';
+                                                }
                                             });
                                         }
                                     });
-
-                                    if(current_additions == required_additions){
-                                        console.log("all done");
-                                        localStorage.removeItem('cart');
-                                        window.location.href = 'success.html?orderid=' + doc_order_ref.id + '&total=' + this.calculate_total_price() + '&date=' + new Date() + '&status=pending';
-                                    }
+                                    
                                     })
                                     .catch((error) => {
                                         alert(error.message, "Please try again later");

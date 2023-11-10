@@ -11,7 +11,6 @@
 
 .set div {
     position: absolute;
-    /* display: block; */
 }
 
 .set div:nth-child(1) {

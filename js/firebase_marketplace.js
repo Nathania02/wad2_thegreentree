@@ -143,8 +143,8 @@ const fetchData = () => {
             };
           },
           template: `
-            <div class="col">
-              <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
+            <div class="col d-flex justify-content-center">
+              <div class="card border-0 mb-5 rounded-0 position-relative h-100" style="width: 15rem;">
               <div class="img-container position-relative">
                 <img @mouseenter="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
                 <div v-if="showButtons" class="overlay"></div>

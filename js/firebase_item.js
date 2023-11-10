@@ -219,11 +219,13 @@ checkUserLoginStatus()
 
                   let itemid = iid;
 
+                  let rev_rating = Number(this.review_rating);
+
                   let reviewData = {
                     userid: userid,
                     itemid: itemid,
                     title: this.review_title,
-                    rating: this.review_rating,
+                    rating:rev_rating,
                     desc: this.review_desc,
                     date: new Date(),
                   };

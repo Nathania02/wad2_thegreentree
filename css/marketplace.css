@@ -103,6 +103,16 @@ body {
     font-weight: bold;
 }
 
+@media (max-width: 575px) {
+    .search-fld {
+        padding: 0.5rem;
+        border-radius: 10px;
+        border: 1px solid #5C7345;
+        font-weight: bold;
+        width: 80%;
+    }
+}
+
 .sidebar-design{
     background-color: #5C7345;
     color: white;

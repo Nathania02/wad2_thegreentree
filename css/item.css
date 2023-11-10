@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(245, 250, 240);
+    background-color: white;
     color:#5C7345;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     /* font-family: 'Times New Roman', Times, serif; */
@@ -136,4 +136,7 @@ body {
 .quantity-left{
     font-size:0.8rem;
     font-style: italic;
+}
+.border-box{
+    border:1px solid #5C7345;
 }

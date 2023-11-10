@@ -73,6 +73,12 @@ body{
     padding: 10px 20px;
   }
 
+  .btn-serv:hover{
+    background-color:white;
+    color:#5C7345;
+
+  }
+
   .content-section {
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;

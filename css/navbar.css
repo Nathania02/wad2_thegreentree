@@ -18,6 +18,12 @@
     display:none;
 }
 
+@media (max-width: 768px) {
+    .shopping-cart {
+        display: none;
+    }
+  }
+
 .cart-item {
     display: flex;
     align-items: start;

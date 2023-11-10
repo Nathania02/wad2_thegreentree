@@ -91,7 +91,7 @@ checkUserLoginStatus().then(async (result) => {
 
             app.mount('#purchases_listing');
         } catch (error) {
-            console.error("Error getting documents: ", error);
+            alert(error.message, "Please try again later");
         }
     } else {
         window.location.href = 'login.html';

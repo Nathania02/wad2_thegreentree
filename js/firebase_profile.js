@@ -80,7 +80,6 @@ async function getAndOutputUserData(userId) {
         })
     }
     catch (err) {
-        console.log(err.message);
     }
 }
 
@@ -138,7 +137,7 @@ checkUserLoginStatus()
         }
     })
     .catch((error) => {
-        console.error('Error checking user login status:', error);
+        alert(error.message, "Please try again later");
     });
 
 
@@ -187,7 +186,7 @@ async function getUserData(userId) {
         })
     }
     catch (err) {
-        console.log(err.message);
+        alert(error.message, "Please try again later");
     }
 };
 
@@ -212,7 +211,7 @@ const createUserInFirestore = async (uid, username, email) => {
         await setDoc(userDocRef, userData);
         console.log('User document created successfully.');
     } catch (error) {
-        console.error('Error creating user document:', error);
+        alert(error.message, "Please try again later");
     }
     window.location.href = 'addDetails.html';
 };
@@ -286,7 +285,7 @@ else if (window.location.pathname.includes('addDetails.html')) {
                     window.location.href = 'profile.html';
                 })
                 .catch(error => {
-                    console.log(error);
+                    alert(error.message, "Please try again later");
                 })
         })
     })
@@ -306,7 +305,6 @@ else if (window.location.pathname.includes('login.html')) {
                 window.location.href = 'profile.html';
             })
             .catch((err) => {
-                console.log(err);
                 let errorMessage = 'Error logging in. Please check your credentials and try again.';
                 authDisplay.innerHTML += `${errorMessage}`;
             })
@@ -323,7 +321,6 @@ else if (window.location.pathname.includes('profile.html')) {
                 window.location.href = 'index.html';
             })
             .catch((err) => {
-                console.log(err.message);
             })
     })
 
@@ -378,7 +375,6 @@ else if (window.location.pathname.includes('editDetails.html')) {
                     window.location.href = 'profile.html';
                 })
                 .catch(error => {
-                    console.log(error);
                 })
         })
     })

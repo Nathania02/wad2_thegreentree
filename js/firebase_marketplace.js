@@ -37,7 +37,7 @@ const fetchData = () => {
       docData['reviewid'] = doc.id;
       reviews_array.push(docData);    });
   }).catch((error) => {
-    console.error("Error getting documents: ", error);
+    alert(error.message, "Please try again later");
   });
   getDocs(collection(db, "items"))
     .then((querySnapshot) => {
@@ -195,7 +195,7 @@ const fetchData = () => {
     app.mount("#product_listing");
     })
     .catch((error) => {
-      console.error("Error getting documents: ", error);
+      alert(error.message, "Please try again later");
     });
 };
 

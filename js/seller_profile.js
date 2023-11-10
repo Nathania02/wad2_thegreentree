@@ -39,7 +39,7 @@ async function fetch_data() {
             items_array.push(doc_data);
         });
     } catch (error) {
-        console.error("Error getting documents: ", error);
+      alert(error.message, "Please try again later");
     }
 
     for (let item of items_array) {
@@ -53,7 +53,7 @@ async function fetch_data() {
                 reviews_array.push(doc_data);
             });
         } catch (error) {
-            console.error("Error getting documents: ", error);
+          alert(error.message, "Please try again later");
         }
     }
 

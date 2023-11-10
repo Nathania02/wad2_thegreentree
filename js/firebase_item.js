@@ -25,7 +25,7 @@ const fetch_data = (iid) => {
       });
     })
     .catch((error) => {
-      console.error("Error getting documents: ", error);
+      alert(error.message, "Please try again later");
     });
 
   Promise.all([fetchReviewsPromise])
@@ -41,7 +41,7 @@ const fetch_data = (iid) => {
               }
             })
             .catch((error) => {
-              console.error("Error getting document:", error);
+              alert(error.message, "Please try again later");
             });
         })
       );
@@ -135,7 +135,7 @@ const fetch_data = (iid) => {
                       window.location.href = "marketplace.html";
                     })
                     .catch((error) => {
-                      console.error("Error removing document: ", error);
+                      alert(error.message, "Please try again later");
                     });
                 }
               }
@@ -148,7 +148,7 @@ const fetch_data = (iid) => {
           }
         })
         .catch((error) => {
-          console.error("Error getting document:", error);
+          alert(error.message, "Please try again later");
         });
     });
 };
@@ -203,11 +203,10 @@ checkUserLoginStatus()
 
                   addDoc(reviewRef, reviewData)
                     .then((docRef) => {
-                      console.log("Document written with ID: ", docRef.id);
                       window.location.reload();
                     })
                     .catch((error) => {
-                      console.error("Error adding document: ", error);
+                      alert(error.message, "Please try again later");
                     });
                 },
                 
@@ -224,11 +223,10 @@ checkUserLoginStatus()
             }
           })
           review_app.mount("#review_form");
-          console.log('User is not logged in.');
         }
     })
     .catch((error) => {
-        console.error('Error checking user login status:', error);
+      alert(error.message, "Please try again later");
     });
 
 

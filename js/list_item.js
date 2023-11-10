@@ -86,7 +86,7 @@ checkUserLoginStatus().then((result) => {
                         window.location.href = 'marketplace.html';
                     })
                     .catch((error) => {
-                        console.error("Error adding document: ", error);
+                        alert(error.message, "Please try again later");
                     });
                 },
 

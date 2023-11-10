@@ -234,12 +234,12 @@ checkUserLoginStatus()
                                     }
                                     })
                                     .catch((error) => {
-                                    console.error("Error adding document: ", error);
+                                        alert(error.message, "Please try again later");
                                     });
                             }
                             })
                             .catch((error) => {
-                            console.error("Error adding document: ", error);
+                                alert(error.message, "Please try again later");
                             });
                     },
                     init_map(){
@@ -286,7 +286,7 @@ checkUserLoginStatus()
                                 this.map.setCenter(userLocation);
                                 this.map.setZoom(17);
                             } else {
-                                console.error('Error geocoding postal code:', status);
+                                alert(error.message, "Please try again later");
                             }
                         });
                     },
@@ -302,7 +302,7 @@ checkUserLoginStatus()
 
             
         }).catch((error) => {
-            console.error('Error getting user data:', error);
+            alert(error.message, "Please try again later");
         });
 
 
@@ -313,5 +313,5 @@ checkUserLoginStatus()
         }
     })
     .catch((error) => {
-        console.error('Error checking user login status:', error);
+        alert(error.message, "Please try again later");
     });

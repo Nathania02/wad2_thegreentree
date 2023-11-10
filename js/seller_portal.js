@@ -90,7 +90,7 @@ checkUserLoginStatus().then(async (result) => {
                             console.log("Document successfully deleted!");
                             window.location.href = "seller_portal.html";
                         } catch (error) {
-                            console.error("Error removing document: ", error);
+                            alert(error.message, "Please try again later");
                         }
                     }
                 },
@@ -137,7 +137,7 @@ checkUserLoginStatus().then(async (result) => {
                                     console.log("Document successfully updated!");
                                     window.location.href = "seller_portal.html";
                                 }).catch((error) => {
-                                    console.error("Error updating document: ", error);
+                                    alert(error.message, "Please try again later");
                                 });
                             }
                         }
@@ -169,8 +169,8 @@ checkUserLoginStatus().then(async (result) => {
         });
         app.mount("#users_product_listing");
     } catch (error) {
-        console.error("Error:", error);
+        alert(error.message, "Please try again later");
     }
 }).catch((error) => {
-    console.error("Login status error:", error);
+    alert(error.message, "Please try again later");
 });

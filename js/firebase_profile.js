@@ -28,14 +28,11 @@ function checkUserLoginStatus() {
     return new Promise((resolve, reject) => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is logged in
                 resolve({ loggedIn: true, user });
             } else {
-                // User is not logged in
                 resolve({ loggedIn: false, user: null });
             }
         }, (error) => {
-            // An error occurred while checking the login status
             reject(error);
         });
     });
@@ -80,6 +77,8 @@ async function getAndOutputUserData(userId) {
         })
     }
     catch (err) {
+        alert(err.message, "Please try again later");
+        console.log(err);
     }
 }
 
@@ -113,7 +112,6 @@ checkUserLoginStatus()
 
             listing_button.style.display = 'block';
 
-            // Use 'await' here to wait for the asynchronous operation
             const q = query(collection(db, "users"), where("userId", "==", userId));
             const querySnapshot = await getDocs(q);
 
@@ -130,14 +128,14 @@ checkUserLoginStatus()
                 }
 
             } else {
-                // User is not logged in
                 console.log('User is not logged in.');
                 profileLink.href = 'login.html';
             }
         }
     })
-    .catch((error) => {
-        alert(error.message, "Please try again later");
+    .catch((err) => {
+        alert(err.message, "Please try again later");
+        console.log(err.message);
     });
 
 
@@ -186,7 +184,8 @@ async function getUserData(userId) {
         })
     }
     catch (err) {
-        alert(error.message, "Please try again later");
+        alert(err.message, "Please try again later");
+        console.log(err.message);
     }
 };
 
@@ -210,8 +209,9 @@ const createUserInFirestore = async (uid, username, email) => {
     try {
         await setDoc(userDocRef, userData);
         console.log('User document created successfully.');
-    } catch (error) {
-        alert(error.message, "Please try again later");
+    } catch (err) {
+        alert(err.message, "Please try again later");
+        console.log(err.message)
     }
     window.location.href = 'addDetails.html';
 };
@@ -284,8 +284,9 @@ else if (window.location.pathname.includes('addDetails.html')) {
                     console.log('Entire data has been updated successfully');
                     window.location.href = 'profile.html';
                 })
-                .catch(error => {
-                    alert(error.message, "Please try again later");
+                .catch(err => {
+                    alert(err.message, "Please try again later");
+                    console.log(err.message);
                 })
         })
     })
@@ -304,7 +305,7 @@ else if (window.location.pathname.includes('login.html')) {
             .then(() => {
                 window.location.href = 'profile.html';
             })
-            .catch((err) => {
+            .catch(() => {
                 let errorMessage = 'Error logging in. Please check your credentials and try again.';
                 authDisplay.innerHTML += `${errorMessage}`;
             })
@@ -316,11 +317,11 @@ else if (window.location.pathname.includes('profile.html')) {
     logoutButton.addEventListener('click', () => {
         signOut(auth)
             .then(() => {
-                // console.log('user signed out')
-
                 window.location.href = 'index.html';
             })
             .catch((err) => {
+                alert(err.message, "Please try again later");
+                console.log(err.message);
             })
     })
 
@@ -374,7 +375,9 @@ else if (window.location.pathname.includes('editDetails.html')) {
                     console.log('Entire data has been updated successfully');
                     window.location.href = 'profile.html';
                 })
-                .catch(error => {
+                .catch(err => {
+                    alert(err.message, "Please try again later");
+                    console.log(err.message);
                 })
         })
     })

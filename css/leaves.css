@@ -1,63 +1,64 @@
-section .set {
+.set {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 125%;
     top: 0;
     left: 0;
     pointer-events: none;
     z-index: -1;
+    overflow: hidden;
 }
 
-section .set div {
+.set div {
     position: absolute;
-    display: block;
+    /* display: block; */
 }
 
-section .set div:nth-child(1) {
+.set div:nth-child(1) {
     left: 20%;
     animation: animate 15s linear infinite;
     animation-delay: -7s;
 }
 
-section .set div:nth-child(2) {
+.set div:nth-child(2) {
     left: 80%;
     animation: animate 20s linear infinite;
     animation-delay: -5s;
 }
 
 
-section .set div:nth-child(3) {
+.set div:nth-child(3) {
     left: 70%;
     animation: animate 20s linear infinite;
     animation-delay: 0s;
 }
 
 
-section .set div:nth-child(4) {
+.set div:nth-child(4) {
     left: 30%;
     animation: animate 15s linear infinite;
     animation-delay: -5s;
 }
 
-section .set div:nth-child(5) {
+.set div:nth-child(5) {
     left: 85%;
     animation: animate 18s linear infinite;
     animation-delay: -10s;
 }
 
 
-section .set div:nth-child(6) {
+.set div:nth-child(6) {
     left: 0%;
     animation: animate 18s linear infinite;
     animation-delay: -10s;
 }
 
-section .set div:nth-child(7) {
+.set div:nth-child(7) {
     left: 15%;
     animation: animate 14s linear infinite;
 }
 
-section .set div:nth-child(8) {
+.set div:nth-child(8) {
     left: 60%;
     animation: animate 15s linear infinite;
 }
@@ -66,10 +67,11 @@ section .set div:nth-child(8) {
     width: 200px;
     height: 180px;
 }
+
 @keyframes animate {
     0% {
         opacity: 0%;
-        top: -10%;
+        top: -20%;
         transform: translateX(20px) rotate(0deg);
     }
 

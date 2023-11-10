@@ -3,13 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebas
 import { getFirestore, collection, addDoc, getDocs, where, query } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 "https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
   apiKey: "AIzaSyB930wEyfKpI2gBvgAUprBKWqhcbmcKJzk",
@@ -48,7 +42,6 @@ function checkUserLoginStatus() {
 checkUserLoginStatus()
   .then((result) => {
       var rows = "";
-      // console.log(result.loggedIn);
       if(result.loggedIn){
           rows += "<button id='createPost'><img id='plus' src='images/plus.png'><a href='community_createpost.html'> Create"
           +"Post</a></button>";
@@ -56,59 +49,106 @@ checkUserLoginStatus()
       }
   })
 
-const communities = await getDocs(collection(db, 'communities'));
-const posts_collection = await getDocs(collection(db, 'posts'));
-const users = await getDocs(collection(db, 'users'));
 
-var communitiesList = communities.docs.map(doc => doc.data());
-var postList = posts_collection.docs.map(doc => doc.data());
-var usersList = users.docs.map(doc => doc.data());
+// retrieve data from firestore
+// const communities = await getDocs(collection(db, 'communities'));
+// const posts_collection = await getDocs(collection(db, 'posts'));
+// const users = await getDocs(collection(db, 'users'));
 
-var comments_array = [];
-var post_array = [];
-var comments = query(collection(db, "comments"));
-var posts = query(collection(db, "posts"));
-const querySnapshot_comments = await getDocs(comments);
-const querySnapshot_post = await getDocs(posts)
+// var communitiesList = communities.docs.map(doc => doc.data());
+// var postList = posts_collection.docs.map(doc => doc.data());
+// var usersList = users.docs.map(doc => doc.data());
 
-querySnapshot_comments.forEach((doc) => {
-  var docData = doc.data();
-  docData["postid"] = doc.id;
-  comments_array.push(docData);
-})
+// var comments_array = [];
+// var post_array = [];
+// var comments = query(collection(db, "comments"));
+// var posts = query(collection(db, "posts"));
+// const querySnapshot_comments = await getDocs(comments);
+// const querySnapshot_post = await getDocs(posts)
 
-querySnapshot_post.forEach((doc) => {
-  var docData = doc.data();
-  docData["postid"] = doc.id;
-  post_array.push(docData);
-})
+// querySnapshot_comments.forEach((doc) => {
+//   var docData = doc.data();
+//   docData["postid"] = doc.id;
+//   comments_array.push(docData);
+// })
 
-console.log(post_array);
+// querySnapshot_post.forEach((doc) => {
+//   var docData = doc.data();
+//   docData["postid"] = doc.id;
+//   post_array.push(docData);
+// })
 
-//sort the posts by dateposted
+// //sort the posts by dateposted
 
-post_array.sort(function(a,b){
-  return b.dateposted - a.dateposted;
-});
+// post_array.sort(function(a,b){
+//   return b.dateposted - a.dateposted;
+// });
 
-console.log(post_array);
+// console.log(post_array);
 
-// store the date and time alone in a variable in the post array
-for(let post of post_array){
-  post["date"] = post['dateposted'].toDate().toLocaleDateString();
-  post["time"] = post['dateposted'].toDate().toLocaleTimeString();
-}
+// // store the date and time alone in a variable in the post array
+// for(let post of post_array){
+//   post["date"] = post['dateposted'].toDate().toLocaleDateString();
+//   post["time"] = post['dateposted'].toDate().toLocaleTimeString();
+// }
 
-var currentUrl = window.location.href;
+// var currentUrl = window.location.href;
 
-var url = currentUrl.split("_");
-var url = url[2].split(".");
-var community_category = url[0];
+// var url = currentUrl.split("_");
+// var url = url[2].split(".");
+// var community_category = url[0];
 
 retrievePosts();
 
-  function retrievePosts(){
-    var rows = "";
+  async function retrievePosts(){
+
+    const communities = await getDocs(collection(db, 'communities'));
+    const posts_collection = await getDocs(collection(db, 'posts'));
+    const users = await getDocs(collection(db, 'users'));
+    
+    var communitiesList = communities.docs.map(doc => doc.data());
+    var postList = posts_collection.docs.map(doc => doc.data());
+    var usersList = users.docs.map(doc => doc.data());
+    
+    var comments_array = [];
+    var post_array = [];
+    var comments = query(collection(db, "comments"));
+    var posts = query(collection(db, "posts"));
+    const querySnapshot_comments = await getDocs(comments);
+    const querySnapshot_post = await getDocs(posts)
+    
+    querySnapshot_comments.forEach((doc) => {
+      var docData = doc.data();
+      docData["postid"] = doc.id;
+      comments_array.push(docData);
+    })
+    
+    querySnapshot_post.forEach((doc) => {
+      var docData = doc.data();
+      docData["postid"] = doc.id;
+      post_array.push(docData);
+    })
+    
+    //sort the posts by dateposted
+    
+    post_array.sort(function(a,b){
+      return b.dateposted - a.dateposted;
+    });
+    
+    console.log(post_array);
+    
+    // store the date and time alone in a variable in the post array
+    for(let post of post_array){
+      post["date"] = post['dateposted'].toDate().toLocaleDateString();
+      post["time"] = post['dateposted'].toDate().toLocaleTimeString();
+    }
+    
+    var currentUrl = window.location.href;
+    
+    var url = currentUrl.split("_");
+    var url = url[2].split(".");
+    var community_category = url[0];
+        var rows = "";
     for(var j of communitiesList){
       var name = j.name;
       if(name == community_category){

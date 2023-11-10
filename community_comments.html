@@ -95,7 +95,7 @@
                           <div class="bottom-bar d-flex justify-content-between">
                             <div class="comm-buttons">
                               <a @click="add_like(comment.comment_id, comment.likes)" style="cursor:pointer;"><img class="ms-2" src="images/thumb-up.png" id="send" style="height:30px;width:30px;"></a>
-                              <a v-if="logged_in_user_id == comment.userid" @click="add_like(comment.comment_id, comment.likes)" style="cursor:pointer;"><img class="ms-2" src="images/bin-white.png" id="send" style="height:30px;width:30px;"></a>
+                              <a v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)" style="cursor:pointer;"><img class="ms-2" src="images/bin-white.png" id="send" style="height:30px;width:30px;"></a>
                               <!-- <button v-if="logged_in_user_id == comment.userid" @click="delete_comment(comment.comment_id, comment.userid)"><img id="delete_img" src="images/bin.png"></button> -->
                               <!-- <button @click="add_like(comment.comment_id, comment.likes)"><img id="like_img" src="images/thumb-up.png"></button> -->
                               </div>

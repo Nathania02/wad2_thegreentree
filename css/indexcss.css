@@ -3,15 +3,6 @@ body{
     color:white;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
-/* .nav-link {
-    color:white;
-}
-
-.navbar-toggler-icon{
-    background-color: white;
-} */
-
 .header-tgt{
     color:white;
     z-index:5;
@@ -33,7 +24,7 @@ body{
     height: auto;
     padding-top: 8rem;
     padding-bottom: 8rem;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../rsrc/index/bg-forest-real.png");
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../images/index/bg-forest-real.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -232,12 +223,3 @@ body{
         background: rgba(52, 58, 64, 0.5);
         line-height: 50px;
       }
-      /* .scroll-to-top:focus, .scroll-to-top:hover {
-        color: #fff;
-      }
-      .scroll-to-top:hover {
-        background: #343a40;
-      }
-      .scroll-to-top i {
-        font-weight: 800;
-      } */

@@ -104,12 +104,12 @@ checkUserLoginStatus()
             shopping_cart.addEventListener('mouseover', function () {
                 shopping_cart.style.backgroundColor = 'white';
                 var image = shopping_cart.getElementsByTagName('img')[0];
-                image.setAttribute("src", "rsrc/navbar/cart_green.png");
+                image.setAttribute("src", "images/navbar/cart_green.png");
             });
             shopping_cart.addEventListener('mouseout', function () {
                 shopping_cart.style.backgroundColor = 'transparent';
                 var image = shopping_cart.getElementsByTagName('img')[0];
-                image.setAttribute("src", "rsrc/navbar/cart.png");
+                image.setAttribute("src", "images/navbar/cart.png");
             });
 
             listing_button.style.display = 'block';

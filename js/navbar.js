@@ -4,7 +4,7 @@ function createNavbarGreen() {
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg fixed-top">
             <a class="navbar-brand ps-4" href="index.html">
-                <img src="rsrc/the_green_tree_white.png" alt="Company Logo" height="40" width="40">
+                <img src="images/the_green_tree_white.png" alt="Company Logo" height="40" width="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@ function createNavbarGreen() {
                 <ul class="navbar-nav">
                     <li class="nav-item px-3 dropdown">
                         <div title="Marketplace" class="nav-link" id="marketplaceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="rsrc/navbar/marketplace.png" height="30" width="30">
+                            <img src="images/navbar/marketplace.png" height="30" width="30">
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="marketplaceDropdown">
                             <li><a class="dropdown-item" href="marketplace.html">Marketplace</a></li>
@@ -22,18 +22,18 @@ function createNavbarGreen() {
                     </li>
                     <li class="nav-item px-3"><div title="Community">
                         <a class="nav-link" href="community_mainpage.html">
-                        <img src="rsrc/navbar/community.png" height="30" width="30">
+                        <img src="images/navbar/community.png" height="30" width="30">
                         </a></div>
                     </li>
                     <li class="nav-item px-3 shopping-cart" id="shopping_cart"><div title="Cart">
                         <a class="nav-link" >
-                        <img src="rsrc/navbar/cart.png" height="30" width="30">
+                        <img src="images/navbar/cart.png" height="30" width="30">
                         </a></div>
                     </li>
 
                     <li class="nav-item px-3"><div title="Profile">
                         <a class="nav-link" id="profile_link" href="login.html">
-                        <img id="profile_image" src="rsrc/navbar/profile.png" height="30" width="30">
+                        <img id="profile_image" src="images/navbar/profile.png" height="30" width="30">
                         </a></div>
                     </li>
                 </ul>
@@ -91,25 +91,25 @@ $(document).ready(function () {
 function mk_to_green(element) {
     element.style.backgroundColor = "white";
     var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/marketplace_green.png");
+    image.setAttribute("src", "images/navbar/marketplace_green.png");
 }
 
 function mk_to_white(element) {
     element.style.backgroundColor = "transparent";
     var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/marketplace.png");
+    image.setAttribute("src", "images/navbar/marketplace.png");
 }
 
 function comm_to_green(element) {
     element.style.backgroundColor = "white";
     var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/community_green.png");
+    image.setAttribute("src", "images/navbar/community_green.png");
 }
 
 function comm_to_white(element) {
     element.style.backgroundColor = "transparent";
     var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/community.png");
+    image.setAttribute("src", "images/navbar/community.png");
 }
 
 function prof_to_green(element) {
@@ -118,7 +118,7 @@ function prof_to_green(element) {
     console.log(link.href);
     if(link.href.includes("login.html")) {
     var image = element.getElementsByTagName('img')[0];
-    image.setAttribute("src", "rsrc/navbar/profile_green.png");
+    image.setAttribute("src", "images/navbar/profile_green.png");
     }
     
 }
@@ -128,7 +128,7 @@ function prof_to_white(element) {
     let link = element.getElementsByTagName('a')[0];
     if(link.href.includes("login.html")) {
     var image = element.getElementsByTagName('img')[0];
-    image.setAttribute('src', 'rsrc/navbar/profile.png');
+    image.setAttribute('src', 'images/navbar/profile.png');
     }
 }
 
@@ -172,25 +172,6 @@ function populate_shopping_cart() {
             nameElement.className = 'cart-item-name';
 
             var quantityElement = document.createElement('div');
-            // quantityElement.className = 'quantity-control';
-            // var minusButton = document.createElement('button');
-            // minusButton.textContent = '-';
-            // minusButton.className = 'quantity-btn';
-            // minusButton.addEventListener('click', function() {
-            //     console.log('minus button clicked');
-            // }
-            // );
-            // var quantity = document.createElement('span');
-            // quantity.textContent = arr[2];
-            // var plus_button = document.createElement('button');
-            // plus_button.textContent = '+';
-            // plus_button.className = 'quantity-btn';
-            // plus_button.addEventListener('click', function() {
-            //     console.log('plus button clicked');
-            // }
-
-            // );
-
             quantityElement.textContent = 'Quantity: ' + arr[2];
             quantityElement.className = 'cart-item-quantity';
 

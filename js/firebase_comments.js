@@ -1,7 +1,7 @@
 // Importing functions from firebase AND the firebase profile to eliminate redundancy
 
 import { collection, doc, getDoc, query, where, getDocs, deleteDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { db, checkUserLoginStatus } from '../firebase_profile.js';
+import { db, checkUserLoginStatus } from './firebase_profile.js';
 
 // Check if user is logged in
 checkUserLoginStatus().then((user) => {
@@ -194,7 +194,7 @@ async function fetch_data(user) {
         thumb_img_comp(comm_id, likes_array){
           if(this.logged_in_user_id == null){
             console.log("user not logged in");
-            return this.thumb_img_nomral;
+            return this.thumb_img_normal;
           }else{
             let like_exists = false;
             for (let like of likes_array){

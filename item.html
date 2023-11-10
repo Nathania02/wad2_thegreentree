@@ -69,9 +69,9 @@
                         {{item.longdesc}}
                     </div><br>
                     <div v-if="!same_user" class="quantity-control">
-                        <button @click="decrementQuantity" class="quantity-btn">-</button>
+                        <button @click="decrement_quantity" class="quantity-btn">-</button>
                         <span class="quantity">{{ quantity }}</span>
-                        <button @click="incrementQuantity" class="quantity-btn">+</button>
+                        <button @click="increment_quantity" class="quantity-btn">+</button>
                     </div>
                     <button v-if="!same_user" @click="add_to_cart" type="button" id="atc_btn_item" class="btn atc-btn  mt-4 w-100">Add to Cart - S${{item.price}}</button>
                     <button @click="redirect_login" type="button" id="error_btn" class="btn error-btn mt-4 w-100">You must be logged in to purchase</button>

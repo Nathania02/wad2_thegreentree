@@ -30,10 +30,6 @@
     <!-- filter bar css -->
     <link rel="stylesheet" href="css/filterbar.css">
 
-    <!-- leaves stylesheet -->
-    <link rel="stylesheet" href="css/leaves.css">
-    <!-- <link rel="stylesheet" href="css/filterbar.css"> -->
-
     <!-- external stylesheet -->
     <link rel="stylesheet" href="css/profile2.css">
 
@@ -44,41 +40,31 @@
         createNavbarGreen();
     </script>
 
-    <section>
-        <div class="set">
-            <div><img class="leaf" src="images/leaves1.png"></div>
-            <div><img class="leaf" src="images/leaves2.png"></div>
-            <div><img class="leaf" src="images/leaves3.png"></div>
-            <div><img class="leaf" src="images/leaves4.png"></div>
-            <div><img class="leaf" src="images/leaves1.png"></div>
-            <div><img class="leaf" src="images/leaves2.png"></div>
-            <div><img class="leaf" src="images/leaves3.png"></div>
-            <div><img class="leaf" src="images/leaves4.png"></div>
-        </div>
-    </section>
-
     <span id="purchases_listing">
         <div id="main" class="container-fluid mt-5">
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            <p class="pt-5 pb-5 mb-4 header-profile"><span id="header-mkt">MY PURCHASES</span></p>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <p class="pt-5 pb-5 mb-4 header-profile"><span id="header-mkt">MY PURCHASES</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design mb-4">
+                    <div class="position-sticky">
+                        <div class="mt-4 filters-header d-flex justify-content-center">
+                            <h5>Profile Settings</h5>
                         </div>
+                        <hr class="filter-div">
+                        <a class="filterbar-link" href="profile.html" @mouseover="on_mouseover('account')"
+                            @mouseout="on_mouseout('account')" :style="{'background-color': backgroundColorAcc}">My
+                            Account</a>
+                        <a class="filterbar-link" href="profile_my_purchases.html"
+                            @mouseover="on_mouseover('purchases')" @mouseout="on_mouseout('purchases')"
+                            :style="{'background-color': backgroundColorPur}">My Purchases</a>
+                        <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')"
+                            @mouseout="on_mouseout('seller_portal')"
+                            :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
                     </div>
-                    <div class="row">
-                        <nav id="sidebar" class="col-lg-3 col-md-4 col-12 sidebar sidebar-design mb-4">
-                          <div class="position-sticky">
-                            <div class="mt-4 filters-header d-flex justify-content-center">
-                              <h5>Profile Settings</h5>
-                            </div>
-                            <hr class="filter-div">
-                            <a class="filterbar-link" href="profile.html" @mouseover="on_mouseover('account')" @mouseout="on_mouseout('account')"
-                                  :style="{'background-color': backgroundColorAcc}">My Account</a>
-                              <a class="filterbar-link" href="profile_my_purchases.html" @mouseover="on_mouseover('purchases')"
-                                  @mouseout="on_mouseout('purchases')" :style="{'background-color': backgroundColorPur}">My Purchases</a>
-                              <a class="filterbar-link" href="seller_portal.html" @mouseover="on_mouseover('seller_portal')" @mouseout="on_mouseout('seller_portal')"
-                                  :style="{'background-color': backgroundColorSelPor}">Seller's Portal</a>
-                          </div>
-                        </nav>
+                </nav>
 
 
 

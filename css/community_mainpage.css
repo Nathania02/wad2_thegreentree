@@ -12,14 +12,6 @@ p{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-/* #category-container{
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 30px;
-} */
-
-
 #category_button { 
     margin-top: 30px;
     font-size: 30px;

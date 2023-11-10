@@ -1,6 +1,5 @@
 body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  /* background-color: antiquewhite;  */
 }
 
 #post {
@@ -17,10 +16,6 @@ padding-right: 20px;
 #post a {
 color: #5c7345;
 }
-
-/*
-TODO: About topic next to image, add image in
-*/
 
 #createPost {
 font-size: 20px;
@@ -39,13 +34,6 @@ background-color: #444;
 #createPost a:hover {
 color: white;
 }
-
-/* #main {
-transition: margin-left .5s;
-padding: 16px;
-margin-top: 5px;
-text-align: center;
-} */
 
 #plus {
 width: 20px;
@@ -66,27 +54,6 @@ margin-top: 50px;
 text-align: center;
 color: grey;
 }
-
-/* #about {
-  font-size: 0.8em;
-} */
-
-/* #postimage_container {
-position: relative;
-width: 100%;
-overflow: hidden;
-} */
-
-/* #post_image { */
-/* position: inline; */
-/* width: 50%; */
-/* height: 300px;
-width:100%; */
-/* float: left; */
-/* padding: 20px; */
-/* } */
-
-/* ARA SIDEBAR */
 
 .sidebar-design{
 background-color: #5C7345;

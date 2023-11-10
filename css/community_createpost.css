@@ -16,13 +16,11 @@ h1 {
 #button_create_post {
     position: relative;
     margin-top: 20px;
-    /* text-align: center; */
 }
 
 #create_post {
     position: absolute;
     font-size: 20px;
-    /* margin: auto; */
     margin-top: 20px;
     bottom: -40px;
     cursor: pointer;
@@ -45,8 +43,6 @@ h1 {
     transition: margin-left .5s;
     padding: 16px;
     margin-top: 20px;
-    /* margin: auto; */
-    /* position: relative; */
 }
 
 

@@ -182,7 +182,7 @@ async function fetch_data(user) {
               })
               .catch((error) => {
                 console.log("Error creating like document:", error);
-                alert("Error creating comment document:", error);
+                alert("Error liking comment:", error);
               })
             }
           }
@@ -227,7 +227,7 @@ async function fetch_data(user) {
           })
           .catch((error) => {
             console.log("Error creating comment document:", error);
-            alert("Error creating comment document:", error)
+            alert("Error creating comment:", error)
           })
             }
           }

@@ -45,6 +45,7 @@ async function fetch_data(user) {
       post_information_array.push(post_data);
     } else {
       console.error("Post not found");
+      alert("Post not found");
     }
 
     // Retrieve community category from the db
@@ -61,6 +62,7 @@ async function fetch_data(user) {
       });
     } catch (error) {
       console.error("Error getting documents: ", error);
+      alert("Error creating comment document:", error);
     }
     
     // Retrieve poster information from the database
@@ -180,6 +182,7 @@ async function fetch_data(user) {
               })
               .catch((error) => {
                 console.log("Error creating like document:", error);
+                alert("Error creating comment document:", error);
               })
             }
           }
@@ -224,6 +227,7 @@ async function fetch_data(user) {
           })
           .catch((error) => {
             console.log("Error creating comment document:", error);
+            alert("Error creating comment document:", error)
           })
             }
           }

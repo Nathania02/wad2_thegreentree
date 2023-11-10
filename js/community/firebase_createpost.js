@@ -56,7 +56,7 @@ checkUserLoginStatus()
                 }
             },
             methods: {
-                async createPostInFirestore(){
+                async create_post_in_firestore(){
 
                     const DEFAULT_IMAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/wad2thegreentree.appspot.com/o/TheGreenTreeGreen.png?alt=media&token=c1c3c02e-7204-48a6-84f4-7d50507c3b09';
 
@@ -65,8 +65,8 @@ checkUserLoginStatus()
                     const images = Array.from(this.$refs.images_file.files)
                     console.log(imageUrls);
 
-                    const lastPageURL = document.referrer;
-                    var url  = lastPageURL.split("_");
+                    const last_page_url = document.referrer;
+                    var url  = last_page_url.split("_");
                     var url = url[2].split(".");
                     var community_category = url[0];
 
@@ -85,7 +85,6 @@ checkUserLoginStatus()
                     }else{
                         imageUrls = await Promise.all(images.map(image => this.upload_image(image)));
                     }
-
 
                     for(var j of communitiesList){
                         var name = j.name;
@@ -110,12 +109,11 @@ checkUserLoginStatus()
                                 .then(() => {
                                     console.log("Document successfully written");
                                     alert("Post document created successfully");
-                                    console.log(lastPageURL);
-                                    window.location.href = lastPageURL;    
-                                    
+                                    window.location.href = last_page_url; 
                                 })
                                 .catch((error) => {
                                     console.error("Error", error);
+                                    alert("Error", error);
                                 })    
                             }
                             
@@ -139,22 +137,22 @@ checkUserLoginStatus()
                             .then(() => {
                                 console.log("Document successfully written");
                                 alert("Post document created successfully");
-                                console.log(lastPageURL);
-                                window.location.href = lastPageURL;
-                            })
+                                window.location.href = last_page_url;                            })
                             .catch((error) => {
                                 console.error("Error", error);
+                                alert("Error", error);
                             })
                         }
                     }
                 },
-                
                 async upload_image(image_file){
                     if(image_file) {
                         const storage_ref = ref(storage, 'posts_images/'+ image_file.name);
                         await uploadBytes(storage_ref, image_file);
                         console.log("Image uploaded successfully!");
                         return await getDownloadURL(storage_ref);
+                    } else {
+                        alert("Error", error);
                     }
                 }
             }

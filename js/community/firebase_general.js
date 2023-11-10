@@ -50,54 +50,6 @@ checkUserLoginStatus()
   })
 
 
-// retrieve data from firestore
-// const communities = await getDocs(collection(db, 'communities'));
-// const posts_collection = await getDocs(collection(db, 'posts'));
-// const users = await getDocs(collection(db, 'users'));
-
-// var communitiesList = communities.docs.map(doc => doc.data());
-// var postList = posts_collection.docs.map(doc => doc.data());
-// var usersList = users.docs.map(doc => doc.data());
-
-// var comments_array = [];
-// var post_array = [];
-// var comments = query(collection(db, "comments"));
-// var posts = query(collection(db, "posts"));
-// const querySnapshot_comments = await getDocs(comments);
-// const querySnapshot_post = await getDocs(posts)
-
-// querySnapshot_comments.forEach((doc) => {
-//   var docData = doc.data();
-//   docData["postid"] = doc.id;
-//   comments_array.push(docData);
-// })
-
-// querySnapshot_post.forEach((doc) => {
-//   var docData = doc.data();
-//   docData["postid"] = doc.id;
-//   post_array.push(docData);
-// })
-
-// //sort the posts by dateposted
-
-// post_array.sort(function(a,b){
-//   return b.dateposted - a.dateposted;
-// });
-
-// console.log(post_array);
-
-// // store the date and time alone in a variable in the post array
-// for(let post of post_array){
-//   post["date"] = post['dateposted'].toDate().toLocaleDateString();
-//   post["time"] = post['dateposted'].toDate().toLocaleTimeString();
-// }
-
-// var currentUrl = window.location.href;
-
-// var url = currentUrl.split("_");
-// var url = url[2].split(".");
-// var community_category = url[0];
-
 retrievePosts();
 
   async function retrievePosts(){
@@ -106,9 +58,8 @@ retrievePosts();
     const posts_collection = await getDocs(collection(db, 'posts'));
     const users = await getDocs(collection(db, 'users'));
     
-    var communitiesList = communities.docs.map(doc => doc.data());
-    var postList = posts_collection.docs.map(doc => doc.data());
-    var usersList = users.docs.map(doc => doc.data());
+    var communities_list = communities.docs.map(doc => doc.data());
+    var users_list = users.docs.map(doc => doc.data());
     
     var comments_array = [];
     var post_array = [];
@@ -149,7 +100,7 @@ retrievePosts();
     var url = url[2].split(".");
     var community_category = url[0];
         var rows = "";
-    for(var j of communitiesList){
+    for(var j of communities_list){
       var name = j.name;
       if(name == community_category){
         var title = community_category;
@@ -162,7 +113,7 @@ retrievePosts();
                 var post_id = post.postid;
                 var post_date = post.date;
                 var post_time = post.time;
-                for(var user of usersList){
+                for(var user of users_list){
                   if(user.userId == post.userid){
                     var images = post.images;
                     var image = images[0];
@@ -209,7 +160,7 @@ retrievePosts();
                 var post_id = post.postid;
                 var post_date = post.date;
                 var post_time = post.time;
-                for(var user of usersList){
+                for(var user of users_list){
                   if(user.userId == post.userid){
                     var images = post.images;
                     var image = images[0];

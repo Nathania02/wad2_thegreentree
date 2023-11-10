@@ -10,18 +10,9 @@ body{
 
 #category, #title {
     text-align: center;
-    /* position: absolute; */
 }
 
-
-/* #main_comments {
-    transition: margin-left .5s;
-    padding: 16px;
-    margin-top: 5px;
-    position: relative;
-    } */
-
-#post{
+/* #post{
     padding: 20px;
     text-align: left;
     color: #5c7345;
@@ -36,36 +27,25 @@ body{
     border: 1px solid grey;
     border-radius: 0.375em;
 
-}
-
-#comment_container{
-    position: relative;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-/* #username {
-    position: absolute;
-    top: 10px;
-    bottom: 10px;
 } */
 
+/* #comment_container{
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+} */
 
-.delete {
+/* .delete {
     width: 60px;
     height: 60px;
     right: 85px;
     bottom: -10px;
     position: absolute;
-    /* background-color: white; */
     border: none;
 }
 
 #delete_img, #like_img, #dislike_img {
     width: 30px;
     height: 30px;
-    /* right: 85px;
-    bottom: -30px; */
-    /* position: absolute; */
 }
 
 .like {
@@ -74,7 +54,6 @@ body{
     right: 20px;
     bottom: -10px;
     position: absolute;
-    /* background-color: white; */
     border: none;
 }
 
@@ -84,7 +63,6 @@ body{
     right: -45px;
     bottom: -10px;
     position: absolute;
-    /* background-color: white; */
     border: none;
     white-space: nowrap;
 }
@@ -99,9 +77,9 @@ body{
     position: absolute;
     top: 30px;
     right: 10px;
-}
+} */
 
-#addcomments{
+#add_comments{
     width:100%;
     position: sticky;
     bottom: 0px;
@@ -136,7 +114,7 @@ button{
     margin-top: 90px;
 }
 
-#abouttopic {
+#about_topic {
     border: none;
     border-radius: 0.375em;
     /* position: absolute;
@@ -224,14 +202,12 @@ button{
     overflow: hidden;  
 }
 
-#post {
-    /* position: inline; */
+/* #post {
     width: 80%;
     float: left;
     margin-right: 20px;
     text-align: justify;
-    /* top: 20px; */
-}
+} */
 
 /* ARA'S CSS FILES */
 

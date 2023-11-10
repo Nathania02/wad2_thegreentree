@@ -109,7 +109,7 @@
                         </table>
                     </div>
                     <div class="header-your-ord-t-ff d-flex justify-content-center mb-3">
-                        <h1>Orders Placed</h1>
+                        <h1>Orders</h1>
                     </div>
 
                     <div v-if="orders.length > 0"
@@ -180,6 +180,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div v-else class="d-flex justify-content-center mb-4">
+                        <div class="no-products">
+                            Nobody has bought your products yet!
                         </div>
                     </div>
                 </div>

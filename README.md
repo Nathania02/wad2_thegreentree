@@ -1,6 +1,6 @@
-# wad2_thegreentree
-
 1. Access our website through this link: https://nathania02.github.io/wad2_thegreentree/
+
+PRESENTATION LINK: https://youtu.be/c3fNq9OSrWY
 
 2. You can choose to create a new account using signup or login to an existing account using login or view the website not logged in. Below are the test credientials
 
@@ -17,6 +17,11 @@ test credientials:
    password: Coolboy123@
 
 however we recommend creating your own account and going through the journey for yourself :D
+
+extra credentials to use:
+
+1. email: emmawatson@gmail.com
+   password: Coolboy123@
 
 ---
 
@@ -53,9 +58,11 @@ MARKETPLACE
 1. Can view items if not logged in but cannot add to cart
 2. If you own the item, you cannot add it to cart/review it
 3. For each item, if there is no quantity specified in the item.html page, it means that it is made to order (sellers will input 999 during creation. if it is not made to order, a quantity will be displayed)
-4. When listing an item, you HAVE to upload at least one image - you can upload until 5 (all form validations are stated in the page)
-5. When an order is placed - there is a logic up until checkout for pickup, and up until seller dispatches the order for delivery.
+4. When listing an item, you HAVE to upload at least one image - you can upload until 5 (all form validations are stated in the page); specify 999 if the item is made to order. 
+5. When an order is placed - there is a logic up until checkout for pickup, and up until seller dispatches the order for delivery - if the item is not made to order, the stock quantity will be reduced from stock
 
 ---
 
-App works on mobile, but the marketplace a bit hard to click (as the more information buttons appears on hover)
+NAVBAR
+
+1. List an Item & Cart only appear when user is logged in. 

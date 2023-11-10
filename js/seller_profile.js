@@ -23,7 +23,6 @@ async function fetch_data() {
     const user_id = url_params.get('id');
 
     const items_array = [];
-    const reviews_array = [];
 
     const user_ref = doc(collection(db, "users"), user_id);
     const user_doc = await getDoc(user_ref);
@@ -36,35 +35,21 @@ async function fetch_data() {
         querySnapshot_items.forEach((item_doc) => {
             let doc_data = item_doc.data();
             doc_data['item_id'] = item_doc.id;
-            items_array.push(doc_data);
+
+            if(doc_data['quantity'] != 0){
+              items_array.push(doc_data);
+            }
+
         });
     } catch (error) {
       alert(error.message, "Please try again later");
     }
-
-    for (let item of items_array) {
-        const reviews_query = query(collection(db, "reviews"), where("itemid", "==", item['item_id']));
-        try {
-            const querySnapshot_reviews = await getDocs(reviews_query);
-
-            querySnapshot_reviews.forEach((review_doc) => {
-                let doc_data = review_doc.data();
-                doc_data['review_id'] = review_doc.id;
-                reviews_array.push(doc_data);
-            });
-        } catch (error) {
-          alert(error.message, "Please try again later");
-        }
-    }
-
-    console.log(reviews_array);
 
     const app = Vue.createApp({
         data() {
           return {
             seller_info: user_doc_data,
             items: items_array,
-            reviews: reviews_array,
             cart: JSON.parse(localStorage.getItem('cart')) || {},
             search: "",
             category: "all",
@@ -112,21 +97,6 @@ async function fetch_data() {
               }
             }
           },
-          hasReviews(iid) {
-            return this.reviews.some(review => review.itemid === iid);
-          },
-          average_rating(iid){
-            let reviews = this.reviews.filter(review => review.itemid === iid);
-            let total = 0;
-            for (let review of reviews){
-              total += review.rating;
-            }
-            return (Math.round((total/reviews.length) * 10) / 10);
-          },
-          number_of_reviews(iid){
-            let reviews = this.reviews.filter(review => review.itemid === iid);
-            return reviews.length;
-          },
           add_to_cart(item) {
             const existingCart = JSON.parse(localStorage.getItem('cart')) || {};
             existingCart[item.iid] = (existingCart[item.iid] || 0) + 1;
@@ -147,25 +117,6 @@ async function fetch_data() {
                 showButtons: false,
               };
             },
-            // template: `
-            //   <div class="col">
-            //     <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
-            //     <div class="img-container position-relative">
-            //       <img @mouseenter="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
-            //       <div v-if="showButtons" class="overlay"></div>
-            //       <div  @mouseenter="showButtons = true" @mouseleave="showButtons = false" v-if="showButtons" class="btn-container position-absolute w-100 h-100 d-flex justify-content-around ">
-            //         <button @click="showMoreInformation()" class="mi-btn ">More Information</button>
-            //         </div>
-            //       </div>
-            //       <div class="mt-3 ms-2 position-relative h-100 d-flex flex-column">
-            //         <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$`+`{{item.price}}</b></span></div>
-            //         <div class="card-subtitle text-muted short-desc">{{ item.shortdesc }}</div>
-            //         <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating is {{average_rating}}, based on {{number_of_reviews}}.</p>
-            //         <p v-else class="card-text review-summary position-absolute bottom-0">No reviews yet</p>
-            //       </div>
-            //     </div>
-            //   </div>
-            // `,
             template: `
               <div class="col">
                 <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
@@ -193,23 +144,6 @@ async function fetch_data() {
               }
              
             },
-  
-            computed:{
-              hasReviewsForItem(){
-                return this.$root.hasReviews(this.item.iid);
-              },
-              average_rating(){
-                return this.$root.average_rating(this.item.iid);
-              },
-              number_of_reviews(){
-                let num = this.$root.number_of_reviews(this.item.iid);
-                if(num == 1){
-                  return num + " review";
-                }else{
-                  return num + " reviews";
-                }
-              }
-            }
           }
         }
       });

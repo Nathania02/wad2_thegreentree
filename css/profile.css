@@ -231,3 +231,7 @@ body {
 .filterbar-link:hover {
     color: #f1f1f1;
 }
+
+.buyer-addr{
+    font-size:0.8em;
+}

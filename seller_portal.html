@@ -145,6 +145,9 @@
                                                 Order dispatched and will be delivered by {{convert_to_date(order.delivery_date)}}
                                             </div>
                                         </div>
+                                        <div v-if="order.status == 'pending delivery' || order.status == 'dispatched'" class="buyer-addr">
+                                            {{order.address}},{{order.postal}}
+                                        </div>
                                     </div>
                                     <div class="order-det-box d-flex">
                                         <div class="img-container">

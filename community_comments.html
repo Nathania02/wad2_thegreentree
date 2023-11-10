@@ -81,6 +81,7 @@
           <div class="col-lg-9 col-md-8 col-12 mt-2 mb-3">
             <div class="row row-cols-1 row-cols-lg-12 row-cols-md-12 row-cols-sm-12 g-4">
                 <div id="main_comments">
+                  <div v-if="post_information.comments.length > 0">
                   <div v-for="comment in post_information.comments" class="row d-flex justify-content-center">
                   <div class="col-12 col-md-11 col-lg-11 mb-4">
                       <div class="comm-container w-100 h-100">
@@ -106,6 +107,12 @@
                           
                       </div>
                   </div>
+              </div>
+              </div>
+              <div v-else>
+                <div class="container d-flex justify-content-center" id="no_comments">
+                No comments yet. Be the first to comment!
+                </div>
               </div>
             <div class="container" id="addcomments">
               <input v-model="comment" type="text" id="comments" placeholder="Enter your comments here...">

@@ -50,6 +50,11 @@ checkUserLoginStatus().then(async (result) => {
 
         console.log("Items array: ", items_array);
 
+        // arrange orders array by date
+        orders_array.sort((a, b) => {
+            return b.date - a.date;
+        });
+
         const orders_tbff = orders_array.filter((order) => order.status === "pending pickup" || order.status === "pending delivery" || order.status === "dispatched");
         const orders_ff = orders_array.filter((order) => !orders_tbff.includes(order));
 

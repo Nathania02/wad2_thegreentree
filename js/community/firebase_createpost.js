@@ -89,8 +89,12 @@ checkUserLoginStatus()
             },
             methods: {
                 async createPostInFirestore(){
+
+                    const DEFAULT_IMAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/wad2thegreentree.appspot.com/o/TheGreenTreeGreen.png?alt=media&token=c1c3c02e-7204-48a6-84f4-7d50507c3b09';
+
+                    let imageUrls;
+
                     const images = Array.from(this.$refs.images_file.files)
-                    const imageUrls = await Promise.all(images.map(image => this.upload_image(image)));
                     console.log(imageUrls);
 
                     const lastPageURL = document.referrer;
@@ -108,9 +112,15 @@ checkUserLoginStatus()
                         return;
                     }
 
-                    if(images.length == 0){
-                        alert("Please upload ONLY one image");
-                        return;
+                    // if(images.length == 0){
+                    //     alert("Please upload ONLY one image");
+                    //     return;
+                    // }
+
+                    if(images.length==0){
+                        imageUrls = [DEFAULT_IMAGE_URL];
+                    }else{
+                        imageUrls = await Promise.all(images.map(image => this.upload_image(image)));
                     }
 
 

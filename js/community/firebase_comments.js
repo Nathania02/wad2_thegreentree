@@ -154,12 +154,19 @@ async function fetch_data(user) {
             let like_exists = false;
             for (let like of likes_array){
               if(like['userid'] == this.logged_in_user_id && like['postid'] == comm_id){
+                var req_like_id = like['like_id'];
                 like_exists = true;
                 break;
               }
             }
             if(like_exists){
-              console.log(likes_array);
+              // Delete the like from the database
+              const like_ref = doc(collection(db, "likes"), req_like_id);
+              deleteDoc(like_ref).then(() => {
+                console.log("Like successfully deleted!");
+                location.reload();
+              })
+
             }else{
               let like_ref = collection(db, "likes");
               let like_data_ref = {

@@ -48,9 +48,7 @@ checkUserLoginStatus()
                         phone: user['phoneNo'],
                         email: user['email'],
                         address: user['address'],
-                        postal: user['postal'],
-                        fname: user['fname'],
-                        lname: user['lname'],
+                        postal: user['postalCode'],
                         items: cart_items_json,
                         total_price: 0,
                         d_or_pu: "delivery",
@@ -127,7 +125,7 @@ checkUserLoginStatus()
                         return total;
                     },
                     async checkout(){
-                        if(this.fname.trim() == "" || this.lname.trim() == "" || this.phone.trim() == "" || this.email.trim() == "" ){
+                        if(this.phone.trim() == "" || this.email.trim() == "" ){
                             alert("Please fill in all the fields");
                             return;
                         }

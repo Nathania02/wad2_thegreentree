@@ -57,6 +57,8 @@ async function fetch_data() {
         }
     }
 
+    console.log(reviews_array);
+
     const app = Vue.createApp({
         data() {
           return {
@@ -145,6 +147,25 @@ async function fetch_data() {
                 showButtons: false,
               };
             },
+            // template: `
+            //   <div class="col">
+            //     <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
+            //     <div class="img-container position-relative">
+            //       <img @mouseenter="showButtons = true" @mouseleave="showButtons = false" class="rounded-0 item-img position-relative" :src="item.photos[0]" alt="Card image cap" >
+            //       <div v-if="showButtons" class="overlay"></div>
+            //       <div  @mouseenter="showButtons = true" @mouseleave="showButtons = false" v-if="showButtons" class="btn-container position-absolute w-100 h-100 d-flex justify-content-around ">
+            //         <button @click="showMoreInformation()" class="mi-btn ">More Information</button>
+            //         </div>
+            //       </div>
+            //       <div class="mt-3 ms-2 position-relative h-100 d-flex flex-column">
+            //         <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$`+`{{item.price}}</b></span></div>
+            //         <div class="card-subtitle text-muted short-desc">{{ item.shortdesc }}</div>
+            //         <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating is {{average_rating}}, based on {{number_of_reviews}}.</p>
+            //         <p v-else class="card-text review-summary position-absolute bottom-0">No reviews yet</p>
+            //       </div>
+            //     </div>
+            //   </div>
+            // `,
             template: `
               <div class="col">
                 <div class="card border-0 mb-5 ms-4 rounded-0 position-relative h-100" style="width: 15rem;">
@@ -158,8 +179,6 @@ async function fetch_data() {
                   <div class="mt-3 ms-2 position-relative h-100 d-flex flex-column">
                     <div class="card-title start-0 item-name w-75">{{ item.name }} <span class=" position-absolute top-0 end-0 price"><b>S$`+`{{item.price}}</b></span></div>
                     <div class="card-subtitle text-muted short-desc">{{ item.shortdesc }}</div>
-                    <p v-if="hasReviewsForItem" class="card-text review-summary position-absolute bottom-0">Average rating is {{average_rating}}, based on {{number_of_reviews}}.</p>
-                    <p v-else class="card-text review-summary position-absolute bottom-0">No reviews yet</p>
                   </div>
                 </div>
               </div>

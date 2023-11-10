@@ -164,8 +164,6 @@ async function getUserData(userId) {
             let newUserObject = rearrangeObjectKeys(data, keyOrder);
             for (var field in newUserObject) {
                 var fieldData = displayUserData.querySelector(`#${field}`);
-                console.log(field);
-                console.log(newUserObject[field]);
                 if (field === 'gender') {
                     if (newUserObject[field] == 'M') {
                         fieldData.textContent = 'Male';

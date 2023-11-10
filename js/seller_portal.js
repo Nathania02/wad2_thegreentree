@@ -55,19 +55,11 @@ checkUserLoginStatus().then(async (result) => {
             return b.date - a.date;
         });
 
-        const orders_tbff = orders_array.filter((order) => order.status === "pending pickup" || order.status === "pending delivery" || order.status === "dispatched");
-        const orders_ff = orders_array.filter((order) => !orders_tbff.includes(order));
-
-        console.log("Orders array:", orders_array);
-        console.log("Orders to be fulfilled:", orders_tbff);
-
         const app = Vue.createApp({
             data() {
                 return {
                     items: items_array,
                     orders: orders_array,
-                    orders_tbff: orders_tbff,
-                    orders_ff: orders_ff,
                     delivery_date: null,
                     // sidebar
                     fontSize: '25px',

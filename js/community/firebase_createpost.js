@@ -58,91 +58,97 @@ checkUserLoginStatus()
             methods: {
                 async create_post_in_firestore(){
 
-                    const DEFAULT_IMAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/wad2thegreentree.appspot.com/o/TheGreenTreeGreen.png?alt=media&token=c1c3c02e-7204-48a6-84f4-7d50507c3b09';
+                    try{
+                        const DEFAULT_IMAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/wad2thegreentree.appspot.com/o/TheGreenTreeGreen.png?alt=media&token=c1c3c02e-7204-48a6-84f4-7d50507c3b09';
 
-                    let imageUrls;
+                        let imageUrls;
 
-                    const images = Array.from(this.$refs.images_file.files)
-                    console.log(imageUrls);
+                        const images = Array.from(this.$refs.images_file.files)
+                        console.log(imageUrls);
 
-                    const last_page_url = document.referrer;
-                    var url  = last_page_url.split("_");
-                    var url = url[2].split(".");
-                    var community_category = url[0];
+                        const last_page_url = document.referrer;
+                        var url  = last_page_url.split("_");
+                        var url = url[2].split(".");
+                        var community_category = url[0];
 
-                    if(this.topic_title.length == 0){
-                        alert ("Please enter a topic title");
-                        return;
-                    }
+                        if(this.topic_title.length == 0){
+                            alert ("Please enter a topic title");
+                            return;
+                        }
 
-                    if(this.topic_about.length == 0){
-                        alert("Please enter a description for this topic");
-                        return;
-                    }
+                        if(this.topic_about.length == 0){
+                            alert("Please enter a description for this topic");
+                            return;
+                        }
 
-                    if(images.length==0){
-                        imageUrls = [DEFAULT_IMAGE_URL];
-                    }else{
-                        imageUrls = await Promise.all(images.map(image => this.upload_image(image)));
-                    }
+                        if(images.length==0){
+                            imageUrls = [DEFAULT_IMAGE_URL];
+                        }else{
+                            imageUrls = await Promise.all(images.map(image => this.upload_image(image)));
+                        }
 
-                    for(var j of communitiesList){
-                        var name = j.name;
-                        if( /[0-9]/.test(name)) {
-                            if(name==community_category){
+                        for(var j of communitiesList){
+                            var name = j.name;
+                            if( /[0-9]/.test(name)) {
+                                if(name==community_category){
+                                    this.community_id = j.id;
+                                    this.topic_title = document.getElementById("topic_title").value;
+                                    this.topic_about = document.getElementById("topic_about").value;
+                                    
+                                    let postRef = doc(collection(db, "posts"));
+                                    let postDataRef = {
+                                        // postid: doc_ref.id,
+                                        title: this.topic_title,
+                                        desc: this.topic_about,
+                                        communityid: this.community_id,
+                                        followercount: 0,
+                                        userid: this.user_id,
+                                        images: imageUrls,
+                                        dateposted: new Date(),                                    
+                                    };
+                                    await setDoc(postRef, postDataRef)
+                                    .then(() => {
+                                        console.log("Document successfully written");
+                                        alert("Post document created successfully");
+                                        window.location.href = last_page_url; 
+                                    })
+                                    .catch((error) => {
+                                        console.error("Error", error);
+                                        alert("Error", error);
+                                        return;
+                                    })    
+                                }
+                                
+                            } else if(name.toLowerCase()==community_category){
                                 this.community_id = j.id;
                                 this.topic_title = document.getElementById("topic_title").value;
                                 this.topic_about = document.getElementById("topic_about").value;
-                                
+                            
+
                                 let postRef = doc(collection(db, "posts"));
                                 let postDataRef = {
-                                    // postid: doc_ref.id,
                                     title: this.topic_title,
                                     desc: this.topic_about,
                                     communityid: this.community_id,
                                     followercount: 0,
                                     userid: this.user_id,
                                     images: imageUrls,
-                                    dateposted: new Date(),                                    
+                                    dateposted: new Date(),
                                 };
                                 await setDoc(postRef, postDataRef)
                                 .then(() => {
                                     console.log("Document successfully written");
                                     alert("Post document created successfully");
-                                    window.location.href = last_page_url; 
-                                })
+                                    window.location.href = last_page_url;                            })
                                 .catch((error) => {
                                     console.error("Error", error);
                                     alert("Error", error);
-                                })    
+                                    return;
+                                })
                             }
-                            
-                        } else if(name.toLowerCase()==community_category){
-                            this.community_id = j.id;
-                            this.topic_title = document.getElementById("topic_title").value;
-                            this.topic_about = document.getElementById("topic_about").value;
-                        
-
-                            let postRef = doc(collection(db, "posts"));
-                            let postDataRef = {
-                                title: this.topic_title,
-                                desc: this.topic_about,
-                                communityid: this.community_id,
-                                followercount: 0,
-                                userid: this.user_id,
-                                images: imageUrls,
-                                dateposted: new Date(),
-                            };
-                            await setDoc(postRef, postDataRef)
-                            .then(() => {
-                                console.log("Document successfully written");
-                                alert("Post document created successfully");
-                                window.location.href = last_page_url;                            })
-                            .catch((error) => {
-                                console.error("Error", error);
-                                alert("Error", error);
-                            })
                         }
+                    } catch (error){
+                        alert("There was an error", error);
                     }
                 },
                 async upload_image(image_file){

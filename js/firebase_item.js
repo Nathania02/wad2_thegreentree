@@ -148,6 +148,8 @@ const fetchData = (iid) => {
                     existing_cart[iid] = [item_name, item_price, item_quantity, item_first_image];
 
                     localStorage.setItem('cart', JSON.stringify(existing_cart));
+
+                    alert("Item added to cart!");
                   }
                 },
                 edit_item(){
